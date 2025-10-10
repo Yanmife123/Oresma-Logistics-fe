@@ -76,9 +76,8 @@ export default function Footer() {
               Oresma Logistics
             </h2>
             <p className="text-base md:text-lg font-normal sm:max-w-[550px] lg:text-start text-center">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-              a gravida velit. Cras vehicula sodalesIn porttitor iaculis dolor
-              non aliquet.
+              Zeta Supply Chain Management Co., Ltd. - Your trusted partner in
+              Chinese automobile exports since 2006
             </p>
             <div className="flex gap-4 md:gap-6">
               <Link

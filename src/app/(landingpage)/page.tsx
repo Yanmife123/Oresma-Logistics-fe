@@ -1,6 +1,6 @@
 import { HeroSection } from "@/components/pages/landingpage/hero-section";
 import AboutUs from "@/components/pages/landingpage/aboutUs";
-import Services from "@/components/pages/landingpage/services";
+// import Services from "@/components/pages/landingpage/services";
 import Process from "@/components/pages/landingpage/process";
 import { Team } from "@/components/pages/landingpage/teams";
 import CaseStudy from "@/components/pages/landingpage/case-study";

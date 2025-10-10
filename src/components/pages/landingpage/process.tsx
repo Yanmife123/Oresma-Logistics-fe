@@ -7,21 +7,21 @@ const processSteps = [
       "https://res.cloudinary.com/duyhha3mz/image/upload/v1759731345/01_eokg99.png",
     title: "Step 1",
     description:
-      "Vestibulum eu ultrices nisi. Quisque interdum justo non quam tempus, sed imperdiet ex gravida. Vivamus eu malesuada eros. Sed sed facilisis sapien et erat convallis",
+      "Customer submits inquiry with specific vehicle requirements and destination details for accurate quotation and timeline.",
   },
   {
     numberimg:
       "https://res.cloudinary.com/duyhha3mz/image/upload/v1759731345/02_fefwn5.png",
     title: "Step 2",
     description:
-      "Vestibulum eu ultrices nisi. Quisque interdum justo non quam tempus, sed imperdiet ex gravida. Vivamus eu malesuada eros. Sed sed facilisis sapien et erat convallis",
+      "We source the best vehicles from our extensive network, negotiate competitive prices, and arrange quality inspection.",
   },
   {
     numberimg:
       "https://res.cloudinary.com/duyhha3mz/image/upload/v1759731345/03_emkkah.png",
     title: "Step 3",
     description:
-      "Vestibulum eu ultrices nisi. Quisque interdum justo non quam tempus, sed imperdiet ex gravida. Vivamus eu malesuada eros. Sed sed facilisis sapien et erat convallis",
+      "Complete export documentation, customs clearance, and arrange reliable shipping to deliver vehicles safely to your location.",
   },
 ];
 

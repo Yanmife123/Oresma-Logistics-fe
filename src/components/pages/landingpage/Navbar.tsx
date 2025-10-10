@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-
+import Link from "next/link";
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -59,8 +59,11 @@ export function Navbar() {
 
           {/* CTA Button - Desktop */}
           <div className="hidden md:block">
-            <Button className="w-full bg-[#F75720] hover:bg-[#F75720]/90 text-primary-foreground hover:scale-105 transition-transform duration-300 rounded-tl-3xl rounded-br-3xl">
-              GET A QUOTE
+            <Button
+              className="w-full bg-[#F75720] hover:bg-[#F75720]/90 text-primary-foreground hover:scale-105 transition-transform duration-300 rounded-tl-3xl rounded-br-3xl"
+              asChild
+            >
+              <Link href={"/auth/login"}>GET A Started</Link>
             </Button>
           </div>
 
@@ -93,8 +96,11 @@ export function Navbar() {
               </a>
             ))}
             <div className="pt-2">
-              <Button className="w-full bg-[#F75720] hover:bg-[#F75720]/90 text-primary-foreground hover:scale-105 transition-transform duration-300 rounded-tl-3xl rounded-br-3xl">
-                GET A QUOTE
+              <Button
+                className="w-full bg-[#F75720] hover:bg-[#F75720]/90 text-primary-foreground hover:scale-105 transition-transform duration-300 rounded-tl-3xl rounded-br-3xl"
+                asChild
+              >
+                <Link href={"/auth/login"}>GET A QUOTE</Link>
               </Button>
             </div>
           </div>

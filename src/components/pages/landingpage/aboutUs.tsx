@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { SubHeader } from "@/components/shared/landingpage/sub-header";
+import Link from "next/link";
 
 export default function AboutUs() {
   return (
@@ -16,16 +17,25 @@ export default function AboutUs() {
         </div>
         <div className="px-2 flex flex-col md:items-start items-center">
           <SubHeader title="About Us" />
-          <p className="mt-5 text-sm text-[#021533] max-w-[540px] font-normal md:text-start text-center">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur a
-            gravida velit. Cras vehicula sodales ligula, ut pharetra nulla
-            laoreet ut. In porttitor iaculis dolor non aliquet.
+          <p className="mt-5 text-base text-[#021533] max-w-[540px] font-normal md:text-start text-center">
+            Chongqing Zeta Supply Chain Co., Ltd. Since 2006, we have been
+            deeply involved in the field of Chinese automobile exports,
+            authorized by the Chinese government to promote and sell high
+            quality vehicles to all over the world.
+            <br />
+            <br />
+            We are currently looking for distribution partners around the world
+            to offer them a wide selection of high-quality vehicles with the
+            most competitive price. Through in-depth cooperation with major
+            brands and dealers, we ensure quality while providing an affordable
+            experience.
           </p>
           <Button
             className="bg-[#F75720] hover:bg-[#F75720]/90 text-primary-foreground hover:scale-105 transition-transform duration-300 animate-fade-in-up animate-pulse-subtle rounded-tl-3xl rounded-br-3xl mt-6 text-xs"
             style={{ animationDelay: "0.4s" }}
+            asChild
           >
-            GET A QUOTE
+            <Link href={"/auth/login"}> GET A QUOTE</Link>
           </Button>
         </div>
       </div>

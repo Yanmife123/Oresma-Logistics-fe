@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Users, ThumbsUp, Package } from "lucide-react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 function useCountUp(end: number, duration = 2000) {
   const [count, setCount] = useState(0);
@@ -61,16 +62,18 @@ export function HeroSection() {
                 className="text-base md:text-lg text-white/90 mb-8 leading-relaxed animate-fade-in-up max-md:text-center"
                 style={{ animationDelay: "0.2s" }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco.
+                Your trusted partner in Chinese automobile exports since 2006.
+                We offer high-quality vehicles with the most competitive prices,
+                connecting global distribution partners with premium automotive
+                solutions.
               </p>
               <div className="flex max-md:justify-center">
                 <Button
                   className="bg-[#F75720] hover:bg-[#F75720]/90 text-primary-foreground hover:scale-105 transition-transform duration-300 animate-fade-in-up animate-pulse-subtle rounded-tl-3xl rounded-br-3xl"
                   style={{ animationDelay: "0.4s" }}
+                  asChild
                 >
-                  GET A QUOTE
+                  <Link href={"/auth/login"}> GET A QUOTE</Link>
                 </Button>
               </div>
             </div>

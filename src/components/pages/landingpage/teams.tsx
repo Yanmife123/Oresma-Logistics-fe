@@ -1,5 +1,5 @@
 import { SubHeader } from "@/components/shared/landingpage/sub-header";
-import { title } from "process";
+// import { title } from "process";
 import Image from "next/image";
 
 const teams = [
@@ -27,8 +27,9 @@ export function Team() {
     <section className="w-full max-7xl mx-auto ">
       <div className="flex flex-col gap-2 items-center py-7">
         <SubHeader title="Our Experts" />
-        <p className="text-xs font-normal">
-          Curabitur a gravida velit. <br /> Cras vehicula sodales ligula
+        <p className="text-base font-normal">
+          Meet our experienced team of logistics professionals dedicated to
+          delivering excellence in automobile export and supply chain solutions
         </p>
       </div>
       <div className="flex gap-14 mt-10 justify-center items-center flex-wrap">
