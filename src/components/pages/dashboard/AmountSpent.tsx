@@ -1,6 +1,7 @@
 "use client";
 import { BarChartComponent } from "@/components/shared/dashboard/bar-chart";
 import { PeriodSelector } from "@/components/shared/dashboard/period-selector";
+import { Suspense } from "react";
 const amountSpentData = [
   { name: "June 12", value: 15000 },
   { name: "June 13", value: 18000 },
@@ -20,16 +21,18 @@ export function AmountSpent({ color }: { color?: string }) {
       renderBatch={() => {
         return (
           <div>
-            <PeriodSelector
-              paramName="amountSpent"
-              options={[
-                { label: "Last 7 days", value: "7days" },
-                { label: "Last 2 weeks", value: "2weeks" },
-                { label: "Last 1 month", value: "1month" },
-                { label: "Last 2 months", value: "2months" },
-                { label: "Last 1 year", value: "1year" },
-              ]}
-            />
+            <Suspense>
+              <PeriodSelector
+                paramName="amountSpent"
+                options={[
+                  { label: "Last 7 days", value: "7days" },
+                  { label: "Last 2 weeks", value: "2weeks" },
+                  { label: "Last 1 month", value: "1month" },
+                  { label: "Last 2 months", value: "2months" },
+                  { label: "Last 1 year", value: "1year" },
+                ]}
+              />
+            </Suspense>
           </div>
         );
       }}

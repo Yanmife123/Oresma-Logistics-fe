@@ -1,6 +1,7 @@
 "use client";
 import { PeriodSelector } from "@/components/shared/dashboard/period-selector";
 import { AreaChartComponent } from "@/components/shared/dashboard/area-chart";
+import { Suspense } from "react";
 
 const rideRequestsData = [
   { name: "June 12", value: 18000 },
@@ -20,16 +21,18 @@ Last 7 days"
       renderBatch={() => {
         return (
           <div>
-            <PeriodSelector
-              paramName="rideRequestDate"
-              options={[
-                { label: "Last 7 days", value: "7days" },
-                { label: "Last 2 weeks", value: "2weeks" },
-                { label: "Last 1 month", value: "1month" },
-                { label: "Last 2 months", value: "2months" },
-                { label: "Last 1 year", value: "1year" },
-              ]}
-            />
+            <Suspense>
+              <PeriodSelector
+                paramName="rideRequestDate"
+                options={[
+                  { label: "Last 7 days", value: "7days" },
+                  { label: "Last 2 weeks", value: "2weeks" },
+                  { label: "Last 1 month", value: "1month" },
+                  { label: "Last 2 months", value: "2months" },
+                  { label: "Last 1 year", value: "1year" },
+                ]}
+              />
+            </Suspense>
           </div>
         );
       }}

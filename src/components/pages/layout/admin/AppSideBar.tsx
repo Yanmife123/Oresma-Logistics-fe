@@ -48,17 +48,16 @@ interface SidebarProps {
 
 export default function AdminSideBar({
   isCollapsed: controlledCollapsed,
-  // onCollapsedChange,
+  onCollapsedChange,
   isMobileOpen = false,
   onMobileClose,
 }: SidebarProps = {}) {
   const [internalCollapsed, setInternalCollapsed] = useState(false);
   const pathname = usePathname();
   const navigate = useRouter();
-  setInternalCollapsed(false);
 
   const isCollapsed = controlledCollapsed ?? internalCollapsed;
-  // const setIsCollapsed = onCollapsedChange ?? setInternalCollapsed;
+  const _setIsCollapsed = onCollapsedChange ?? setInternalCollapsed;
 
   const mutation = useMutation({
     mutationFn: logOut,

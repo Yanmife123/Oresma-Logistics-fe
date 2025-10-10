@@ -50,16 +50,16 @@ interface SidebarProps {
 
 export function DashboardSidebar({
   isCollapsed: controlledCollapsed,
-  // onCollapsedChange,
+  onCollapsedChange,
   isMobileOpen = false,
   onMobileClose,
 }: SidebarProps = {}) {
   const [internalCollapsed, setInternalCollapsed] = useState(false);
   const pathname = usePathname();
   const navigate = useRouter();
-  setInternalCollapsed(false);
+  // setInternalCollapsed(false);
   const isCollapsed = controlledCollapsed ?? internalCollapsed;
-  // const setIsCollapsed = onCollapsedChange ?? setInternalCollapsed;
+  const _setIsCollapsed = onCollapsedChange ?? setInternalCollapsed;
 
   const mutation = useMutation({
     mutationFn: logOut,

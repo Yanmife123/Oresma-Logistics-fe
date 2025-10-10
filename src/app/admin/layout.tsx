@@ -5,6 +5,6 @@ export default function AdminDashbboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // return <DashbboardLayout>{children}</DashbboardLayout>;
-  return <div>{children}</div>;
+  return <DashbboardLayout>{children}</DashbboardLayout>;
+  // return <div>{children}</div>;
 }

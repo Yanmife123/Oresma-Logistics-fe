@@ -1,6 +1,6 @@
 "use client";
 import { DashboardSidebar } from "@/components/pages/layout/dashboard/AppSideBar";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { cn } from "@/_lib/utils";
 import { Header } from "@/components/shared/dashboard/header";
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -8,12 +8,14 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   return (
     <div className="flex min-h-screen bg-background">
-      <DashboardSidebar
-        isCollapsed={isSidebarCollapsed}
-        onCollapsedChange={setIsSidebarCollapsed}
-        isMobileOpen={isMobileSidebarOpen}
-        onMobileClose={() => setIsMobileSidebarOpen(false)}
-      />
+      <Suspense fallback="">
+        <DashboardSidebar
+          isCollapsed={isSidebarCollapsed}
+          onCollapsedChange={setIsSidebarCollapsed}
+          isMobileOpen={isMobileSidebarOpen}
+          onMobileClose={() => setIsMobileSidebarOpen(false)}
+        />
+      </Suspense>
       <div
         className={cn(
           "flex-1 transition-all duration-300",
