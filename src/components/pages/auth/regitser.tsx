@@ -1,5 +1,6 @@
-import { Package, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { RegisterForm } from "./registerForm";
+import Image from "next/image";
 
 export default function RegisterComponent() {
   return (
@@ -10,10 +11,10 @@ export default function RegisterComponent() {
         {/* Right side - Benefits */}
         <div className="hidden lg:flex flex-col justify-center space-y-6 animate-slide-in-right lg:order-1">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-              <Package className="w-7 h-7 text-primary-foreground" />
+            <div className="w-12 h-12 relative rounded-lg flex items-center justify-center">
+              <Image src={"/logo.svg"} alt="Oresema Logo" fill />
             </div>
-            <span className="text-3xl font-bold text-foreground">Oresma</span>
+            <span className="text-3xl font-bold text-secondaryT">Oresma</span>
           </div>
           <h1 className="text-5xl font-bold text-foreground leading-tight text-balance">
             Start your logistics journey today

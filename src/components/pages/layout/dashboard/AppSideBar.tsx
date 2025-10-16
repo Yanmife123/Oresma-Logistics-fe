@@ -30,14 +30,14 @@ import Image from "next/image";
 const menuItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
   { icon: User, label: "Profile", href: "/profile" },
-  { icon: Bike, label: "Riders", href: "/riders" },
+  { icon: Bike, label: "Riders", href: "/dashboard/rider" },
   { icon: Calendar, label: "Calendar", href: "/calendar" },
   { icon: Bookmark, label: "Saved", href: "/saved" },
   { icon: Navigation, label: "Active Ride", href: "/active-ride" },
   { icon: Car, label: "Vehicle Details", href: "/vehicle-details" },
   { icon: Search, label: "Search", href: "/search" },
   { icon: List, label: "Listings", href: "/listings" },
-  { icon: Wrench, label: "Book services", href: "/book-services" },
+  { icon: Wrench, label: "Book services", href: "/dashboard/book-services" },
   { icon: HelpCircle, label: "Help Centre", href: "/help-centre" },
 ];
 
@@ -125,7 +125,7 @@ export function DashboardSidebar({
           <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4">
             {menuItems.map((item) => {
               const Icon = item.icon;
-              const isActive = pathname === item.href;
+              const isActive = pathname.includes(item.href);
               return (
                 <Link
                   key={item.href}
@@ -147,7 +147,11 @@ export function DashboardSidebar({
                 </Link>
               );
             })}
-            <div className=" flex items-center justify-center bg-[#E6E8EB] px-2 py-3  rounded-2xl shadow-sm mt-6">
+            <div
+              className={` ${
+                isCollapsed ? "hidden" : "flex"
+              } flex items-center justify-center bg-[#E6E8EB] px-2 py-3  rounded-2xl shadow-sm mt-6 `}
+            >
               <div className=" w-full flex flex-col gap-1 items-center">
                 <p className="text-gray-700 text-center leading-relaxed text-sm mt-0">
                   Morbi efficitur diam in placerat acn.

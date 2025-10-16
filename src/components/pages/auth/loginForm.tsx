@@ -74,7 +74,7 @@ export function LoginForm() {
           </div>
           <span className="text-2xl font-bold text-foreground">Oresma</span>
         </div>
-        <CardTitle className="text-3xl font-bold text-foreground">
+        <CardTitle className="text-3xl font-bold text-secondaryT">
           Sign in
         </CardTitle>
         <CardDescription className="text-base text-muted-foreground">
@@ -99,7 +99,7 @@ export function LoginForm() {
         <CardFooter className="flex flex-col space-y-4 mt-4 ">
           <Button
             type="submit"
-            className="w-full h-11 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+            className="w-full h-11 bg-secondaryT hover:bg-secondaryT/90 text-primary-foreground font-semibold transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             disabled={isLoading}
           >
             {isLoading ? (
@@ -115,7 +115,7 @@ export function LoginForm() {
             Don&apos;t have an account?{" "}
             <Link
               href="/auth/register"
-              className="text-primary hover:text-primary/80 font-semibold transition-colors"
+              className="text-secondaryT hover:text-secondaryT/90 font-semibold transition-colors"
             >
               Create account
             </Link>

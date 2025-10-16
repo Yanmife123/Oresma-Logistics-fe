@@ -2,7 +2,7 @@
 import AdminSideBar from "./AppSideBar";
 import { Suspense, useState } from "react";
 import { cn } from "@/_lib/utils";
-import { Header } from "@/components/shared/dashboard/header";
+import { Header } from "@/components/shared/headers/header";
 export function DashbboardLayout({ children }: { children: React.ReactNode }) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);

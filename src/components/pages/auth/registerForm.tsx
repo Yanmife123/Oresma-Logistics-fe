@@ -13,7 +13,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Package, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -23,6 +23,7 @@ import { CustomerInput } from "@/components/utility/form/customInput";
 import { useMutation } from "@tanstack/react-query";
 import { userSignIn } from "@/_lib/api/auth/signUp";
 import { showToast } from "@/components/shared/toast";
+import Image from "next/image";
 
 import { useRouter } from "next/navigation";
 
@@ -81,12 +82,12 @@ export function RegisterForm() {
     <Card className="w-full max-w-md mx-auto shadow-2xl border-border/50 animate-fade-in-up lg:order-2">
       <CardHeader className="space-y-1">
         <div className="flex lg:hidden items-center gap-2 mb-4">
-          <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-            <Package className="w-6 h-6 text-primary-foreground" />
+          <div className="w-10 h-10 relative rounded-lg flex items-center justify-center">
+            <Image src={"/logo.svg"} alt="Oresema Logo" fill />
           </div>
-          <span className="text-2xl font-bold text-foreground">Oresma</span>
+          <span className="text-2xl font-bold text-secondaryT">Oresma</span>
         </div>
-        <CardTitle className="text-3xl font-bold text-foreground">
+        <CardTitle className="text-3xl font-bold text-secondaryT ">
           Create account
         </CardTitle>
         <CardDescription className="text-base text-muted-foreground">
@@ -137,7 +138,7 @@ export function RegisterForm() {
         <CardFooter className="flex flex-col space-y-4 mt-4">
           <Button
             type="submit"
-            className="w-full h-11 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="w-full h-11 bg-secondaryT hover:bg-secondaryT/90 text-primary-foreground font-semibold transition-all hover:scale-[1.02] active:scale-[0.98]"
             disabled={mutation.isPending}
           >
             {mutation.isPending ? (
@@ -153,7 +154,7 @@ export function RegisterForm() {
             Already have an account?{" "}
             <Link
               href="/auth/login"
-              className="text-primary hover:text-primary/80 font-semibold transition-colors"
+              className="text-secondaryT hover:text-secondaryT/80 font-semibold transition-colors"
             >
               Sign in
             </Link>
