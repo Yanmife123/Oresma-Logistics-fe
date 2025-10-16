@@ -1,5 +1,5 @@
-import { Package } from "lucide-react";
 import { LoginForm } from "./loginForm";
+import Image from "next/image";
 
 export default function LoginComponent() {
   return (
@@ -8,12 +8,12 @@ export default function LoginComponent() {
         {/* Left side - Branding */}
         <div className="hidden lg:flex flex-col justify-center space-y-6 animate-slide-in-right">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-              <Package className="w-7 h-7 text-primary-foreground" />
+            <div className="w-12 h-12  rounded-lg flex items-center justify-center relative">
+              <Image src={"/logo.svg"} alt="Oresema Logo" fill />
             </div>
-            <span className="text-3xl font-bold text-foreground">Oresma</span>
+            <span className="text-3xl font-bold text-secondaryT">Oresma</span>
           </div>
-          <h1 className="text-5xl font-bold text-foreground leading-tight text-balance">
+          <h1 className="text-5xl font-bold text-primaryT leading-tight text-balance">
             Welcome back to Oresma Logistics
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
