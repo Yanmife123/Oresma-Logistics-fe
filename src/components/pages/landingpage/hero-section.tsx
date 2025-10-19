@@ -41,7 +41,7 @@ export function HeroSection() {
       {/* Hero Image with Overlay */}
       <div className="relative h-[500px] md:h-[600px] ">
         <Image
-          src="/landingpage/Hero.jpg"
+          src="https://res.cloudinary.com/duyhha3mz/image/upload/v1760891284/Hero_nwpufp.jpg"
           alt="Oresma Logistics"
           fill
           priority
