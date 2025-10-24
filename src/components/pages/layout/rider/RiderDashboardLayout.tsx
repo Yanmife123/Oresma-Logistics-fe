@@ -1,12 +1,16 @@
 "use client";
-import { DashboardSidebar } from "@/components/pages/layout/dashboard/AppSideBar";
-import { Suspense, useEffect, useState } from "react";
+import RiderSideBar from "./AppSideBar";
+import { Suspense, useState } from "react";
 import { cn } from "@/_lib/utils";
-import Cookies from "js-cookie";
-import { Header } from "@/components/shared/headers/header";
+import { Header2 } from "@/components/shared/headers/header";
 import { User } from "@/_lib/type/cookies";
-
-export function DashboardLayout({ children }: { children: React.ReactNode }) {
+import Cookies from "js-cookie";
+import { useEffect } from "react";
+export function RiderDashbboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [user, setUser] = useState<User | null>(null);
@@ -17,13 +21,13 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
       setUser(JSON.parse(userCookies));
     }
   }, []);
-
-  // 👇 Prevent hydration mismatch by not rendering until mounted
-
+  if (user === null) {
+    return null; // or show a skeleton loader
+  }
   return (
     <div className="flex min-h-screen bg-background">
-      <Suspense fallback="">
-        <DashboardSidebar
+      <Suspense>
+        <RiderSideBar
           isCollapsed={isSidebarCollapsed}
           onCollapsedChange={setIsSidebarCollapsed}
           isMobileOpen={isMobileSidebarOpen}
@@ -37,10 +41,10 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
           !isSidebarCollapsed && "lg:ml-64"
         )}
       >
-        <Header
-          title={`hello ${user?.name ?? ""}`}
+        <Header2
+          title="Driver’s Dashbaord"
           userImage="/diverse-user-avatars.png"
-          userName={user?.name ?? ""}
+          userName={user.name}
           onToggleSidebar={() => {
             if (window.innerWidth < 1024) {
               setIsMobileSidebarOpen(!isMobileSidebarOpen);
@@ -48,6 +52,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
               setIsSidebarCollapsed(!isSidebarCollapsed);
             }
           }}
+          bgcolor="#021533"
         />
         <div className="p-6">{children}</div>
       </div>

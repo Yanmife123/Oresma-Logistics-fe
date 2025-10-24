@@ -47,3 +47,39 @@ export function Header({
     </header>
   );
 }
+
+export function Header2({
+  title,
+  userImage,
+  userName = "User",
+  onToggleSidebar,
+  bgcolor = "#f75720",
+}: HeaderProps) {
+  return (
+    <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-border bg-background px-6">
+      <div className="flex items-center gap-4">
+        {onToggleSidebar && (
+          <Button variant="ghost" size="icon" onClick={onToggleSidebar}>
+            <Menu className="h-5 w-5" />
+          </Button>
+        )}
+        <h1 className="md:text-2xl text-lg font-semibold capitalize">
+          {title}
+        </h1>
+        <div className="bg-primaryT w-[30px] h-[30px] rounded-full flex justify-center items-center">
+          <div className="w-[8px] h-[8px] bg-white rounded-full"></div>
+        </div>
+      </div>
+
+      <div className="flex items-center gap-4">
+        <Avatar>
+          <AvatarImage src={userImage || "/placeholder.svg"} alt={userName} />
+          <AvatarFallback>{userName.charAt(0)}</AvatarFallback>
+        </Avatar>
+        <p className="capitalize font-semibold md:text-xl max-md:hidden text-primaryT ">
+          {userName}
+        </p>
+      </div>
+    </header>
+  );
+}

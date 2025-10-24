@@ -1,33 +1,61 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import type { LucideIcon } from "lucide-react"
+"use client";
 
-interface StatsCardProps {
-  title: string
-  value: string | number
-  icon?: LucideIcon
-  trend?: {
-    value: number
-    isPositive: boolean
-  }
-  className?: string
+import type { ReactNode } from "react";
+import { Card } from "@/components/ui/card";
+
+interface StatCardProps {
+  percentage: number;
+  label: string;
+  trend?: string;
+  trendDirection?: "up" | "down";
+  icon?: ReactNode;
+  gradient?: boolean;
+  children?: ReactNode;
 }
 
-export function StatsCard({ title, value, icon: Icon, trend, className }: StatsCardProps) {
+export function StatCard({
+  percentage,
+  label,
+  trend,
+  trendDirection,
+  icon,
+  gradient = false,
+  children,
+}: StatCardProps) {
+  const trendColor =
+    trendDirection === "up" ? "text-green-500" : "text-red-500";
+
   return (
-    <Card className={className}>
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground">{title}</CardTitle>
-        {Icon && <Icon className="h-4 w-4 text-muted-foreground" />}
-      </CardHeader>
-      <CardContent>
-        <div className="text-2xl font-bold">{value}</div>
+    <Card
+      className={`w-full p-6 flex flex-col justify-between hover:bg-gradient-to-br hover:to-[#35445C] hover:from-[#FA8E6A]  hover:text-white text-primaryT border-0 transition duration-300  ease-in-out     
+      `}
+    >
+      {/* Header with icon and trend */}
+      <div className="flex items-start justify-between mb-8">
+        {icon && <div className="text-lg">{icon}</div>}
         {trend && (
-          <p className={`text-xs ${trend.isPositive ? "text-green-600" : "text-red-600"}`}>
-            {trend.isPositive ? "+" : "-"}
-            {trend.value}% from last month
-          </p>
+          <div className={`text-sm font-medium ${trendColor}`}>{trend}</div>
         )}
-      </CardContent>
+      </div>
+
+      {/* Main content */}
+      <div className="flex items-end justify-between">
+        <div className="flex-1">
+          <div className="text-4xl font-bold mb-1 ">{percentage}%</div>
+          <div
+            className={`text-sm 
+              
+            `}
+          >
+            {label}
+          </div>
+        </div>
+
+        {/* Circular indicator */}
+        <div className="bg-primaryT w-[20px] h-[20px] rounded-full flex justify-center items-center">
+          <div className="w-[5px] h-[5px] bg-white rounded-full"></div>
+        </div>
+      </div>
     </Card>
-  )
+  );
 }

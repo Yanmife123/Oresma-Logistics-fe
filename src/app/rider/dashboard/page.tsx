@@ -1,0 +1,69 @@
+import { PageHeader2 } from "@/components/shared/headers/page-headers";
+import { Button } from "@/components/ui/button";
+import { PeriodSelector } from "@/components/shared/dashboard/period-selector";
+import { DashboardCard } from "@/components/shared/dashboard/dashboard-card";
+import TotalSales from "@/components/pages/rider/dashbord/totalSales";
+import { StatCard } from "@/components/shared/dashboard/stats-card";
+import { Menu, CalendarArrowDown } from "lucide-react";
+import { RecentTrip } from "@/components/pages/rider/dashbord/recentTrip";
+import { RegisteredVehicle } from "@/components/pages/rider/dashbord/registeredVehicle";
+
+export default function DashboardPage() {
+  return (
+    <div className="space-y-10">
+      <PageHeader2
+        title="Dashboard"
+        actions={
+          <>
+            <PeriodSelector
+              options={[{ label: "30 Days", value: "30days" }]}
+              paramName="riderDashboardFliter"
+            />
+            <Button className="rounded-full p-6 cursor-pointer">
+              incoming Request
+            </Button>
+          </>
+        }
+      />
+      <div className="grid md:grid-cols-2 gap-4">
+        <TotalSales />
+        <div className="grid grid-cols-2 grid-rows-2 gap-6">
+          <StatCard
+            percentage={45.6}
+            label="Order rate"
+            trend="+25%"
+            trendDirection="up"
+            icon={<Menu className="w-5 h-5" />}
+            gradient
+          />
+          <StatCard
+            percentage={45.6}
+            label="Order rate"
+            trend="+25%"
+            trendDirection="up"
+            icon={<CalendarArrowDown className="w-5 h-5" />}
+            gradient
+          />
+          <StatCard
+            percentage={45.6}
+            label="Order rate"
+            trend="+25%"
+            trendDirection="up"
+            icon={<CalendarArrowDown className="w-5 h-5" />}
+            gradient
+          />
+          <StatCard
+            percentage={45.6}
+            label="Order rate"
+            trend="+25%"
+            trendDirection="up"
+            icon={<CalendarArrowDown className="w-5 h-5" />}
+            gradient
+          />
+        </div>
+        <RecentTrip />
+        <RegisteredVehicle />
+      </div>
+    </div>
+  );
+}
