@@ -7,14 +7,14 @@ const ContactData = [
     id: 1,
     bg: "bg-[#35445C]",
     icon: Phone,
-    title: "+23490 546 567",
+    title: "+234 813 107 1716",
     description: "Give us a call",
   },
   {
     id: 2,
     bg: "bg-[#F75720]",
     icon: Mail,
-    title: "enquiries@oresmalog.com",
+    title: "oresmalogistic@gmail.com",
     description: "Customer support",
   },
   {
