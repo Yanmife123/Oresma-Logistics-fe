@@ -18,6 +18,9 @@ interface RouteMapProps {
   onRouteCalculated?: (duration: string, distance: string) => void;
 }
 
+// ✅ Move libraries constant outside to prevent reload warnings
+const libraries: "places"[] = ["places"];
+
 const mapContainerStyle = {
   width: "100%",
   height: "100%",
@@ -40,10 +43,10 @@ export function RouteMap({
   const [error, setError] = useState<string | null>(null);
   const [duration, setDuration] = useState<string>("");
 
-  // ✅ Use the loader instead of LoadScript
+  // ✅ Use the stable libraries constant
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!,
-    libraries: ["places"],
+    libraries,
   });
 
   const mapOptions: google.maps.MapOptions = {
@@ -112,7 +115,6 @@ export function RouteMap({
 
       setDirections(result);
 
-      // Extract duration & distance
       if (result.routes[0]?.legs[0]) {
         const leg = result.routes[0].legs[0];
         const durationText = leg.duration?.text || "";
@@ -133,6 +135,7 @@ export function RouteMap({
     calculateRoute();
   }, [calculateRoute]);
 
+  // 🌀 Loading placeholder
   if (!isLoaded) {
     return (
       <Card className="flex items-center justify-center bg-muted/30 h-full">
@@ -169,55 +172,60 @@ export function RouteMap({
         </div>
       )}
 
-      <GoogleMap
-        mapContainerStyle={mapContainerStyle}
-        center={defaultCenter}
-        zoom={11}
-        options={mapOptions}
-      >
-        {directions && (
-          <>
-            <DirectionsRenderer
-              directions={directions}
-              options={{
-                polylineOptions: {
-                  strokeColor: "#ff6347",
-                  strokeWeight: 6,
-                  strokeOpacity: 0.9,
-                },
-                suppressMarkers: true,
-              }}
-            />
-
-            {directions.routes[0]?.legs[0] && (
+      {/* ✅ Ensure a stable container element exists before rendering the map */}
+      <div style={{ width: "100%", height: "400px" }}>
+        {isLoaded && (
+          <GoogleMap
+            mapContainerStyle={mapContainerStyle}
+            center={defaultCenter}
+            zoom={11}
+            options={mapOptions}
+          >
+            {directions && (
               <>
-                <Marker
-                  position={directions.routes[0].legs[0].start_location}
-                  icon={{
-                    path: window.google.maps.SymbolPath.CIRCLE,
-                    scale: 10,
-                    fillColor: "#fbbf24",
-                    fillOpacity: 1,
-                    strokeColor: "#ffffff",
-                    strokeWeight: 3,
+                <DirectionsRenderer
+                  directions={directions}
+                  options={{
+                    polylineOptions: {
+                      strokeColor: "#ff6347",
+                      strokeWeight: 6,
+                      strokeOpacity: 0.9,
+                    },
+                    suppressMarkers: true,
                   }}
                 />
-                <Marker
-                  position={directions.routes[0].legs[0].end_location}
-                  icon={{
-                    path: window.google.maps.SymbolPath.CIRCLE,
-                    scale: 10,
-                    fillColor: "#000000",
-                    fillOpacity: 1,
-                    strokeColor: "#ffffff",
-                    strokeWeight: 3,
-                  }}
-                />
+
+                {directions.routes[0]?.legs[0] && (
+                  <>
+                    <Marker
+                      position={directions.routes[0].legs[0].start_location}
+                      icon={{
+                        path: window.google.maps.SymbolPath.CIRCLE,
+                        scale: 10,
+                        fillColor: "#fbbf24",
+                        fillOpacity: 1,
+                        strokeColor: "#ffffff",
+                        strokeWeight: 3,
+                      }}
+                    />
+                    <Marker
+                      position={directions.routes[0].legs[0].end_location}
+                      icon={{
+                        path: window.google.maps.SymbolPath.CIRCLE,
+                        scale: 10,
+                        fillColor: "#000000",
+                        fillOpacity: 1,
+                        strokeColor: "#ffffff",
+                        strokeWeight: 3,
+                      }}
+                    />
+                  </>
+                )}
               </>
             )}
-          </>
+          </GoogleMap>
         )}
-      </GoogleMap>
+      </div>
 
       {directions && (
         <div className="absolute left-4 right-4 top-4 z-20">
@@ -262,7 +270,6 @@ export function RouteMap({
         </div>
       )}
 
-      {/* Non-interactive overlay */}
       <div className="pointer-events-none absolute inset-0 z-[5]" />
     </div>
   );

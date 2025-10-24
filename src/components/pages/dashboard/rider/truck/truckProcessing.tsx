@@ -33,7 +33,7 @@ export function TruckProcesing({ open, onOpenChange }: Props) {
   );
 }
 
-export function LoadingSpinner() {
+function LoadingSpinner() {
   return (
     <div className="flex items-center justify-center mb-6">
       <div className="relative h-24 w-24">

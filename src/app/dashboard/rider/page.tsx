@@ -24,7 +24,9 @@ export default function BookServicePage() {
         </Suspense>
 
         <div className="min-w-0 flex-1">
-          <Booking />
+          <Suspense fallback={""}>
+            <Booking />
+          </Suspense>
         </div>
       </div>
     </div>
