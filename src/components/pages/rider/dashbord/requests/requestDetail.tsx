@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Ruler, SquareMenuIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function RequestDetail() {
   const tabData = [
@@ -150,6 +151,41 @@ export function RequestDetail() {
           <h4 className="font-semibold text-xl md:text-2xl mb-4">
             Your trip details
           </h4>
+          <div className="bg-[#FCFCFD] border border-[#F8F9FC] shadow-[0px_4px_4px_0px_#00000040]  rounded-[25px] px-7 py-3 flex flex-col gap-4">
+            <div className="space-y-2">
+              <h5 className="text-primaryT">Contractor</h5>
+              <div className="py-3.5 px-8 text-[#AEAFB2] bg-[#FEFEFF] shadow-[0px_4px_4px_0px_#00000040] rounded-[25px]">
+                Berger Corporation
+              </div>
+            </div>
+            <div className="space-y-2">
+              <h5 className="text-primaryT">Date of contract</h5>
+              <div className="py-3.5 px-8 text-[#AEAFB2] bg-[#FEFEFF] shadow-[0px_4px_4px_0px_#00000040] rounded-[25px]">
+                14-06-2025
+              </div>
+            </div>
+            <div className="space-y-2">
+              <h5 className="text-primaryT">Pick up location</h5>
+              <div className="py-3.5 px-8 text-[#AEAFB2] bg-[#FEFEFF] shadow-[0px_4px_4px_0px_#00000040] rounded-[25px]">
+                Ikorodu Main gate
+              </div>
+            </div>
+            <div className="space-y-2">
+              <h5 className="text-primaryT">Ist stop</h5>
+              <div className="py-3.5 px-8 text-[#AEAFB2] bg-[#FEFEFF] shadow-[0px_4px_4px_0px_#00000040] rounded-[25px]">
+                Ojota by Nomansland
+              </div>
+            </div>
+            <div className="space-y-2">
+              <h5 className="text-primaryT">Destination</h5>
+              <div className="py-3.5 px-8 text-[#AEAFB2] bg-[#FEFEFF] shadow-[0px_4px_4px_0px_#00000040] rounded-[25px]">
+                Ikorodu Main gate
+              </div>
+            </div>
+            <Button className="mt-4 py-6 px-8 rounded-[15px] cursor-pointer">
+              Accept request
+            </Button>
+          </div>
         </div>
       </div>
     </div>
