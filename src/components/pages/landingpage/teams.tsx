@@ -4,19 +4,19 @@ import Image from "next/image";
 
 const teams = [
   {
-    name: "Afisoye Oresma",
+    name: "Mayowa Elebute",
     id: 1,
     title: "Founder",
     img: "https://res.cloudinary.com/duyhha3mz/image/upload/v1759728843/c42075600c91225d1734751ce36192a23327f836_e4won1.jpg",
   },
   {
-    name: "Afisoye Oresma",
+    name: "Mayowa Elebute",
     id: 2,
     title: "Founder",
     img: "https://res.cloudinary.com/duyhha3mz/image/upload/v1759728843/40cf4511298a2fa3042d7367bb951903fb29370d_bjo408.jpg",
   },
   {
-    name: "Afisoye Oresma",
+    name: "Mayowa Elebute",
     id: 3,
     title: "Founder",
     img: "https://res.cloudinary.com/duyhha3mz/image/upload/v1759716602/db527da01185893706d5f6280b0b2089fff8c5a7_shv1kd.jpg",
