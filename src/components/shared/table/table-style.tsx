@@ -8,6 +8,7 @@ import ListPagination from "../pagination/list-pagination-style1";
 export interface Column<T> {
   key: keyof T;
   label: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   render?: (value: any, row: T) => React.ReactNode;
   width?: string;
 }
@@ -15,6 +16,7 @@ export interface Column<T> {
 export interface RowAction {
   label: string;
   variant?: "default" | "secondary" | "outline" | "ghost" | "destructive";
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onClick: (row: any) => void;
 }
 
@@ -26,7 +28,7 @@ interface DataTableProps<T> {
   className?: string;
   striped?: boolean;
 }
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function BaseTable<T extends Record<string, any>>({
   columns,
   data,

@@ -19,9 +19,9 @@ export function StatCard({
   trend,
   trendDirection,
   icon,
-  gradient = false,
-  children,
-}: StatCardProps) {
+}: // gradient = false,
+// children,
+StatCardProps) {
   const trendColor =
     trendDirection === "up" ? "text-green-500" : "text-red-500";
 

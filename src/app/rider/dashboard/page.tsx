@@ -1,12 +1,13 @@
 import { PageHeader2 } from "@/components/shared/headers/page-headers";
 import { Button } from "@/components/ui/button";
 import { PeriodSelector } from "@/components/shared/dashboard/period-selector";
-import { DashboardCard } from "@/components/shared/dashboard/dashboard-card";
+
 import TotalSales from "@/components/pages/rider/dashbord/totalSales";
 import { StatCard } from "@/components/shared/dashboard/stats-card";
 import { Menu, CalendarArrowDown } from "lucide-react";
 import { RecentTrip } from "@/components/pages/rider/dashbord/recentTrip";
 import { RegisteredVehicle } from "@/components/pages/rider/dashbord/registeredVehicle";
+import { Suspense } from "react";
 
 export default function DashboardPage() {
   return (
@@ -15,10 +16,12 @@ export default function DashboardPage() {
         title="Dashboard"
         actions={
           <>
-            <PeriodSelector
-              options={[{ label: "30 Days", value: "30days" }]}
-              paramName="riderDashboardFliter"
-            />
+            <Suspense fallback={""}>
+              <PeriodSelector
+                options={[{ label: "30 Days", value: "30days" }]}
+                paramName="riderDashboardFliter"
+              />
+            </Suspense>
             <Button className="rounded-full p-6 cursor-pointer">
               incoming Request
             </Button>

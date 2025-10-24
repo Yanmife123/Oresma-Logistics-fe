@@ -10,7 +10,7 @@ export default async function RequestsDetailPage({
     <div className="">
       <PageHeader title={`Request ID  #${id}`} />
       <div className="mt-4">
-        <RequestDetail />
+        <RequestDetail id={id} />
       </div>
     </div>
   );

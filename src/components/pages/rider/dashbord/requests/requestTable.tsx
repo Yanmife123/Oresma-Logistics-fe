@@ -139,6 +139,7 @@ export function RequestTable() {
       variant: "default",
       onClick: (row) => {
         console.log("Accepted:", row.id);
+        navigate.push(`/rider/dashboard/requests/${row.id}/route`);
       },
     },
   ];

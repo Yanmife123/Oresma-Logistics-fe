@@ -1,8 +1,10 @@
+"use client";
 import Image from "next/image";
 import { Ruler, SquareMenuIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
-export function RequestDetail() {
+export function RequestDetail({ id }: { id: string | number }) {
   const tabData = [
     {
       id: 1,
@@ -25,6 +27,7 @@ export function RequestDetail() {
       description: "Distance covered",
     },
   ];
+  const navigate = useRouter();
   return (
     <div className="px-4 md:px-0">
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 h-auto lg:h-[450px] mb-6 md:mb-10">
@@ -151,7 +154,7 @@ export function RequestDetail() {
           <h4 className="font-semibold text-xl md:text-2xl mb-4">
             Your trip details
           </h4>
-          <div className="bg-[#FCFCFD] border border-[#F8F9FC] shadow-[0px_4px_4px_0px_#00000040]  rounded-[25px] px-7 py-3 flex flex-col gap-4">
+          <div className="bg-[#FCFCFD] border border-[#F8F9FC] shadow-[0px_4px_4px_0px_#00000040]  rounded-[25px] px-7 py-3 flex flex-col gap-5">
             <div className="space-y-2">
               <h5 className="text-primaryT">Contractor</h5>
               <div className="py-3.5 px-8 text-[#AEAFB2] bg-[#FEFEFF] shadow-[0px_4px_4px_0px_#00000040] rounded-[25px]">
@@ -182,8 +185,19 @@ export function RequestDetail() {
                 Ikorodu Main gate
               </div>
             </div>
-            <Button className="mt-4 py-6 px-8 rounded-[15px] cursor-pointer">
+            <Button
+              className="mt-4 py-6 px-8 rounded-[15px] cursor-pointer"
+              onClick={() => {
+                navigate.push(`/rider/dashboard/requests/${id}/route`);
+              }}
+            >
               Accept request
+            </Button>
+            <Button
+              className="mt-4 py-6 px-8 rounded-[15px] cursor-pointer border border-[#DBD1D1]"
+              variant={"ghost"}
+            >
+              Decline request
             </Button>
           </div>
         </div>
