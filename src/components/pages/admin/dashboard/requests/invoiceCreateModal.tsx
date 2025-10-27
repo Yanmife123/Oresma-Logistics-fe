@@ -37,7 +37,7 @@ export default function CreateInoiveModal({ open, onOpenChange }: Props) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTitle></DialogTitle>
-      <DialogContent>
+      <DialogContent className="max-h-[90%] overflow-auto">
         <h4 className="font-semibold text-xl md:text-2xl ">
           Contractor Information
         </h4>
