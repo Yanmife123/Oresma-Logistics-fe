@@ -28,7 +28,7 @@ import { showToast } from "@/components/shared/toast";
 const menuItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "/admin/dashboard" },
   { icon: User, label: "Profile", href: "/admin/profile" },
-  { icon: Bike, label: "Requests", href: "/admin/dashboard/requests" },
+  { icon: Bike, label: "Requests", href: "/admin/dashboard/requests/truck" },
   { icon: Calendar, label: "Calendar", href: "/admin/calendar" },
   { icon: Bookmark, label: "Saved", href: "/admin/saved" },
   { icon: Navigation, label: "Active Ride", href: "/admin/active-ride" },
