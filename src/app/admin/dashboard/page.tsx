@@ -24,7 +24,9 @@ export default function AdminDashboardPage() {
                 />
               </Suspense>
               <Button className="rounded-full p-6 cursor-pointer" asChild>
-                <Link href={"/admin/dashboard/requests"}>All Request</Link>
+                <Link href={"/admin/dashboard/requests/truck"}>
+                  All Request
+                </Link>
               </Button>
             </>
           }
