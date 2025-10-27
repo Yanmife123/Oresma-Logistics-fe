@@ -9,7 +9,7 @@ interface StatCardProps {
   trend?: string;
   trendDirection?: "up" | "down";
   icon?: ReactNode;
-  gradient?: boolean;
+  gradient?: "organge" | "black";
   children?: ReactNode;
 }
 
@@ -19,6 +19,7 @@ export function StatCard({
   trend,
   trendDirection,
   icon,
+  gradient = "black",
 }: // gradient = false,
 // children,
 StatCardProps) {
@@ -27,7 +28,12 @@ StatCardProps) {
 
   return (
     <Card
-      className={`w-full p-6 flex flex-col justify-between hover:bg-gradient-to-br hover:to-[#35445C] hover:from-[#FA8E6A]  hover:text-white text-primaryT border-0 transition duration-300  ease-in-out     
+      className={`w-full p-6 flex flex-col justify-between ${
+        gradient === "organge"
+          ? "hover:bg-gradient-to-br hover:to-[#35445C] hover:from-[#FA8E6A]"
+          : // : "hover:bg-gradient-to-br hover:to-[#010C1C] hover:from-[#E6E8EB]"
+            "hover:bg-gradient-to-br hover:to-[#35445C] hover:from-[#FA8E6A]"
+      }  hover:text-white text-primaryT border-0 transition duration-300  ease-in-out     
       `}
     >
       {/* Header with icon and trend */}

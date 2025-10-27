@@ -1,6 +1,6 @@
 "use client";
-import { BarChartComponent } from "@/components/shared/dashboard/bar-chart";
-
+// import { AreaChartComponent } from "@/components/shared/dashboard/area-chart";
+import { AreaChart2Component } from "@/components/shared/dashboard/area-chart-2";
 const data = [
   { name: "Jan", value: 50000 },
   { name: "Feb", value: 65000 },
@@ -10,5 +10,12 @@ const data = [
   { name: "June", value: 80000 },
 ];
 export default function TotalSales() {
-  return <BarChartComponent title="Total Sales" data={data} color="#021533" />;
+  return (
+    <AreaChart2Component
+      title="Total Sales"
+      data={data}
+      areaColor="#1E3A8A"
+      totalValue={"N56, 680"}
+    />
+  );
 }
