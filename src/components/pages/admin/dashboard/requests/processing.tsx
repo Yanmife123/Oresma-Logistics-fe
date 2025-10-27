@@ -11,12 +11,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import Image from "next/image";
-export function RouteProcess({ open, onOpenChange }: Props) {
+export function Processnvoice({ open, onOpenChange }: Props) {
   const [process, setProcess] = useState("process");
 
   useEffect(() => {
     const simulateProcess = async () => {
-      setProcess("process");
       // Simulate processing delay (3 seconds)
       await new Promise((resolve) => setTimeout(resolve, 3000));
       setProcess("done");
@@ -38,8 +37,6 @@ export function RouteProcess({ open, onOpenChange }: Props) {
                 Processing.......
               </h3>
             </div>
-            <div>The admin will get back to you</div>
-            <div>Please check your mail box</div>
           </div>
         )}
         {process === "done" && (
@@ -47,14 +44,12 @@ export function RouteProcess({ open, onOpenChange }: Props) {
             <div className="mb-4">
               {/* <Image  /> */}
               <Image src={"/wallet.svg"} alt="wallet" width={96} height={96} />
-              <h3 className="text-primaryT text-2xl font-semibold">
-                Confirmed
-              </h3>
+              <h3 className="text-primaryT text-2xl font-semibold">Sent</h3>
             </div>
-            <div>Your payment has been processed</div>
-            <div>Please check your wallet</div>
+            <div>Invoice has been sent to</div>
+            <div>yamifebalogun@gmail.com</div>
             <Button asChild className=" mt-4">
-              <Link href={"/dashboard"}>Back to Home </Link>
+              <Link href={"/admin/dashboard"}>Back to Home </Link>
             </Button>
           </div>
         )}

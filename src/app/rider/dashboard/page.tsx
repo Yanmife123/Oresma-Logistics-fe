@@ -37,7 +37,7 @@ export default function DashboardPage() {
             trend="+25%"
             trendDirection="up"
             icon={<Menu className="w-5 h-5" />}
-            gradient
+            gradient="organge"
           />
           <StatCard
             percentage={45.6}
@@ -45,7 +45,7 @@ export default function DashboardPage() {
             trend="+25%"
             trendDirection="up"
             icon={<CalendarArrowDown className="w-5 h-5" />}
-            gradient
+            gradient="organge"
           />
           <StatCard
             percentage={45.6}
@@ -53,7 +53,7 @@ export default function DashboardPage() {
             trend="+25%"
             trendDirection="up"
             icon={<CalendarArrowDown className="w-5 h-5" />}
-            gradient
+            gradient="organge"
           />
           <StatCard
             percentage={45.6}
@@ -61,7 +61,7 @@ export default function DashboardPage() {
             trend="+25%"
             trendDirection="up"
             icon={<CalendarArrowDown className="w-5 h-5" />}
-            gradient
+            gradient="organge"
           />
         </div>
         <RecentTrip />

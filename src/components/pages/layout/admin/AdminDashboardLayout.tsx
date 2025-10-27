@@ -2,7 +2,7 @@
 import AdminSideBar from "./AppSideBar";
 import { Suspense, useState } from "react";
 import { cn } from "@/_lib/utils";
-import { Header } from "@/components/shared/headers/header";
+import { Header2 } from "@/components/shared/headers/header";
 export function DashbboardLayout({ children }: { children: React.ReactNode }) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
@@ -23,7 +23,7 @@ export function DashbboardLayout({ children }: { children: React.ReactNode }) {
           !isSidebarCollapsed && "lg:ml-64"
         )}
       >
-        <Header
+        <Header2
           title="Admin Dashbaord"
           userImage="/diverse-user-avatars.png"
           userName="Admin"
