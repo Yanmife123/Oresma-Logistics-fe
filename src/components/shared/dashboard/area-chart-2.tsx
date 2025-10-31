@@ -1,28 +1,36 @@
-"use client"
+"use client";
 
-import { Area, AreaChart, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Tooltip } from "recharts"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import {
+  Area,
+  AreaChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  ResponsiveContainer,
+  Tooltip,
+} from "recharts";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export interface AreaChart2Data {
-  name: string
-  value: number
+  name: string;
+  value: number;
 }
 
 export interface AreaChart2ComponentProps {
-  title: string
-  totalValue: string | number
-  data: AreaChart2Data[]
-  highlightValue?: string | number
-  highlightLabel?: string
-  xAxisKey?: string
-  yAxisKey?: string
-  areaColor?: string
-  strokeColor?: string
-  gradientId?: string
-  height?: number
-  showGrid?: boolean
-  showTooltip?: boolean
-  className?: string
+  title: string;
+  totalValue: string | number;
+  data: AreaChart2Data[];
+  highlightValue?: string | number;
+  highlightLabel?: string;
+  xAxisKey?: string;
+  yAxisKey?: string;
+  areaColor?: string;
+  strokeColor?: string;
+  gradientId?: string;
+  height?: number;
+  showGrid?: boolean;
+  showTooltip?: boolean;
+  className?: string;
 }
 
 export function AreaChart2Component({
@@ -30,7 +38,7 @@ export function AreaChart2Component({
   totalValue,
   data,
   highlightValue,
-  highlightLabel,
+  // highlightLabel,
   xAxisKey = "name",
   yAxisKey = "value",
   areaColor = "hsl(var(--chart-2))",
@@ -62,7 +70,10 @@ export function AreaChart2Component({
 
           {/* Area Chart */}
           <ResponsiveContainer width="100%" height={height}>
-            <AreaChart data={data} margin={{ top: 40, right: 30, left: 0, bottom: 0 }}>
+            <AreaChart
+              data={data}
+              margin={{ top: 40, right: 30, left: 0, bottom: 0 }}
+            >
               <defs>
                 <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor={areaColor} stopOpacity={0.3} />
@@ -70,18 +81,24 @@ export function AreaChart2Component({
                 </linearGradient>
               </defs>
 
-              {showGrid && <CartesianGrid strokeDasharray="0" stroke="transparent" />}
+              {showGrid && (
+                <CartesianGrid strokeDasharray="0" stroke="transparent" />
+              )}
 
-              <XAxis dataKey={xAxisKey} stroke="hsl(var(--muted-foreground))" style={{ fontSize: "12px" }} />
+              <XAxis
+                dataKey={xAxisKey}
+                stroke="hsl(var(--muted-foreground))"
+                style={{ fontSize: "12px" }}
+              />
 
               <YAxis
                 stroke="hsl(var(--muted-foreground))"
                 style={{ fontSize: "12px" }}
                 tickFormatter={(value) => {
                   if (value >= 1000) {
-                    return `${(value / 1000).toFixed(0)}k`
+                    return `${(value / 1000).toFixed(0)}k`;
                   }
-                  return value.toString()
+                  return value.toString();
                 }}
               />
 
@@ -95,9 +112,9 @@ export function AreaChart2Component({
                   labelStyle={{ color: "hsl(var(--foreground))" }}
                   formatter={(value) => {
                     if (typeof value === "number") {
-                      return value.toLocaleString()
+                      return value.toLocaleString();
                     }
-                    return value
+                    return value;
                   }}
                 />
               )}
@@ -115,5 +132,5 @@ export function AreaChart2Component({
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

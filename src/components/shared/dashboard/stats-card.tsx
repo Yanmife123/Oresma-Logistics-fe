@@ -4,7 +4,8 @@ import type { ReactNode } from "react";
 import { Card } from "@/components/ui/card";
 
 interface StatCardProps {
-  percentage: number;
+  percentage?: boolean;
+  value?: string | number;
   label: string;
   trend?: string;
   trendDirection?: "up" | "down";
@@ -20,6 +21,7 @@ export function StatCard({
   trendDirection,
   icon,
   gradient = "black",
+  value,
 }: // gradient = false,
 // children,
 StatCardProps) {
@@ -47,7 +49,9 @@ StatCardProps) {
       {/* Main content */}
       <div className="flex items-end justify-between">
         <div className="flex-1">
-          <div className="text-4xl font-bold mb-1 ">{percentage}%</div>
+          <div className="text-4xl font-bold mb-1 ">
+            {percentage ? `${value}%` : value}
+          </div>
           <div
             className={`text-sm 
               
@@ -58,8 +62,8 @@ StatCardProps) {
         </div>
 
         {/* Circular indicator */}
-        <div className="bg-primaryT w-[20px] h-[20px] rounded-full flex justify-center items-center">
-          <div className="w-[5px] h-[5px] bg-white rounded-full"></div>
+        <div className="bg-primaryT min-w-[20px] min-h-[20px] rounded-full flex justify-center items-center">
+          <div className="min-w-[5px] min-h-[5px] bg-white rounded-full"></div>
         </div>
       </div>
     </Card>

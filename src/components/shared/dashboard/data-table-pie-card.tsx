@@ -67,7 +67,7 @@ export function DataTableCard({
               >
                 <div className="flex-1 flex items-center gap-2">
                   <div
-                    className="w-3 h-3 rounded-full"
+                    className="min-w-3 min-h-3 max-w-3 max-h-3 rounded-full"
                     style={{
                       backgroundColor:
                         index % 2 === 0 ? oddRowColor : evenRowColor,

@@ -32,7 +32,8 @@ export default function DashboardPage() {
         <TotalSales />
         <div className="grid grid-cols-2 grid-rows-2 gap-6">
           <StatCard
-            percentage={45.6}
+            percentage
+            value={45.6}
             label="Order rate"
             trend="+25%"
             trendDirection="up"
@@ -40,7 +41,8 @@ export default function DashboardPage() {
             gradient="organge"
           />
           <StatCard
-            percentage={45.6}
+            percentage
+            value={45.6}
             label="Order rate"
             trend="+25%"
             trendDirection="up"
@@ -48,7 +50,8 @@ export default function DashboardPage() {
             gradient="organge"
           />
           <StatCard
-            percentage={45.6}
+            percentage
+            value={45.6}
             label="Order rate"
             trend="+25%"
             trendDirection="up"
@@ -56,7 +59,8 @@ export default function DashboardPage() {
             gradient="organge"
           />
           <StatCard
-            percentage={45.6}
+            value={45.6}
+            percentage
             label="Order rate"
             trend="+25%"
             trendDirection="up"

@@ -6,17 +6,19 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/_lib/utils";
 import {
   LayoutDashboard,
-  User,
+  Users,
+  // User,
   Bike,
-  Calendar,
-  Bookmark,
-  Navigation,
+  // Calendar,
+  // Bookmark,
+  // Navigation,
   Car,
   Search,
   List,
   Wrench,
   HelpCircle,
   LogOut,
+  BarChart3,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
@@ -26,13 +28,18 @@ import Image from "next/image";
 import { showToast } from "@/components/shared/toast";
 
 const menuItems = [
-  { icon: LayoutDashboard, label: "Dashboard", href: "/admin/dashboard" },
-  { icon: User, label: "Profile", href: "/admin/profile" },
-  { icon: Bike, label: "Requests", href: "/admin/dashboard/requests/truck" },
-  { icon: Calendar, label: "Calendar", href: "/admin/calendar" },
-  { icon: Bookmark, label: "Saved", href: "/admin/saved" },
-  { icon: Navigation, label: "Active Ride", href: "/admin/active-ride" },
-  { icon: Car, label: "Vehicle Details", href: "/admin/vehicle-details" },
+  {
+    icon: BarChart3,
+    label: "Overview",
+    href: "/admin/dashboard/overview",
+  },
+  // { icon: User, label: "Profile", href: "/admin/profile" },
+  { icon: Bike, label: "Requests", href: "/admin/dashboard/requests" },
+  { icon: Users, label: "Users", href: "/admin/dashboard/users" },
+  // { icon: Bookmark, label: "Saved", href: "/admin/saved" },
+  // { icon: Navigation, label: "Active Ride", href: "/admin/active-ride" },
+  { icon: Car, label: "Vehicle Details", href: "/admin/dashboard/vehicle" },
+  { icon: Users, label: "Admins", href: "/admin/dashboard/all-admin" },
   { icon: Search, label: "Search", href: "/admin/search" },
   { icon: List, label: "Listings", href: "/admin/listings" },
   { icon: Wrench, label: "Book services", href: "/admin/book-services" },
@@ -120,9 +127,27 @@ export default function AdminSideBar({
 
           {/* Navigation */}
           <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4">
+            <Link
+              href={"/admin/dashboard"}
+              onClick={onMobileClose}
+              className={cn(
+                "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                pathname === "/admin/dashboard"
+                  ? "bg-primaryT text-white"
+                  : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+                isCollapsed && "lg:justify-center"
+              )}
+              title={isCollapsed ? "Dashboard" : undefined}
+            >
+              <LayoutDashboard className="h-5 w-5 shrink-0" />
+              <span className={cn(isCollapsed && "lg:hidden")}>
+                {"Dashboard"}
+              </span>
+            </Link>
             {menuItems.map((item) => {
               const Icon = item.icon;
-              const isActive = pathname === item.href;
+              const isActive = pathname.includes(item.href);
+
               return (
                 <Link
                   key={item.href}
