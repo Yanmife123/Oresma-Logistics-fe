@@ -20,6 +20,8 @@ interface PeriodSelectorProps {
   paramName?: string;
   defaultValue?: string;
   className?: string;
+  icon?: React.ReactNode;
+  selectedClassName?: string;
 }
 
 export function PeriodSelector({
@@ -27,6 +29,8 @@ export function PeriodSelector({
   paramName = "period",
   defaultValue,
   className = "",
+  selectedClassName = "",
+  icon = <Calendar className="h-4 w-4 text-gray-500" />,
 }: PeriodSelectorProps) {
   const router = useRouter();
   const pathname = usePathname();
@@ -52,7 +56,7 @@ export function PeriodSelector({
           variant="outline"
           className={`flex items-center gap-2 bg-white hover:bg-gray-50 ${className}`}
         >
-          <Calendar className="h-4 w-4 text-gray-500" />
+          {icon}
           <span className="text-sm font-medium">{currentLabel}</span>
         </Button>
       </DropdownMenuTrigger>
@@ -63,7 +67,7 @@ export function PeriodSelector({
             onClick={() => handlePeriodChange(option.value)}
             className={`cursor-pointer ${
               currentPeriod === option.value
-                ? "bg-orange-50 text-secondaryT font-medium"
+                ? `bg-orange-50 text-secondaryT font-medium ${selectedClassName}`
                 : ""
             }`}
           >

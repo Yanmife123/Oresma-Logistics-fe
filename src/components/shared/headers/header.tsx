@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell, Menu } from "lucide-react";
+import { Bell, PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -10,6 +10,7 @@ interface HeaderProps {
   userName?: string;
   onToggleSidebar?: () => void;
   bgcolor?: string;
+  isMobileOpen?: boolean;
 }
 
 export function Header({
@@ -18,13 +19,18 @@ export function Header({
   userName = "User",
   onToggleSidebar,
   bgcolor = "#f75720",
+  isMobileOpen,
 }: HeaderProps) {
   return (
     <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-border bg-background px-6">
       <div className="flex items-center gap-4">
         {onToggleSidebar && (
           <Button variant="ghost" size="icon" onClick={onToggleSidebar}>
-            <Menu className="h-5 w-5" />
+            {isMobileOpen ? (
+              <PanelLeftOpen className="h-5 w-5" />
+            ) : (
+              <PanelLeftClose className="h-5 w-5" />
+            )}
           </Button>
         )}
         <h1 className="text-2xl font-semibold capitalize">{title}</h1>
@@ -53,6 +59,7 @@ export function Header2({
   userImage,
   userName = "User",
   onToggleSidebar,
+  isMobileOpen,
 }: // bgcolor = "#f75720",
 HeaderProps) {
   return (
@@ -60,7 +67,11 @@ HeaderProps) {
       <div className="flex items-center gap-4">
         {onToggleSidebar && (
           <Button variant="ghost" size="icon" onClick={onToggleSidebar}>
-            <Menu className="h-5 w-5" />
+            {isMobileOpen ? (
+              <PanelLeftOpen className="h-5 w-5" />
+            ) : (
+              <PanelLeftClose className="h-5 w-5" />
+            )}
           </Button>
         )}
         <h1 className="md:text-2xl text-lg font-semibold capitalize">

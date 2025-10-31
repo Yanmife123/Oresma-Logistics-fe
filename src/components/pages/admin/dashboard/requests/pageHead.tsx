@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 export function AdminRequestHeader() {
   const path = usePathname();
   const RequestLink = [
-    { label: "Truck requests", href: "/admin/dashboard/requests/truck" },
+    { label: "Truck requests", href: "/admin/dashboard/requests" },
     { label: "Car  requests", href: "/admin/dashboard/requests/car" },
     { label: "Bike requests", href: "/admin/dashboard/requests/bike" },
   ];

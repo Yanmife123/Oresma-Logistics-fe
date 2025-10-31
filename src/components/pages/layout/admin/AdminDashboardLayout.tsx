@@ -27,6 +27,7 @@ export function DashbboardLayout({ children }: { children: React.ReactNode }) {
           title="Admin Dashbaord"
           userImage="/diverse-user-avatars.png"
           userName="Admin"
+          isMobileOpen={isMobileSidebarOpen}
           onToggleSidebar={() => {
             if (window.innerWidth < 1024) {
               setIsMobileSidebarOpen(!isMobileSidebarOpen);
