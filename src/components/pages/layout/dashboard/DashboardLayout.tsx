@@ -9,14 +9,14 @@ import { User } from "@/_lib/type/cookies";
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
+  // const [user, setUser] = useState<User | null>(null);
 
-  useEffect(() => {
-    const userCookies = Cookies.get("user");
-    if (userCookies) {
-      setUser(JSON.parse(userCookies));
-    }
-  }, []);
+  // useEffect(() => {
+  //   const userCookies = Cookies.get("user");
+  //   if (userCookies) {
+  //     setUser(JSON.parse(userCookies));
+  //   }
+  // }, []);
 
   // 👇 Prevent hydration mismatch by not rendering until mounted
 
@@ -38,9 +38,11 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
         )}
       >
         <Header
-          title={`hello ${user?.name ?? ""}`}
+          // title={`hello ${user?.name ?? ""}`}
+          title="User Dashboard"
           userImage="/diverse-user-avatars.png"
-          userName={user?.name ?? ""}
+          // userName={user?.name ?? ""}
+          userName="User"
           onToggleSidebar={() => {
             if (window.innerWidth < 1024) {
               setIsMobileSidebarOpen(!isMobileSidebarOpen);
