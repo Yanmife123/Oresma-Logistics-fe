@@ -21,9 +21,9 @@ export function RiderDashbboardLayout({
       setUser(JSON.parse(userCookies));
     }
   }, []);
-  if (user === null) {
-    return null; // or show a skeleton loader
-  }
+  // if (user === null) {
+  //   return null; // or show a skeleton loader
+  // }
   return (
     <div className="flex min-h-screen bg-background">
       <Suspense>
@@ -44,7 +44,7 @@ export function RiderDashbboardLayout({
         <Header2
           title="Driver’s Dashbaord"
           userImage="/diverse-user-avatars.png"
-          userName={user.name}
+          userName={"Rider"}
           onToggleSidebar={() => {
             if (window.innerWidth < 1024) {
               setIsMobileSidebarOpen(!isMobileSidebarOpen);
