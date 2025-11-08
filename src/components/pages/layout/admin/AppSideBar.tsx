@@ -19,6 +19,8 @@ import {
   HelpCircle,
   LogOut,
   BarChart3,
+  Wallet2Icon,
+  Icon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
@@ -34,6 +36,7 @@ const menuItems = [
     href: "/admin/dashboard/overview",
   },
   // { icon: User, label: "Profile", href: "/admin/profile" },
+  { icon: Wallet2Icon, label: "Wallet", href: "/admin/dashboard/wallet" },
   { icon: Bike, label: "Requests", href: "/admin/dashboard/requests" },
   { icon: Users, label: "Users", href: "/admin/dashboard/users" },
   // { icon: Bookmark, label: "Saved", href: "/admin/saved" },
