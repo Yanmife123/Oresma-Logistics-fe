@@ -10,12 +10,12 @@ import {
   Bike,
   Calendar,
   Bookmark,
-  Navigation,
+  // Navigation,
   Car,
-  Search,
-  List,
-  Wrench,
-  HelpCircle,
+  // Search,
+  // List,
+  // Wrench,
+  // HelpCircle,
   LogOut,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -26,17 +26,17 @@ import Image from "next/image";
 import { showToast } from "@/components/shared/toast";
 
 const menuItems = [
-  { icon: LayoutDashboard, label: "Dashboard", href: "/rider/dashboard" },
   { icon: User, label: "Profile", href: "/rider/profile" },
   { icon: Bike, label: "Requests", href: "/rider/dashboard/requests" },
+  { icon: Car, label: "Vehicle", href: "/rider/dashboard/vehicle" },
   { icon: Calendar, label: "Calendar", href: "/rider/calendar" },
   { icon: Bookmark, label: "Saved", href: "/rider/saved" },
-  { icon: Navigation, label: "Active Ride", href: "/admin/active-ride" },
-  { icon: Car, label: "Vehicle Details", href: "/admin/vehicle-details" },
-  { icon: Search, label: "Search", href: "/admin/search" },
-  { icon: List, label: "Listings", href: "/admin/listings" },
-  { icon: Wrench, label: "Book services", href: "/admin/book-services" },
-  { icon: HelpCircle, label: "Help Centre", href: "/admin/help-centre" },
+  // { icon: Navigation, label: "Active Ride", href: "/admin/active-ride" },
+
+  // { icon: Search, label: "Search", href: "/admin/search" },
+  // { icon: List, label: "Listings", href: "/admin/listings" },
+  // { icon: Wrench, label: "Book services", href: "/admin/book-services" },
+  // { icon: HelpCircle, label: "Help Centre", href: "/admin/help-centre" },
 ];
 
 interface SidebarProps {
@@ -120,9 +120,26 @@ export default function RiderSideBar({
 
           {/* Navigation */}
           <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4">
+            <Link
+              href={"/rider/dashboard"}
+              onClick={onMobileClose}
+              className={cn(
+                "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                pathname === "/rider/dashboard"
+                  ? "bg-primaryT text-white"
+                  : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+                isCollapsed && "lg:justify-center"
+              )}
+              title={isCollapsed ? "Dashboard" : undefined}
+            >
+              <LayoutDashboard className="h-5 w-5 shrink-0" />
+              <span className={cn(isCollapsed && "lg:hidden")}>
+                {"Dashboard"}
+              </span>
+            </Link>
             {menuItems.map((item) => {
               const Icon = item.icon;
-              const isActive = pathname === item.href;
+              const isActive = pathname.includes(item.href);
               return (
                 <Link
                   key={item.href}

@@ -28,7 +28,7 @@ import { showToast } from "@/components/shared/toast";
 import Image from "next/image";
 
 const menuItems = [
-  { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
+  // { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
   { icon: User, label: "Profile", href: "/profile" },
   { icon: Bike, label: "Riders", href: "/dashboard/rider" },
   { icon: Calendar, label: "Calendar", href: "/calendar" },
@@ -123,6 +123,23 @@ export function DashboardSidebar({
 
           {/* Navigation */}
           <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4">
+            <Link
+              href={"/dashboard"}
+              onClick={onMobileClose}
+              className={cn(
+                "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                pathname === "/dashboard"
+                  ? "bg-orange-500 text-white"
+                  : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+                isCollapsed && "lg:justify-center"
+              )}
+              title={isCollapsed ? "Dashboard" : undefined}
+            >
+              <LayoutDashboard className="h-5 w-5 shrink-0" />
+              <span className={cn(isCollapsed && "lg:hidden")}>
+                {"Dashboard"}
+              </span>
+            </Link>
             {menuItems.map((item) => {
               const Icon = item.icon;
               const isActive = pathname.includes(item.href);
