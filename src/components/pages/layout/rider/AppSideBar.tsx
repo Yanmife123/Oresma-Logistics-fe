@@ -10,12 +10,12 @@ import {
   Bike,
   Calendar,
   Bookmark,
-  Navigation,
+  // Navigation,
   Car,
-  Search,
-  List,
-  Wrench,
-  HelpCircle,
+  // Search,
+  // List,
+  // Wrench,
+  // HelpCircle,
   LogOut,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -29,14 +29,15 @@ const menuItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "/rider/dashboard" },
   { icon: User, label: "Profile", href: "/rider/profile" },
   { icon: Bike, label: "Requests", href: "/rider/dashboard/requests" },
+  { icon: Car, label: "Vehicle", href: "/rider/dashboard/vehicle" },
   { icon: Calendar, label: "Calendar", href: "/rider/calendar" },
   { icon: Bookmark, label: "Saved", href: "/rider/saved" },
-  { icon: Navigation, label: "Active Ride", href: "/admin/active-ride" },
-  { icon: Car, label: "Vehicle Details", href: "/admin/vehicle-details" },
-  { icon: Search, label: "Search", href: "/admin/search" },
-  { icon: List, label: "Listings", href: "/admin/listings" },
-  { icon: Wrench, label: "Book services", href: "/admin/book-services" },
-  { icon: HelpCircle, label: "Help Centre", href: "/admin/help-centre" },
+  // { icon: Navigation, label: "Active Ride", href: "/admin/active-ride" },
+
+  // { icon: Search, label: "Search", href: "/admin/search" },
+  // { icon: List, label: "Listings", href: "/admin/listings" },
+  // { icon: Wrench, label: "Book services", href: "/admin/book-services" },
+  // { icon: HelpCircle, label: "Help Centre", href: "/admin/help-centre" },
 ];
 
 interface SidebarProps {

@@ -12,6 +12,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Suspense } from "react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 export function VehicleDashboardTable() {
   const vehicleTableData = [
     {
@@ -99,6 +101,11 @@ export function VehicleDashboardTable() {
           title="Vehicles"
           actions={
             <>
+              <Button variant="default" asChild>
+                <Link href="/admin/dashboard/vehicle/add-vehicle">
+                  Add Vehicle
+                </Link>
+              </Button>
               <Suspense>
                 <PeriodSelector
                   paramName="vehicle"
