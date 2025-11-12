@@ -26,7 +26,6 @@ import Image from "next/image";
 import { showToast } from "@/components/shared/toast";
 
 const menuItems = [
-  { icon: LayoutDashboard, label: "Dashboard", href: "/rider/dashboard" },
   { icon: User, label: "Profile", href: "/rider/profile" },
   { icon: Bike, label: "Requests", href: "/rider/dashboard/requests" },
   { icon: Car, label: "Vehicle", href: "/rider/dashboard/vehicle" },
@@ -121,9 +120,26 @@ export default function RiderSideBar({
 
           {/* Navigation */}
           <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4">
+            <Link
+              href={"/rider/dashboard"}
+              onClick={onMobileClose}
+              className={cn(
+                "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                pathname === "/admin/dashboard"
+                  ? "bg-primaryT text-white"
+                  : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+                isCollapsed && "lg:justify-center"
+              )}
+              title={isCollapsed ? "Dashboard" : undefined}
+            >
+              <LayoutDashboard className="h-5 w-5 shrink-0" />
+              <span className={cn(isCollapsed && "lg:hidden")}>
+                {"Dashboard"}
+              </span>
+            </Link>
             {menuItems.map((item) => {
               const Icon = item.icon;
-              const isActive = pathname === item.href;
+              const isActive = pathname.includes(item.href);
               return (
                 <Link
                   key={item.href}
