@@ -1,7 +1,7 @@
 import { PageHeader2 } from "@/components/shared/headers/page-headers";
 import { Button } from "@/components/ui/button";
 import { PeriodSelector } from "@/components/shared/dashboard/period-selector";
-
+import Link from "next/link";
 import TotalSales from "@/components/pages/rider/dashbord/totalSales";
 import { StatCard } from "@/components/shared/dashboard/stats-card";
 import { Menu, CalendarArrowDown } from "lucide-react";
@@ -22,8 +22,8 @@ export default function DashboardPage() {
                 paramName="riderDashboardFliter"
               />
             </Suspense>
-            <Button className="rounded-full p-6 cursor-pointer">
-              incoming Request
+            <Button className="rounded-full p-6 cursor-pointer" asChild>
+              <Link href="/rider/dashboard/requests"> incoming Request</Link>
             </Button>
           </>
         }
