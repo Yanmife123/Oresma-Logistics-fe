@@ -7,22 +7,22 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Package, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { z } from "zod";
+import { set, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EmailInput } from "@/components/utility/form/email-input";
 import { PasswordInput } from "@/components/utility/form/password-input";
 import { showToast } from "@/components/shared/toast";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { RouteLoginResponse } from "@/_lib/type/auth/auth";
+import { adminLogin } from "@/_lib/api/auth/adminAuth";
+import { useMutation } from "@tanstack/react-query";
 
-export function LoginForm() {
-  const [isLoading, setIsLoading] = useState(false);
+export function AdminLoginForm() {
   const navigate = useRouter();
   type FormSchema = z.infer<typeof signInScheme>;
   const signInScheme = z.object({
@@ -40,46 +40,44 @@ export function LoginForm() {
     resolver: zodResolver(signInScheme),
   });
 
-  const onSubmit: SubmitHandler<FormSchema> = async (data) => {
-    setIsLoading(true);
-    try {
-      const request = await fetch("/api/auth", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
-      if (request.status !== 200) {
-        const result = await request.json();
-        throw new Error(result.message);
+  const mutation = useMutation({
+    mutationFn: (data: FormSchema) => adminLogin(data),
+    onSuccess: (data) => {
+      if (data.success) {
+        showToast.success(data.message || "Login successful");
+        setTimeout(() => {
+          navigate.push("/admin/dashboard");
+        }, 2000);
+      } else {
+        showToast.error(data.message || "Login failed");
       }
-      const result: RouteLoginResponse = await request.json();
-      showToast.success(result.message);
-      setTimeout(() => {
-        if (result.isRider) {
-          navigate.push("/rider/dashboard");
-        } else navigate.push("/dashboard/rider");
-      }, 2000);
-    } catch (error) {
+    },
+    onError: (error) => {
       if (error instanceof Error) {
-        showToast.error("Login Failed", error.message);
+        showToast.error(error.message);
+      } else {
+        showToast.error("An unknown error occurred");
       }
-    } finally {
-      setIsLoading(false);
-    }
+    },
+  });
+
+  const onSubmit: SubmitHandler<FormSchema> = async (data) => {
+    mutation.mutate(data);
   };
 
   return (
     <Card className="w-full max-w-md mx-auto shadow-2xl border-border/50 animate-fade-in-up">
       <CardHeader className="space-y-1">
-        <div className="flex lg:hidden items-center gap-2 mb-4">
-          <div className="w-10 h-10  rounded-lg flex items-center justify-center relative">
-            <Image src={"/logo.svg"} alt="Oresema Logo" fill />
+        <div className="flex items-center gap-2 mb-4">
+          <div className="w-10 h-10 rounded-lg flex items-center justify-center relative">
+            <Image src={"/logo2.svg"} alt="Oresema Logo" fill />
           </div>
           <span className="text-2xl font-bold text-foreground">Oresma</span>
         </div>
-        <CardTitle className="text-3xl font-bold text-secondaryT">
-          Sign in
+        <CardTitle className="text-3xl text-center font-bold text-primaryT ">
+          Admin Sign in
         </CardTitle>
-        <CardDescription className="text-base text-muted-foreground">
+        <CardDescription className="text-base text-[#021533] text-center">
           Enter your credentials to access your account
         </CardDescription>
       </CardHeader>
@@ -101,10 +99,10 @@ export function LoginForm() {
         <CardFooter className="flex flex-col space-y-4 mt-4 ">
           <Button
             type="submit"
-            className="w-full h-11 bg-secondaryT hover:bg-secondaryT/90 text-primary-foreground font-semibold transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
-            disabled={isLoading}
+            className="w-full h-11 bg-primaryT hover:bg-primaryT/90 text-primary-foreground font-semibold transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+            disabled={mutation.isPending}
           >
-            {isLoading ? (
+            {mutation.isPending ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 Signing in...
@@ -113,15 +111,6 @@ export function LoginForm() {
               "Sign in"
             )}
           </Button>
-          <div className="text-center text-sm text-muted-foreground">
-            Don&apos;t have an account?{" "}
-            <Link
-              href="/auth/register"
-              className="text-secondaryT hover:text-secondaryT/90 font-semibold transition-colors"
-            >
-              Create account
-            </Link>
-          </div>
         </CardFooter>
       </form>
     </Card>

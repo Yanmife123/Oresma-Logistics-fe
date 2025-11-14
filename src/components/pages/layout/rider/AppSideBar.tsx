@@ -167,8 +167,8 @@ export default function RiderSideBar({
                 className="flex-1 flex items-center justify-center gap-2 py-6 text-base font-semibold w-full cursor-pointer bg-white hover:bg-white text-primaryT hover:text-primaryT"
                 onClick={hanldeLogout}
               >
-                <LogOut className="w-5 h-5 text-primaryT" />
-                Login
+                <LogOut className="w-5 h-5 text-primaryT shrink-0" />
+                <span className={cn(isCollapsed && "lg:hidden")}>Logout</span>
               </Button>
             </div>
           </nav>

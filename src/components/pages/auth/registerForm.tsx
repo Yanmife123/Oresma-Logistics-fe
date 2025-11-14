@@ -66,16 +66,13 @@ export function RegisterForm() {
       showToast.success("SignUp Successful", data.message);
       navigate.push("/auth/login");
     },
+    onError: (error: any) => {
+      showToast.error("Signup Failed", error.response.data.message);
+    },
   });
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    try {
-      await mutation.mutateAsync(data);
-    } catch (error) {
-      if (error instanceof Error) {
-        showToast.error("Signup Failed", error.message);
-      }
-    }
+    await mutation.mutateAsync(data);
   };
 
   return (

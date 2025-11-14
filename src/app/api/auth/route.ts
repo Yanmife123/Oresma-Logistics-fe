@@ -1,6 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import { ApiBaseUrl } from "@/_lib/store/apiUrl";
 import { cookies } from "next/headers";
+import Cookies from "js-cookie";
 
 type FormData = {
   email: string;
@@ -30,7 +31,8 @@ export async function POST(request: NextRequest) {
       Cookies.set({
         name: "token",
         value: data.token,
-        httpOnly: true,
+        httpOnly: false, // can be accessed by JS if needed
+        path: "/",
         maxAge: 60 * 60 * 24,
       });
       Cookies.set({
@@ -44,7 +46,7 @@ export async function POST(request: NextRequest) {
         {
           success: data?.success,
           message: data?.message,
-          isAdmin: data?.user?.role === "admin" ? true : false,
+          isRider: data?.user?.role === "rider" ? true : false,
         },
         { status: data.status }
       );

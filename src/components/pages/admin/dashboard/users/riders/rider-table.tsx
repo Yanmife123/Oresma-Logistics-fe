@@ -10,8 +10,12 @@ import { BaseTable } from "@/components/shared/table/table-style";
 import { CheckCircleIcon, XCircle, MoreVertical, User } from "lucide-react";
 import { PeriodSelector } from "@/components/shared/dashboard/period-selector";
 import { SearchFilter } from "@/components/shared/dashboard/search-fliter";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import RiderSignupModal from "./create-rider-form";
 export function AllRidersTable() {
+  const [openRegisterModal, setOpenRegisterModal] = useState<boolean>(false);
   const tableData = [
     {
       username: "Steven Johnson",
@@ -116,6 +120,13 @@ export function AllRidersTable() {
           title="All Riders"
           actions={
             <>
+              <Button
+                onClick={() => {
+                  setOpenRegisterModal(true);
+                }}
+              >
+                Add Rider
+              </Button>
               <Suspense>
                 <PeriodSelector
                   options={[
@@ -160,6 +171,12 @@ export function AllRidersTable() {
         ]}
         data={tableData}
         rowActions2={RowActions}
+      />
+      <RiderSignupModal
+        isOpen={openRegisterModal}
+        onClose={() => {
+          setOpenRegisterModal(false);
+        }}
       />
     </div>
   );

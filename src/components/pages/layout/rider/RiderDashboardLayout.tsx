@@ -44,7 +44,7 @@ export function RiderDashbboardLayout({
         <Header2
           title="Driver’s Dashbaord"
           userImage="/diverse-user-avatars.png"
-          userName={"Rider"}
+          userName={user?.name}
           onToggleSidebar={() => {
             if (window.innerWidth < 1024) {
               setIsMobileSidebarOpen(!isMobileSidebarOpen);

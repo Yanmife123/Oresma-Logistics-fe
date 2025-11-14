@@ -29,16 +29,16 @@ import Image from "next/image";
 
 const menuItems = [
   // { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
-  { icon: User, label: "Profile", href: "/profile" },
+  { icon: User, label: "Profile", href: "/dashboard/profile" },
   { icon: Bike, label: "Riders", href: "/dashboard/rider" },
-  { icon: Calendar, label: "Calendar", href: "/calendar" },
-  { icon: Bookmark, label: "Saved", href: "/saved" },
-  { icon: Navigation, label: "Active Ride", href: "/active-ride" },
-  { icon: Car, label: "Vehicle Details", href: "/vehicle-details" },
-  { icon: Search, label: "Search", href: "/search" },
-  { icon: List, label: "Listings", href: "/listings" },
-  { icon: Wrench, label: "Book services", href: "/dashboard/book-services" },
-  { icon: HelpCircle, label: "Help Centre", href: "/help-centre" },
+  // { icon: Calendar, label: "Calendar", href: "/calendar" },
+  // { icon: Bookmark, label: "Saved", href: "/saved" },
+  // { icon: Navigation, label: "Active Ride", href: "/active-ride" },
+  // { icon: Car, label: "Vehicle Details", href: "/vehicle-details" },
+  // { icon: Search, label: "Search", href: "/search" },
+  // { icon: List, label: "Listings", href: "/listings" },
+  // { icon: Wrench, label: "Book services", href: "/dashboard/book-services" },
+  // { icon: HelpCircle, label: "Help Centre", href: "/help-centre" },
 ];
 
 interface SidebarProps {
@@ -164,7 +164,7 @@ export function DashboardSidebar({
                 </Link>
               );
             })}
-            <div
+            {/* <div
               className={` ${
                 isCollapsed ? "hidden" : "flex"
               } flex items-center justify-center bg-[#E6E8EB] px-2 py-3  rounded-2xl shadow-sm mt-6 `}
@@ -181,15 +181,16 @@ export function DashboardSidebar({
                   Become a driver
                 </Button>
               </div>
-            </div>
+            </div> */}
             <div className="w-full mt-5">
               <Button
                 variant="default"
                 className="flex-1 flex items-center justify-center gap-2 py-6 text-base font-semibold w-full cursor-pointer bg-white text-primaryT hover:bg-white hover:text-primaryT"
                 onClick={hanldeLogout}
+                disabled={mutation.isPending}
               >
-                <LogOut className="w-5 h-5 text-secondaryT" />
-                Login
+                <LogOut className="w-5 h-5 text-secondaryT shrink-0" />
+                <span className={cn(isCollapsed && "lg:hidden")}>Logout</span>
               </Button>
             </div>
           </nav>

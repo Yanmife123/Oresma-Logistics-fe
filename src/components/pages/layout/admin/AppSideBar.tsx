@@ -43,10 +43,10 @@ const menuItems = [
   // { icon: Navigation, label: "Active Ride", href: "/admin/active-ride" },
   { icon: Car, label: "Vehicle Details", href: "/admin/dashboard/vehicle" },
   { icon: Users, label: "Admins", href: "/admin/dashboard/all-admin" },
-  { icon: Search, label: "Search", href: "/admin/search" },
-  { icon: List, label: "Listings", href: "/admin/listings" },
-  { icon: Wrench, label: "Book services", href: "/admin/book-services" },
-  { icon: HelpCircle, label: "Help Centre", href: "/admin/help-centre" },
+  // { icon: Search, label: "Search", href: "/admin/search" },
+  // { icon: List, label: "Listings", href: "/admin/listings" },
+  // { icon: Wrench, label: "Book services", href: "/admin/book-services" },
+  // { icon: HelpCircle, label: "Help Centre", href: "/admin/help-centre" },
 ];
 
 interface SidebarProps {
@@ -178,8 +178,8 @@ export default function AdminSideBar({
                 className="flex-1 flex items-center justify-center gap-2 py-6 text-base font-semibold w-full cursor-pointer bg-white hover:bg-white text-primaryT hover:text-primaryT"
                 onClick={hanldeLogout}
               >
-                <LogOut className="w-5 h-5 text-primaryT" />
-                Login
+                <LogOut className="w-5 h-5 text-primaryT shrink-0" />
+                <span className={cn(isCollapsed && "lg:hidden")}>Logout</span>
               </Button>
             </div>
           </nav>

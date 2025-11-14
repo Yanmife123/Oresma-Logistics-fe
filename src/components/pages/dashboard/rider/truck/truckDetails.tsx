@@ -1,7 +1,12 @@
+"use client";
 import Image from "next/image";
 import { SquareMenuIcon, Ruler } from "lucide-react";
 import { SimilarTruckCard } from "./similarTrucks";
 import BookingTruck from "./truckRoute";
+import { useQuery } from "@tanstack/react-query";
+import { findRiderTruckById } from "@/_lib/api/dashboard/rider/findRiderTrucks";
+import { Truck } from "@/_lib/type/trucks/trucks";
+import DashoardSkeleton from "@/components/shared/skeleton/dashboard-skeleton";
 
 const trucks = [
   {
@@ -60,6 +65,18 @@ const tabData = [
 ];
 
 export function TruckDetail({ id }: { id: string }) {
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["riderTruck", id],
+    queryFn: () => findRiderTruckById(id),
+  });
+
+  if (isError) {
+    return <div className="text-red-500">{error.message}</div>;
+  }
+
+  if (isLoading) {
+    return <DashoardSkeleton />;
+  }
   return (
     <div className="px-4 md:px-0">
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 h-auto lg:h-[450px] mb-6 md:mb-10">
