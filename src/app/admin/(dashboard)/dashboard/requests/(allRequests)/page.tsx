@@ -1,8 +1,8 @@
-import { TruckRequestsTable } from "@/components/pages/admin/dashboard/requests/truck/truckRequestsTable";
+import { RequestsTable } from "@/components/pages/admin/dashboard/requests/truck/truckRequestsTable";
 export default function AdminRequestsTable() {
   return (
     <div>
-      <TruckRequestsTable />
+      <RequestsTable />
     </div>
   );
 }

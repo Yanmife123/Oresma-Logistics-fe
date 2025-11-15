@@ -9,7 +9,7 @@ export default async function RequestsDetail({
   const { id } = await params;
   return (
     <div>
-      <PageHeader2 title={`Request ID  #${id}`} />
+      <PageHeader2 title={`Request ${id}`} />
       <div className="mt-4">
         <AdminReqestsDetail id={id} />
       </div>

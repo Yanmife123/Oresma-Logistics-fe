@@ -4,9 +4,13 @@ import type React from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/_lib/utils";
 import ListPagination from "../pagination/list-pagination-style1";
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getNestedValue(obj: any, path: string) {
+  return path.split(".").reduce((acc, part) => acc?.[part], obj);
+}
 
 export interface Column<T> {
-  key: keyof T;
+  key: keyof T | string;
   label: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   render?: (value: any, row: T) => React.ReactNode;
@@ -67,7 +71,7 @@ export function BaseTable<T extends Record<string, any>>({
                     <span className="text-sm text-foreground">
                       {column.render
                         ? column.render(row[column.key], row)
-                        : String(row[column.key])}
+                        : String(getNestedValue(row, String(column.key)))}
                     </span>
                   </div>
                 ))}
@@ -103,7 +107,7 @@ export function BaseTable<T extends Record<string, any>>({
         </div>
       </div>
 
-      <div className="hidden overflow-x-auto md:block">
+      <div className="hidden overflow-x-auto md:block ">
         <table className="w-full min-w-max">
           <thead>
             <tr className="border-b border-border bg-muted">
@@ -147,7 +151,7 @@ export function BaseTable<T extends Record<string, any>>({
                   >
                     {column.render
                       ? column.render(row[column.key], row)
-                      : row[column.key]}
+                      : getNestedValue(row, String(column.key))}
                   </td>
                 ))}
                 {hasActions && (

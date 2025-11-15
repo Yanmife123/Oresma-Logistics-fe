@@ -1,4 +1,4 @@
-import { ApiBaseUrl } from "@/_lib/store/apiUrl";
+// import { ApiBaseUrl } from "@/_lib/store/apiUrl";
 import { SignUp } from "@/_lib/type/auth";
 import { axiosResponseHandle } from "@/_lib/reponse";
 import { axiosAuthInstance } from "@/_lib/axios";

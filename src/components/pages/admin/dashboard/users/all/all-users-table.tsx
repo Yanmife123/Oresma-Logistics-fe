@@ -7,95 +7,30 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { PageHeader2 } from "@/components/shared/headers/page-headers";
 import { BaseTable } from "@/components/shared/table/table-style";
-import { CheckCircleIcon, XCircle, MoreVertical, User } from "lucide-react";
+import { MoreVertical, User } from "lucide-react";
 
 import { PeriodSelector } from "@/components/shared/dashboard/period-selector";
 import { SearchFilter } from "@/components/shared/dashboard/search-fliter";
 import { Suspense } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getallCustomer } from "@/_lib/api/admin/users/user";
+import { UsersResponse } from "@/_lib/type/auth/users";
+// import SkeletonCardList from "@/components/shared/skeleton/card-list-skeleton";
+
 export function AllUsersTable() {
-  const tableData = [
-    {
-      username: "Steven Johnson",
-      user_id: "012345",
-      email: "cstevejohnson@gmail.com",
-      date_created: "12-05-2025",
-      gender: "Male",
-      is_verified: true, // Based on the green checkmark
-    },
-    {
-      username: "Steven Johnson",
-      user_id: "012345",
-      email: "cstevejohnson@gmail.com",
-      date_created: "12-05-2025",
-      gender: "Female",
-      is_verified: false, // Based on the red X
-    },
-    {
-      username: "Steven Johnson",
-      user_id: "012345",
-      email: "cstevejohnson@gmail.com",
-      date_created: "12-05-2025",
-      gender: "Male",
-      is_verified: true, // Based on the green checkmark
-    },
-    {
-      username: "Steven Johnson",
-      user_id: "012345",
-      email: "cstevejohnson@gmail.com",
-      date_created: "12-05-2025",
-      gender: "Female",
-      is_verified: true, // Based on the green checkmark
-    },
-    {
-      username: "Steven Johnson",
-      user_id: "012345",
-      email: "cstevejohnson@gmail.com",
-      date_created: "12-05-2025",
-      gender: "Female",
-      is_verified: false, // Based on the red X
-    },
-    // The selected row shows a specific fill value, but the underlying data seems consistent
-    {
-      username: "Steven Johnson",
-      user_id: "012345",
-      email: "cstevejohnson@gmail.com",
-      date_created: "12-05-2025",
-      gender: "Female",
-      is_verified: false, // Based on the red X
-    },
-    {
-      username: "Steven Johnson",
-      user_id: "012345",
-      email: "cstevejohnson@gmail.com",
-      date_created: "12-05-2025",
-      gender: "Female",
-      is_verified: false, // Based on the red X
-    },
-    {
-      username: "Steven Johnson",
-      user_id: "012345",
-      email: "cstevejohnson@gmail.com",
-      date_created: "12-05-2025",
-      gender: "Female",
-      is_verified: true, // Based on the green checkmark
-    },
-    {
-      username: "Steven Johnson",
-      user_id: "012345",
-      email: "cstevejohnson@gmail.com",
-      date_created: "12-05-2025",
-      gender: "Female",
-      is_verified: false, // Based on the red X
-    },
-    {
-      username: "Steven Johnson",
-      user_id: "012345",
-      email: "cstevejohnson@gmail.com",
-      date_created: "12-05-2025",
-      gender: "Female",
-      is_verified: true, // Based on the green checkmark
-    },
-  ];
+  const {
+    data: Customers,
+    isPending,
+    isError,
+    error: Error,
+  } = useQuery<UsersResponse>({
+    queryFn: getallCustomer,
+    queryKey: ["AllCustomers"],
+    refetchInterval: 4 * 60 * 1000, // 2 minutes
+    refetchOnReconnect: true,
+    refetchIntervalInBackground: false,
+  });
+
   const RowActions = () => {
     return (
       <DropdownMenu>
@@ -141,27 +76,30 @@ export function AllUsersTable() {
           />
         </Suspense>
       </div>
-      <BaseTable
-        columns={[
-          { key: "username", label: "User" },
-          { key: "user_id", label: "User ID" },
-          { key: "email", label: "Email" },
-          { key: "date_created", label: "Date Created" },
-          { key: "gender", label: "Gender" },
-          {
-            key: "is_verified",
-            label: "Verified",
-            render: (value) =>
-              value ? (
-                <CheckCircleIcon className="h-5 w-5 text-green-500" />
-              ) : (
-                <XCircle className="h-5 w-5 text-red-500" />
-              ),
-          },
-        ]}
-        data={tableData}
-        rowActions2={RowActions}
-      />
+      {!isPending && isError && (
+        <div className="text-red-500">{Error.message} </div>
+      )}
+      {!isPending && Customers?.count === 0 && (
+        <div className="text-red-500">No Customer User</div>
+      )}
+      {!isPending && !Error && Customers.count > 0 && (
+        <BaseTable
+          columns={[
+            { key: "name", label: "Name" },
+            { key: "id", label: "User ID" },
+            { key: "email", label: "Email" },
+            { key: "phone", label: "Phone" },
+            { key: "role", label: "Role" },
+            {
+              key: "createdAt",
+              label: "Date Created",
+              render: (value) => new Date(value).toLocaleDateString(),
+            },
+          ]}
+          data={Customers.users}
+          rowActions2={RowActions}
+        />
+      )}
     </div>
   );
 }

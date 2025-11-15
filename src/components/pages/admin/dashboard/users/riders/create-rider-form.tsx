@@ -143,7 +143,7 @@ export default function RiderSignupModal({
                   />
                 </div>
                 <p className="text-xs text-slate-500">
-                  Default password starts with "user2020"
+                  Default password starts with &quot;user2020&quot;
                 </p>
               </div>
 

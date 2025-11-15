@@ -13,14 +13,14 @@ import {
   // Bookmark,
   // Navigation,
   Car,
-  Search,
-  List,
-  Wrench,
-  HelpCircle,
+  // Search,
+  // List,
+  // Wrench,
+  // HelpCircle,
   LogOut,
   BarChart3,
   Wallet2Icon,
-  Icon,
+  // Icon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";

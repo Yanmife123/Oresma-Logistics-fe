@@ -95,3 +95,21 @@ axiosLoginInstance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+axiosInstance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response) {
+      return Promise.reject(
+        new Error(
+          error.response.data?.message ||
+            `Request failed with status ${error.response.status}`
+        )
+      );
+    }
+
+    return Promise.reject(error);
+  }
+);

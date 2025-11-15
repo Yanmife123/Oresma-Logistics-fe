@@ -9,6 +9,7 @@ type Props = {
   placeholder?: string;
   label: string;
   type: string;
+  step?: string;
 };
 export function CustomerInput({
   error,
@@ -17,6 +18,7 @@ export function CustomerInput({
   label,
   placeholder,
   type,
+  step,
 }: Props) {
   return (
     <div className="space-y-2">
@@ -31,6 +33,7 @@ export function CustomerInput({
         placeholder={placeholder}
         {...register(inputname)}
         className="h-11 bg-background border-input focus:border-primary transition-colors"
+        step={step}
       />
       {error && <div className="text-red-500 text-sm">{error}</div>}
     </div>

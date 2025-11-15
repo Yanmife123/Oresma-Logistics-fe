@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Truck, Bike, Car, Check, Upload, X } from "lucide-react";
+import { Truck, Bike, Check, Upload, X } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { createVehicle } from "@/_lib/api/admin/createVehicle";
 import { VehicleFormData } from "@/_lib/type/trucks/trucks";
@@ -32,52 +32,54 @@ export function VehicleForm() {
     licensePlate: "",
     vin: "",
     fuelType: "diesel",
-    images: [],
+    photos: [],
     condition: "excellent",
-    dimensions: {
-      length: "",
-      width: "",
-      height: "",
-      cargoArea: "",
-    },
-    capacity: {
-      maxWeight: "",
-      maxVolume: "",
-      payload: "",
-    },
-    truckFeatures: {
-      hasLiftGate: false,
-      hasRefrigeration: false,
-      hasGPS: false,
-      hasRamp: false,
-      hasCrane: false,
-      hasToolbox: false,
-      airConditioning: false,
-      powerSteering: false,
-    },
-    carFeatures: {
-      hasAC: false,
-      hasGPS: false,
-      hasABS: false,
-      hasPowerWindows: false,
-      hasPowerSteering: false,
-      hasAirbags: false,
-      hasRearCamera: false,
-      hasCruiseControl: false,
-    },
-    bikeFeatures: {
-      hasDiscBrakes: false,
-      hasABS: false,
-      hasGPS: false,
-      hasPowerSteering: false,
-      hasElectricStart: false,
-      hasHeatedGrips: false,
-    },
+    truckType: "",
+    transmissionType: "",
+    // dimensions: {
+    //   length: "",
+    //   width: "",
+    //   height: "",
+    //   cargoArea: "",
+    // },
+    // capacity: {
+    //   maxWeight: "",
+    //   maxVolume: "",
+    //   payload: "",
+    // },
+    // truckFeatures: {
+    //   hasLiftGate: false,
+    //   hasRefrigeration: false,
+    //   hasGPS: false,
+    //   hasRamp: false,
+    //   hasCrane: false,
+    //   hasToolbox: false,
+    //   airConditioning: false,
+    //   powerSteering: false,
+    // },
+    // carFeatures: {
+    //   hasAC: false,
+    //   hasGPS: false,
+    //   hasABS: false,
+    //   hasPowerWindows: false,
+    //   hasPowerSteering: false,
+    //   hasAirbags: false,
+    //   hasRearCamera: false,
+    //   hasCruiseControl: false,
+    // },
+    // bikeFeatures: {
+    //   hasDiscBrakes: false,
+    //   hasABS: false,
+    //   hasGPS: false,
+    //   hasPowerSteering: false,
+    //   hasElectricStart: false,
+    //   hasHeatedGrips: false,
+    // },
   });
 
   const [imagePreviews, setImagePreviews] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -136,7 +138,7 @@ export function VehicleForm() {
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
-    setFormData((prev) => ({ ...prev, images: [...prev.images, ...files] }));
+    setFormData((prev) => ({ ...prev, phptos: [...prev.photos, ...files] }));
 
     files.forEach((file) => {
       const reader = new FileReader();
@@ -150,7 +152,7 @@ export function VehicleForm() {
   const removeImage = (index: number) => {
     setFormData((prev) => ({
       ...prev,
-      images: prev.images.filter((_, i) => i !== index),
+      photos: prev.photos.filter((_, i) => i !== index),
     }));
     setImagePreviews((prev) => prev.filter((_, i) => i !== index));
   };
@@ -175,8 +177,6 @@ export function VehicleForm() {
 
     console.log("Vehicle Data:", formData);
     setSubmitted(true);
-    setLoading(false);
-
     setTimeout(() => {
       setSubmitted(false);
       setFormData({
@@ -188,47 +188,49 @@ export function VehicleForm() {
         licensePlate: "",
         vin: "",
         fuelType: "diesel",
-        images: [],
+        photos: [],
         condition: "excellent",
-        dimensions: {
-          length: "",
-          width: "",
-          height: "",
-          cargoArea: "",
-        },
-        capacity: {
-          maxWeight: "",
-          maxVolume: "",
-          payload: "",
-        },
-        truckFeatures: {
-          hasLiftGate: false,
-          hasRefrigeration: false,
-          hasGPS: false,
-          hasRamp: false,
-          hasCrane: false,
-          hasToolbox: false,
-          airConditioning: false,
-          powerSteering: false,
-        },
-        carFeatures: {
-          hasAC: false,
-          hasGPS: false,
-          hasABS: false,
-          hasPowerWindows: false,
-          hasPowerSteering: false,
-          hasAirbags: false,
-          hasRearCamera: false,
-          hasCruiseControl: false,
-        },
-        bikeFeatures: {
-          hasDiscBrakes: false,
-          hasABS: false,
-          hasGPS: false,
-          hasPowerSteering: false,
-          hasElectricStart: false,
-          hasHeatedGrips: false,
-        },
+        transmissionType: "",
+        truckType: "",
+        // dimensions: {
+        //   length: "",
+        //   width: "",
+        //   height: "",
+        //   cargoArea: "",
+        // },
+        // capacity: {
+        //   maxWeight: "",
+        //   maxVolume: "",
+        //   payload: "",
+        // },
+        // truckFeatures: {
+        //   hasLiftGate: false,
+        //   hasRefrigeration: false,
+        //   hasGPS: false,
+        //   hasRamp: false,
+        //   hasCrane: false,
+        //   hasToolbox: false,
+        //   airConditioning: false,
+        //   powerSteering: false,
+        // },
+        // carFeatures: {
+        //   hasAC: false,
+        //   hasGPS: false,
+        //   hasABS: false,
+        //   hasPowerWindows: false,
+        //   hasPowerSteering: false,
+        //   hasAirbags: false,
+        //   hasRearCamera: false,
+        //   hasCruiseControl: false,
+        // },
+        // bikeFeatures: {
+        //   hasDiscBrakes: false,
+        //   hasABS: false,
+        //   hasGPS: false,
+        //   hasPowerSteering: false,
+        //   hasElectricStart: false,
+        //   hasHeatedGrips: false,
+        // },
       });
       setImagePreviews([]);
     }, 2000);
@@ -426,6 +428,7 @@ export function VehicleForm() {
                   onValueChange={(value) =>
                     handleSelectChange(value, "transmissionType")
                   }
+                  required
                 >
                   <SelectTrigger className="w-full border border-gray-300">
                     <SelectValue placeholder="Select transmission" />
@@ -513,6 +516,7 @@ export function VehicleForm() {
                 onChange={handleImageChange}
                 className="hidden"
                 id="image-upload"
+                name="photos"
               />
               <label htmlFor="image-upload" className="cursor-pointer">
                 <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
