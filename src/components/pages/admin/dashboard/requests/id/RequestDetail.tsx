@@ -107,7 +107,7 @@ export function AdminReqestsDetail({ id }: { id: string | number }) {
       </div>
 
       <h2 className="text-black font-semibold text-2xl md:text-3xl lg:text-4xl">
-        2021 ISUZU M100-600 Truck
+        2021 ISUZU M100-600 Truck {id}
       </h2>
 
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 lg:gap-[90px] mt-5 md:mt-7">
@@ -251,12 +251,12 @@ export function AdminReqestsDetail({ id }: { id: string | number }) {
               </CardFooter>
             </form>
           </Card>
-          <Processnvoice
+          {/* <Processnvoice
             open={openModal}
             onOpenChange={() => {
               setOpenModal(false);
             }}
-          />
+          /> */}
         </div>
       </div>
     </div>

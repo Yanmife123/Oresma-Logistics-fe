@@ -8,8 +8,8 @@ import {
   LayoutDashboard,
   User,
   Bike,
-  Calendar,
-  Bookmark,
+  // Calendar,
+  // Bookmark,
   // Navigation,
   Car,
   // Search,
@@ -17,6 +17,7 @@ import {
   // Wrench,
   // HelpCircle,
   LogOut,
+  Wallet2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
@@ -26,11 +27,16 @@ import Image from "next/image";
 import { showToast } from "@/components/shared/toast";
 
 const menuItems = [
-  { icon: User, label: "Profile", href: "/rider/profile" },
+  { icon: User, label: "Profile", href: "/rider/dashboard/profile" },
   { icon: Bike, label: "Requests", href: "/rider/dashboard/requests" },
+  {
+    icon: Bike,
+    label: "Active Requests",
+    href: "/rider/dashboard/activeRequests",
+  },
   { icon: Car, label: "Vehicle", href: "/rider/dashboard/vehicle" },
-  { icon: Calendar, label: "Calendar", href: "/rider/calendar" },
-  { icon: Bookmark, label: "Saved", href: "/rider/saved" },
+  { icon: Wallet2, label: "Wallet", href: "/rider/dashboard/wallet" },
+  // { icon: Bookmark, label: "Saved", href: "/rider/saved" },
   // { icon: Navigation, label: "Active Ride", href: "/admin/active-ride" },
 
   // { icon: Search, label: "Search", href: "/admin/search" },
@@ -167,8 +173,8 @@ export default function RiderSideBar({
                 className="flex-1 flex items-center justify-center gap-2 py-6 text-base font-semibold w-full cursor-pointer bg-white hover:bg-white text-primaryT hover:text-primaryT"
                 onClick={hanldeLogout}
               >
-                <LogOut className="w-5 h-5 text-primaryT" />
-                Login
+                <LogOut className="w-5 h-5 text-primaryT shrink-0" />
+                <span className={cn(isCollapsed && "lg:hidden")}>Logout</span>
               </Button>
             </div>
           </nav>

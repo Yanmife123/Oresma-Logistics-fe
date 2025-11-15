@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import {
   GoogleMap,
   DirectionsRenderer,
@@ -16,6 +16,8 @@ interface RouteMapProps {
   destination: string;
   className?: string;
   onRouteCalculated?: (duration: string, distance: string) => void;
+  shouldCalculate?: boolean;
+  isLoading?: boolean;
 }
 
 // ✅ Move libraries constant outside to prevent reload warnings
@@ -36,12 +38,15 @@ export function RouteMap({
   destination,
   className,
   onRouteCalculated,
+  shouldCalculate = false,
+  isLoading = false,
 }: RouteMapProps) {
   const [directions, setDirections] =
     useState<google.maps.DirectionsResult | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [internalLoading, setInternalLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [duration, setDuration] = useState<string>("");
+  const [hasCalculated, setHasCalculated] = useState(false);
 
   // ✅ Use the stable libraries constant
   const { isLoaded } = useJsApiLoader({
@@ -83,9 +88,9 @@ export function RouteMap({
 
   const calculateRoute = useCallback(async () => {
     if (!isLoaded || !origin || !destination) return;
-    if (!window.google || !window.google.maps) return; // ✅ extra safety check
+    if (!window.google || !window.google.maps) return;
 
-    setIsLoading(true);
+    setInternalLoading(true);
     setError(null);
 
     try {
@@ -114,6 +119,7 @@ export function RouteMap({
       );
 
       setDirections(result);
+      setHasCalculated(true);
 
       if (result.routes[0]?.legs[0]) {
         const leg = result.routes[0].legs[0];
@@ -121,19 +127,24 @@ export function RouteMap({
         const distance = leg.distance?.text || "";
 
         setDuration(durationText);
+        localStorage.setItem("destination", destination);
         onRouteCalculated?.(durationText, distance);
       }
     } catch (err) {
       console.error("Error calculating route:", err);
       setError("Unable to calculate route. Please check your locations.");
     } finally {
-      setIsLoading(false);
+      setInternalLoading(false);
     }
   }, [isLoaded, origin, destination, onRouteCalculated]);
 
   useEffect(() => {
-    calculateRoute();
-  }, [calculateRoute]);
+    if (shouldCalculate && !hasCalculated && !internalLoading) {
+      calculateRoute();
+    }
+  }, [shouldCalculate, hasCalculated, internalLoading, calculateRoute]);
+
+  const isSearching = isLoading || internalLoading;
 
   // 🌀 Loading placeholder
   if (!isLoaded) {
@@ -156,9 +167,21 @@ export function RouteMap({
     );
   }
 
+  if (!hasCalculated) {
+    return (
+      <Card
+        className={`flex items-center justify-center bg-muted/30 h-full ${className}`}
+      >
+        <p className="text-muted-foreground">
+          Click search to calculate your route
+        </p>
+      </Card>
+    );
+  }
+
   return (
     <div className={`relative overflow-hidden rounded-lg ${className}`}>
-      {isLoading && (
+      {isSearching && (
         <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/80">
           <Loader2 className="h-8 w-8 animate-spin text-primary" />
         </div>

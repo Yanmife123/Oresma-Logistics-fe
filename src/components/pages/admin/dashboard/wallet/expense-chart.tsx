@@ -1,6 +1,6 @@
 "use client";
 
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
@@ -50,7 +50,7 @@ export function ExpensePieChart({
   data = defaultData,
   total = 12678,
   currency = "N",
-  timeRange = "Monthly",
+  // timeRange = "Monthly",
   onTimeRangeChange = () => {},
   selectedRange = "Monthly",
   stats = {
@@ -64,7 +64,7 @@ export function ExpensePieChart({
     color: COLOR_PALETTE[index % COLOR_PALETTE.length],
   }));
 
-  const colorStops = dataWithColors.map((item) => item.color).join(", ");
+  // const colorStops = dataWithColors.map((item) => item.color).join(", ");
 
   const handleTimeRangeChange = (range: "Daily" | "Weekly" | "Monthly") => {
     onTimeRangeChange(range);

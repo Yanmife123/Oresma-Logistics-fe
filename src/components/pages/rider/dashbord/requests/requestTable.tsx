@@ -1,165 +1,118 @@
 "use client";
 import {
   BaseTable,
-  type RowAction,
+  // type RowAction,
 } from "@/components/shared/table/table-style";
-import { useRouter } from "next/navigation";
-
-interface Trip {
-  id: number;
-  vehicleType: string;
-  vehicleId: string;
-  pickupLocation: string;
-  noOfStops: number;
-  finalDestination: string;
-  dateOfTrip: string;
-}
+// import { useRouter } from "next/navigation";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import {
+  getAssignmentRide,
+  AcceptAssignmentRequest,
+  DeclineAssignmentRequest,
+} from "@/_lib/api/rider/assignment";
+import { AssignmentRequests } from "@/_lib/type/request/rider-assignment";
+import SkeletonCardList from "@/components/shared/skeleton/card-list-skeleton";
+import { Button } from "@/components/ui/button";
+import { RideRequest } from "@/_lib/type/request/rider-request";
 
 export function RequestTable() {
-  const sampleData: Trip[] = [
-    {
-      id: 1,
-      vehicleType: "Isuzu n400/1000",
-      vehicleId: "#1234",
-      pickupLocation: "Abule St",
-      noOfStops: 3,
-      finalDestination: "Morndu",
-      dateOfTrip: "12-06-2025",
-    },
-    {
-      id: 2,
-      vehicleType: "Isuzu n400/1000",
-      vehicleId: "#1234",
-      pickupLocation: "Ikoyi",
-      noOfStops: 0,
-      finalDestination: "Ojota",
-      dateOfTrip: "12-06-2025",
-    },
-    {
-      id: 3,
-      vehicleType: "Isuzu n400/1000",
-      vehicleId: "#1234",
-      pickupLocation: "Abule St",
-      noOfStops: 4,
-      finalDestination: "Senger",
-      dateOfTrip: "12-06-2025",
-    },
-    {
-      id: 4,
-      vehicleType: "Isuzu n400/1000",
-      vehicleId: "#1234",
-      pickupLocation: "Ikoroodu",
-      noOfStops: 1,
-      finalDestination: "Morndu",
-      dateOfTrip: "12-06-2025",
-    },
-    {
-      id: 5,
-      vehicleType: "Isuzu n400/1000",
-      vehicleId: "#1234",
-      pickupLocation: "Abule St",
-      noOfStops: 0,
-      finalDestination: "Ikoroodu",
-      dateOfTrip: "12-06-2025",
-    },
-    {
-      id: 6,
-      vehicleType: "Isuzu n400/1000",
-      vehicleId: "#1235",
-      pickupLocation: "Lekki",
-      noOfStops: 2,
-      finalDestination: "VI",
-      dateOfTrip: "12-07-2025",
-    },
-    {
-      id: 7,
-      vehicleType: "Isuzu n400/1000",
-      vehicleId: "#1236",
-      pickupLocation: "Yaba",
-      noOfStops: 1,
-      finalDestination: "Surulere",
-      dateOfTrip: "12-07-2025",
-    },
-    {
-      id: 8,
-      vehicleType: "Isuzu n400/1000",
-      vehicleId: "#1237",
-      pickupLocation: "Ikeja",
-      noOfStops: 3,
-      finalDestination: "Ajah",
-      dateOfTrip: "12-07-2025",
-    },
-    {
-      id: 9,
-      vehicleType: "Isuzu n400/1000",
-      vehicleId: "#1238",
-      pickupLocation: "Bariga",
-      noOfStops: 2,
-      finalDestination: "Shomolu",
-      dateOfTrip: "12-07-2025",
-    },
-    {
-      id: 10,
-      vehicleType: "Isuzu n400/1000",
-      vehicleId: "#1239",
-      pickupLocation: "Mushin",
-      noOfStops: 1,
-      finalDestination: "Onipanu",
-      dateOfTrip: "12-07-2025",
-    },
-    {
-      id: 11,
-      vehicleType: "Isuzu n400/1000",
-      vehicleId: "#1240",
-      pickupLocation: "Gbagada",
-      noOfStops: 4,
-      finalDestination: "Ikoyi",
-      dateOfTrip: "12-08-2025",
-    },
-    {
-      id: 12,
-      vehicleType: "Isuzu n400/1000",
-      vehicleId: "#1241",
-      pickupLocation: "Magodo",
-      noOfStops: 2,
-      finalDestination: "Lekki",
-      dateOfTrip: "12-08-2025",
-    },
-  ];
-  const rowActions: RowAction[] = [
-    {
-      label: "Decline",
-      variant: "outline",
-      onClick: (row) => {
-        console.log("Declined:", row.id);
-      },
-    },
-    {
-      label: "Accept",
-      variant: "default",
-      onClick: (row) => {
-        console.log("Accepted:", row.id);
-        navigate.push(`/rider/dashboard/requests/${row.id}/route`);
-      },
-    },
-  ];
-  const navigate = useRouter();
+  const {
+    data: AssignmentRequest,
+    isPending,
+    isError,
+    error: Error,
+  } = useQuery<AssignmentRequests>({
+    queryFn: getAssignmentRide,
+    queryKey: ["AssignmentRides"],
+  });
+
+  const AcceptRequest = ({ id }: { id: string }) => {
+    const mutation = useMutation({
+      mutationFn: AcceptAssignmentRequest,
+      mutationKey: ["AcceptAssignment"],
+    });
+
+    const handlerSubmit = async () => {
+      await mutation.mutateAsync(id);
+    };
+
+    return <Button onClick={handlerSubmit}>Accept</Button>;
+  };
+  const DeclineRequest = ({ id }: { id: string }) => {
+    const mutation = useMutation({
+      mutationFn: DeclineAssignmentRequest,
+      mutationKey: ["AcceptAssignment"],
+    });
+
+    const handlerSubmit = async () => {
+      await mutation.mutateAsync(id);
+    };
+
+    return (
+      <Button variant={"outline"} onClick={handlerSubmit}>
+        Accept
+      </Button>
+    );
+  };
+
+  const RowActions = ({ row }: { row: RideRequest }) => {
+    return (
+      <div className="flex gap-1 sm:gap-2">
+        {row.status === "pending" && (
+          <>
+            <DeclineRequest id={row._id} /> <AcceptRequest id={row._id} />
+          </>
+        )}
+      </div>
+    );
+  };
+
+  // const navigate = useRouter();
+
+  if (isPending) {
+    return <SkeletonCardList />;
+  }
+
+  if (!isPending && isError) {
+    if (isError) {
+      return <div>{Error.message} </div>;
+    }
+  }
+
+  if (!isPending && AssignmentRequest?.count === 0) {
+    return <div className="text-red-500">No Assignment Requests</div>;
+  }
+
   return (
     <div>
       <BaseTable
         columns={[
           { key: "vehicleType", label: "Vehicle type" },
-          { key: "vehicleId", label: "Vehicle ID" },
-          { key: "pickupLocation", label: "Pick up location" },
-          { key: "noOfStops", label: "No of stops" },
-          { key: "finalDestination", label: "Final destination" },
-          { key: "dateOfTrip", label: "Date of trip" },
+          { key: "_id", label: "Vehicle ID" },
+          { key: "pickup.address", label: "Pick up location" },
+          { key: "dropoff.address", label: "Final destination" },
+          { key: "userId.name", label: "Customer" },
+          {
+            key: "invoiceSent",
+            label: "Invoice Sent",
+            render: (value) => (
+              <div>
+                {value ? (
+                  <div className="text-green-500">Sent</div>
+                ) : (
+                  <div className="text-red-500">Not Sent</div>
+                )}
+              </div>
+            ),
+          },
+          { key: "status", label: "Status" },
         ]}
-        data={sampleData}
-        rowActions={rowActions}
-        onRowClick={(row) =>
-          navigate.push(`/rider/dashboard/requests/${row.id}`)
-        }
+        data={AssignmentRequest?.rideRequests}
+        // rowActions={RowActions}
+        rowActions2={(row) => <RowActions row={row} />}
+        // onRowClick={(row) =>
+        //   navigate.push(`/rider/dashboard/requests/${row._id}`)
+        // }
       />
     </div>
   );

@@ -11,65 +11,27 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Suspense } from "react";
+import { UsersResponse } from "@/_lib/type/auth/users";
+import { getallAdmin } from "@/_lib/api/admin/users/user";
+import { useQuery } from "@tanstack/react-query";
+import SkeletonCardList from "@/components/shared/skeleton/card-list-skeleton";
 export function AllAdminTable() {
-  const adminTableData = [
-    {
-      name: "Steven Johnson",
-      id: "012345",
-      email: "cstevejohnson@gmail.com",
-      dateCreated: "12-05-2025",
-      company: "Oresma Logistics",
-      is_verified: true, // Based on the green checkmark icon
-    },
-    {
-      name: "Steven Johnson",
-      id: "012345",
-      email: "cstevejohnson@gmail.com",
-      dateCreated: "12-05-2025",
-      company: "Oresma Logistics",
-      is_verified: true, // Based on the green checkmark icon
-    },
-    {
-      name: "Steven Johnson",
-      id: "012345",
-      email: "cstevejohnson@gmail.com",
-      dateCreated: "12-05-2025",
-      company: "Oresma Logistics",
-      is_verified: true, // Based on the green checkmark icon
-    },
-    {
-      name: "Steven Johnson",
-      id: "012345",
-      email: "cstevejohnson@gmail.com",
-      dateCreated: "12-05-2025",
-      company: "Oresma Logistics",
-      is_verified: false, // Based on the red 'X' icon
-    },
-    {
-      name: "Steven Johnson",
-      id: "012345",
-      email: "cstevejohnson@gmail.com",
-      dateCreated: "12-05-2025",
-      company: "Oresma Logistics",
-      is_verified: true, // Based on the green checkmark icon
-    },
-    {
-      name: "Steven Johnson",
-      id: "012345",
-      email: "cstevejohnson@gmail.com",
-      dateCreated: "12-05-2025",
-      company: "Oresma Logistics",
-      is_verified: true, // Based on the green checkmark icon
-    },
-    {
-      name: "Steven Johnson",
-      id: "012345",
-      email: "cstevejohnson@gmail.com",
-      dateCreated: "12-05-2025",
-      company: "Oresma Logistics",
-      is_verified: false, // Based on the red 'X' icon
-    },
-  ];
+  const {
+    data: Admins,
+    isPending,
+    isError,
+    error: Error,
+  } = useQuery<UsersResponse>({
+    queryFn: getallAdmin,
+    queryKey: ["AllAdmins"],
+    refetchInterval: 4 * 60 * 1000, // 2 minutes
+    refetchOnReconnect: true,
+    refetchIntervalInBackground: false,
+  });
+  if (isPending) {
+    return <SkeletonCardList />;
+  }
+
   const RowActions = () => {
     return (
       <DropdownMenu>
@@ -103,42 +65,30 @@ export function AllAdminTable() {
           />
         </Suspense>
       </div>
-      <BaseTable
-        columns={[
-          {
-            key: "name",
-            label: "Admin",
-          },
-          {
-            key: "id",
-            label: "Admin ID",
-          },
-          {
-            key: "email",
-            label: "Email",
-          },
-          {
-            key: "dateCreated",
-            label: "Date Created",
-          },
-          {
-            key: "company",
-            label: "Company",
-          },
-          {
-            key: "is_verified",
-            label: "Verified",
-            render: (value) =>
-              value ? (
-                <CheckCircleIcon className="h-5 w-5 text-green-500" />
-              ) : (
-                <XCircle className="h-5 w-5 text-red-500" />
-              ),
-          },
-        ]}
-        data={adminTableData}
-        rowActions2={RowActions}
-      />
+      {!isPending && isError && (
+        <div className="text-red-500">{Error.message} </div>
+      )}
+      {!isPending && Admins?.count === 0 && (
+        <div className="text-red-500">No Admin User</div>
+      )}
+      {!isPending && !isError && Admins.count > 0 && (
+        <BaseTable
+          columns={[
+            { key: "name", label: "Name" },
+            { key: "id", label: "User ID" },
+            { key: "email", label: "Email" },
+            { key: "phone", label: "Phone" },
+            { key: "role", label: "Role" },
+            {
+              key: "createdAt",
+              label: "Date Created",
+              render: (value) => new Date(value).toLocaleDateString(),
+            },
+          ]}
+          data={Admins.users}
+          rowActions2={RowActions}
+        />
+      )}
     </div>
   );
 }

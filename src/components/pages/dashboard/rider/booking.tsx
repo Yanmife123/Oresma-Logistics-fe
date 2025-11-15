@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 import { LocationInput } from "@/components/shared/map/location-input";
 import { RouteMap } from "@/components/shared/map/route-map";
 import { VehicleSelector } from "@/components/shared/map/vehicle-selector";
@@ -9,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { RouteInfo } from "@/components/shared/map/route-info";
 import { LorryRecommendation } from "./lorryReconmended";
+
 const vehicles = [
   {
     id: "car",
@@ -51,10 +53,33 @@ export function Booking() {
     duration: string;
     distance: string;
   } | null>(null);
+  const [shouldCalculate, setShouldCalculate] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
+
+  useEffect(() => {
+    const savedOrigin = Cookies.get("routeOrigin");
+    const savedDestination = Cookies.get("routeDestination");
+
+    if (savedOrigin) setOrigin(savedOrigin);
+    if (savedDestination) setDestination(savedDestination);
+  }, []);
 
   console.log(params2.get("vehicle"));
+
+  const handleSearch = () => {
+    if (origin && destination) {
+      Cookies.set("routeOrigin", origin, { expires: 1 / 24 });
+      Cookies.set("routeDestination", destination, { expires: 1 / 24 });
+
+      setIsSearching(true);
+      setShouldCalculate(true);
+    }
+  };
+
   const handleRouteCalculated = (duration: string, distance: string) => {
     setRouteData({ duration, distance });
+    setIsSearching(false);
+    setShouldCalculate(false);
   };
 
   const handleFindDriver = () => {
@@ -65,6 +90,7 @@ export function Booking() {
       alert("Please enter both locations and select a vehicle");
     }
   };
+
   return (
     <>
       <div>
@@ -80,6 +106,7 @@ export function Booking() {
                 icon="start"
                 value={origin}
                 onChange={setOrigin}
+                isLoading={isSearching}
               />
             </div>
             <div>
@@ -89,6 +116,8 @@ export function Booking() {
                 icon="destination"
                 value={destination}
                 onChange={setDestination}
+                onSubmit={handleSearch}
+                isLoading={isSearching}
               />
             </div>
           </div>
@@ -109,12 +138,14 @@ export function Booking() {
             destination={destination}
             className="h-[400px] lg:h-[500px]"
             onRouteCalculated={handleRouteCalculated}
+            shouldCalculate={shouldCalculate}
+            isLoading={isSearching}
           />
         </div>
       </div>
 
       {/* Vehicle Selection */}
-      {origin && destination && (
+      {origin && destination && routeData && (
         <div className="space-y-4 mt-4">
           <h3 className="text-lg font-semibold">Select Your Vehicle</h3>
           <VehicleSelector
@@ -130,7 +161,6 @@ export function Booking() {
         <div className="flex justify-center w-full mt-10">
           <Button
             onClick={handleFindDriver}
-            // size="lg"
             className="w-full bg-orange-500 hover:bg-orange-600  md:px-16 py-7 text-lg font-semibold"
           >
             Find a driver

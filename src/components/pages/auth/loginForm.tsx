@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Package, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -18,6 +18,8 @@ import { EmailInput } from "@/components/utility/form/email-input";
 import { PasswordInput } from "@/components/utility/form/password-input";
 import { showToast } from "@/components/shared/toast";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { RouteLoginResponse } from "@/_lib/type/auth/auth";
 
 export function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -49,12 +51,12 @@ export function LoginForm() {
         const result = await request.json();
         throw new Error(result.message);
       }
-      const result = await request.json();
+      const result: RouteLoginResponse = await request.json();
       showToast.success(result.message);
       setTimeout(() => {
-        if (result.isAdmin) {
-          navigate.push("/admin/dashboard");
-        } else navigate.push("/dashboard");
+        if (result.isRider) {
+          navigate.push("/rider/dashboard");
+        } else navigate.push("/dashboard/rider");
       }, 2000);
     } catch (error) {
       if (error instanceof Error) {
@@ -69,8 +71,8 @@ export function LoginForm() {
     <Card className="w-full max-w-md mx-auto shadow-2xl border-border/50 animate-fade-in-up">
       <CardHeader className="space-y-1">
         <div className="flex lg:hidden items-center gap-2 mb-4">
-          <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-            <Package className="w-6 h-6 text-primary-foreground" />
+          <div className="w-10 h-10  rounded-lg flex items-center justify-center relative">
+            <Image src={"/logo.svg"} alt="Oresema Logo" fill />
           </div>
           <span className="text-2xl font-bold text-foreground">Oresma</span>
         </div>

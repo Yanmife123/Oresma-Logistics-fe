@@ -25,10 +25,10 @@ import { userSignIn } from "@/_lib/api/auth/signUp";
 import { showToast } from "@/components/shared/toast";
 import Image from "next/image";
 
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 export function RegisterForm() {
-  const navigate = useRouter();
+  // const navigate = useRouter();
   type FormData = z.infer<typeof formScheme>;
   const formScheme = z
     .object({
@@ -64,18 +64,16 @@ export function RegisterForm() {
     mutationFn: userSignIn,
     onSuccess: (data) => {
       showToast.success("SignUp Successful", data.message);
-      navigate.push("/auth/login");
+      // navigate.push("/auth/login");
+    },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    onError: (error: any) => {
+      showToast.error("Signup Failed", error.response.data.message);
     },
   });
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    try {
-      await mutation.mutateAsync(data);
-    } catch (error) {
-      if (error instanceof Error) {
-        showToast.error("Signup Failed", error.message);
-      }
-    }
+    await mutation.mutateAsync(data);
   };
 
   return (
