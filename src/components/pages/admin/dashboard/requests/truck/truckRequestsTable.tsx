@@ -15,6 +15,7 @@ import {
 } from "@/_lib/type/request/rider-request";
 import SkeletonCardList from "@/components/shared/skeleton/card-list-skeleton";
 import { Button } from "@/components/ui/button";
+import { StatusBadge } from "@/components/shared/dashboard/status-card";
 
 export function RequestsTable() {
   const navigate = useRouter();
@@ -129,7 +130,13 @@ export function RequestsTable() {
                 </div>
               ),
             },
-            { key: "status", label: "Status" },
+            {
+              key: "status",
+              label: "Status",
+              render(value, row) {
+                return <StatusBadge status={value} />;
+              },
+            },
           ]}
           data={Requests.rideRequests!}
           rowActions2={(row) => <RowActions row={row} />}

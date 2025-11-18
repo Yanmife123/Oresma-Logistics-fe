@@ -14,3 +14,7 @@ export async function createRideRequest(data: RideRequestProps) {
   const response = await axiosInstance2.post("/ride-requests", data);
   return response.data;
 }
+export async function getMyRequest() {
+  const response = await axiosInstance2.get("/ride-requests/me");
+  return response.data;
+}

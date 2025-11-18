@@ -1,5 +1,4 @@
 import { AdminReqestsDetail } from "@/components/pages/admin/dashboard/requests/id/RequestDetail";
-import { PageHeader2 } from "@/components/shared/headers/page-headers";
 
 export default async function RequestsDetail({
   params,
@@ -11,7 +10,8 @@ export default async function RequestsDetail({
     <div>
       <div className="mt-4">
         {/* <Bread */}
-        <AdminReqestsDetail id={id} />
+        not Avaliable
+        {/* <AdminReqestsDetail id={id} /> */}
       </div>
     </div>
   );

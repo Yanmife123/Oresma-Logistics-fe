@@ -14,3 +14,10 @@ export interface User {
   createdAt: string; // or Date if you convert it later
   updatedAt: string; // same as above
 }
+
+export interface ProfileUser {
+  success: boolean;
+  message: string;
+
+  user: User;
+}

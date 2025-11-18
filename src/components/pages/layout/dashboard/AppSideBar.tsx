@@ -31,6 +31,7 @@ const menuItems = [
   // { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
   { icon: User, label: "Profile", href: "/dashboard/profile" },
   { icon: Bike, label: "Riders", href: "/dashboard/rider" },
+  { icon: Bike, label: "My Requests", href: "/dashboard/my-requests" },
   // { icon: Calendar, label: "Calendar", href: "/calendar" },
   // { icon: Bookmark, label: "Saved", href: "/saved" },
   // { icon: Navigation, label: "Active Ride", href: "/active-ride" },

@@ -3,17 +3,19 @@ import {
   BaseTable,
   // type RowAction,
 } from "@/components/shared/table/table-style";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import {
   getAssignmentRide,
   AcceptAssignmentRequest,
   DeclineAssignmentRequest,
+  getAvalialeRequest,
 } from "@/_lib/api/rider/assignment";
 import { AssignmentRequests } from "@/_lib/type/request/rider-assignment";
 import SkeletonCardList from "@/components/shared/skeleton/card-list-skeleton";
 import { Button } from "@/components/ui/button";
 import { RideRequest } from "@/_lib/type/request/rider-request";
+import { StatusBadge } from "@/components/shared/dashboard/status-card";
 
 export function RequestTable() {
   const {
@@ -22,8 +24,8 @@ export function RequestTable() {
     isError,
     error: Error,
   } = useQuery<AssignmentRequests>({
-    queryFn: getAssignmentRide,
-    queryKey: ["AssignmentRides"],
+    queryFn: getAvalialeRequest,
+    queryKey: ["AvaliableRides"],
   });
 
   const AcceptRequest = ({ id }: { id: string }) => {
@@ -36,38 +38,42 @@ export function RequestTable() {
       await mutation.mutateAsync(id);
     };
 
-    return <Button onClick={handlerSubmit}>Accept</Button>;
-  };
-  const DeclineRequest = ({ id }: { id: string }) => {
-    const mutation = useMutation({
-      mutationFn: DeclineAssignmentRequest,
-      mutationKey: ["AcceptAssignment"],
-    });
-
-    const handlerSubmit = async () => {
-      await mutation.mutateAsync(id);
-    };
-
     return (
-      <Button variant={"outline"} onClick={handlerSubmit}>
+      <Button onClick={handlerSubmit} className="cursor-pointer">
         Accept
       </Button>
     );
   };
+  // const DeclineRequest = ({ id }: { id: string }) => {
+  //   const mutation = useMutation({
+  //     mutationFn: DeclineAssignmentRequest,
+  //     mutationKey: ["DeclineAssignment"],
+  //   });
+
+  //   const handlerSubmit = async () => {
+  //     await mutation.mutateAsync(id);
+  //   };
+
+  //   return (
+  //     <Button variant={"outline"} onClick={handlerSubmit}>
+  //       Accept
+  //     </Button>
+  //   );
+  // };
 
   const RowActions = ({ row }: { row: RideRequest }) => {
     return (
       <div className="flex gap-1 sm:gap-2">
-        {row.status === "pending" && (
+        {row.status === "payment_success" && (
           <>
-            <DeclineRequest id={row._id} /> <AcceptRequest id={row._id} />
+            <AcceptRequest id={row._id} />
           </>
         )}
       </div>
     );
   };
 
-  // const navigate = useRouter();
+  const navigate = useRouter();
 
   if (isPending) {
     return <SkeletonCardList />;
@@ -105,14 +111,20 @@ export function RequestTable() {
               </div>
             ),
           },
-          { key: "status", label: "Status" },
+          {
+            key: "status",
+            label: "Status",
+            render(value, row) {
+              return <StatusBadge status={value} />;
+            },
+          },
         ]}
         data={AssignmentRequest?.rideRequests}
         // rowActions={RowActions}
         rowActions2={(row) => <RowActions row={row} />}
-        // onRowClick={(row) =>
-        //   navigate.push(`/rider/dashboard/requests/${row._id}`)
-        // }
+        onRowClick={(row) =>
+          navigate.push(`/rider/dashboard/requests/${row._id}`)
+        }
       />
     </div>
   );
