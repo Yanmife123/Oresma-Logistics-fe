@@ -16,15 +16,26 @@ export async function getAssignmentRide() {
   return response.data;
 }
 
+export async function getAvalialeRequest() {
+  const response = await axiosInstance2.get("/ride-requests/payment-success");
+  return response.data;
+}
+
 export async function AcceptAssignmentRequest(id: string) {
   const response = await axiosInstance2.patch(`/ride-requests/${id}/status`, {
-    status: "in-progress",
+    status: "assigned",
   });
-  return response;
+  return response.data;
 }
+
+export async function SingleRiderRequest(id: string) {
+  const response = await axiosInstance2.get(`/ride-requests/${id}`);
+  return response.data;
+}
+
 export async function DeclineAssignmentRequest(id: string) {
   const response = await axiosInstance2.patch(`/ride-requests/${id}/status`, {
-    status: "cancelled",
+    status: "payment_success",
   });
-  return response;
+  return response.data;
 }

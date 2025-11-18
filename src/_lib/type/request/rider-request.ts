@@ -8,7 +8,7 @@ export interface SingleRideRequestResponse {
   success: boolean;
   message: string;
   count: number;
-  rideRequests: RideRequest;
+  rideRequest: RideRequest;
 }
 
 export interface RideRequest {
@@ -60,4 +60,12 @@ export interface PackageDetails {
 
 export interface PricingInfo {
   currency: string; // "NGN"
+  estimatedFare?: string;
+  baseFare?: string;
+  distanceFare?: string;
+  timeFare?: string;
+  surgeMultiplier?: string;
+  tax?: string;
+  serviceFee?: string;
+  total?: string;
 }
