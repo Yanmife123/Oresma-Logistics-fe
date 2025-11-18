@@ -24,7 +24,7 @@ export function AllAdminTable() {
   } = useQuery<UsersResponse>({
     queryFn: getallAdmin,
     queryKey: ["AllAdmins"],
-    refetchInterval: 4 * 60 * 1000, // 2 minutes
+    refetchInterval: 60 * 1000, // 2 minutes
     refetchOnReconnect: true,
     refetchIntervalInBackground: false,
   });

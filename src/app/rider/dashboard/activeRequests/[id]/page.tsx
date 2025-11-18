@@ -1,5 +1,4 @@
-import { PageHeader } from "@/components/shared/headers/page-headers";
-import { RequestDetail } from "@/components/pages/rider/dashbord/requests/requestDetail";
+import { RequestDetail2 } from "@/components/pages/rider/dashbord/requests/requestDetail";
 export default async function RequestsDetailPage({
   params,
 }: {
@@ -9,7 +8,7 @@ export default async function RequestsDetailPage({
   return (
     <div className="">
       <div className="mt-4">
-        <RequestDetail id={id} />
+        <RequestDetail2 id={id} />
       </div>
     </div>
   );

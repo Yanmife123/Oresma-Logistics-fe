@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { MapPin, User, Phone, Mail, TrendingUp, Clock } from "lucide-react";
 import { RideRequest } from "@/_lib/type/request/rider-request";
 import MapRoute from "./mapDisplay";
+import { StatusBadge } from "../status-card";
 // import
 
 // Mock data - replace with actual API call
@@ -44,9 +45,7 @@ export default function RequestDetailWrapper({
             <h1 className="text-3xl font-bold text-foreground">
               Request {request._id}
             </h1>
-            <Badge variant={getStatusColor(request.status)}>
-              {request.status.charAt(0).toUpperCase() + request.status.slice(1)}
-            </Badge>
+            <StatusBadge status={request.status} />
           </div>
           <p className="text-muted-foreground">
             Reference Code:{" "}

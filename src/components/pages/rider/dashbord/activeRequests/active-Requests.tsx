@@ -20,6 +20,7 @@ export function ActiveRequestsTable() {
   } = useQuery<RideRequestsResponse>({
     queryFn: getAssignmentRide,
     queryKey: ["RiderAssignmentRequests"],
+    refetchInterval: 60 * 1000,
   });
   const navigate = useRouter();
   if (isPending) {
@@ -40,7 +41,7 @@ export function ActiveRequestsTable() {
     return (
       <Button
         onClick={() => {
-          navigate.push(`/rider/dashboard/my-requests/${row._id}`);
+          navigate.push(`/rider/dashboard/activeRequests/${row._id}/route`);
         }}
       >
         Start Trip
@@ -78,9 +79,9 @@ export function ActiveRequestsTable() {
               </>
             );
           }}
-          //   onRowClick={(row) =>
-          //     navigate.push(`/dashboard/my-requests/${row._id}`)
-          //   }
+          onRowClick={(row) =>
+            navigate.push(`/rider/dashboard/activeRequests/${row._id}`)
+          }
         />
       </div>
     );

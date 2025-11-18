@@ -43,6 +43,7 @@ export function AdminReqestsDetail({ id }: { id: string }) {
   } = useQuery<SingleRideRequestResponse>({
     queryKey: ["Single Request", id],
     queryFn: () => SingleRiderRequest(id),
+    refetchInterval: 60 * 1000,
   });
 
   // const onSubmit: SubmitHandler<FormSchema> = async () => {

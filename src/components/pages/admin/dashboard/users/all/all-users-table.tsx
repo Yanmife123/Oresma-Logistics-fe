@@ -26,7 +26,7 @@ export function AllUsersTable() {
   } = useQuery<UsersResponse>({
     queryFn: getallCustomer,
     queryKey: ["AllCustomers"],
-    refetchInterval: 4 * 60 * 1000, // 2 minutes
+    refetchInterval: 60 * 1000, // 1 minutes
     refetchOnReconnect: true,
     refetchIntervalInBackground: false,
   });

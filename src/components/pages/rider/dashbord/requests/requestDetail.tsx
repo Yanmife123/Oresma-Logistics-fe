@@ -10,6 +10,7 @@ import RequestDetailWrapper from "@/components/shared/dashboard/singleRequestDet
 import SkeletonCardList from "@/components/shared/skeleton/card-list-skeleton";
 import { AcceptAssignmentRequest } from "@/_lib/api/rider/assignment";
 import { showToast } from "@/components/shared/toast";
+import { useRouter } from "next/navigation";
 export function RequestDetail({ id }: { id: string }) {
   const {
     data,
@@ -59,6 +60,47 @@ export function RequestDetail({ id }: { id: string }) {
             <div>
               <AcceptRequest />
             </div>
+          </div>
+        )}
+      </RequestDetailWrapper>
+    );
+  }
+}
+export function RequestDetail2({ id }: { id: string }) {
+  const navigate = useRouter();
+  const {
+    data,
+    isError,
+    isPending,
+    error: Error,
+  } = useQuery<SingleRideRequestResponse>({
+    queryKey: ["Single Reques for Rider", id],
+    queryFn: () => SingleRiderRequest(id),
+    refetchInterval: 5000,
+  });
+
+  if (isPending) {
+    return <SkeletonCardList />;
+  }
+
+  if (!isPending && isError) {
+    return <div className="text-red-500">{Error.message}</div>;
+  }
+
+  if (!isPending && !isError) {
+    return (
+      <RequestDetailWrapper request={data.rideRequest}>
+        {(data.rideRequest.status === "assigned" ||
+          data.rideRequest.status === "in-progress") && (
+          <div>
+            <Button
+              onClick={() => {
+                navigate.push(`/rider/dashboard/activeRequests/${id}/route`);
+              }}
+              className="w-full cursor-pointer"
+            >
+              Start Trip
+            </Button>
           </div>
         )}
       </RequestDetailWrapper>
