@@ -29,7 +29,7 @@ export function AllRidersTable() {
   } = useQuery<UsersResponse>({
     queryFn: getallRider,
     queryKey: ["AllRiders"],
-    refetchInterval: 4 * 60 * 1000, // 2 minutes
+    refetchInterval: 60 * 1000, // 1 minutes
     refetchOnReconnect: true,
   });
   if (isPending) {

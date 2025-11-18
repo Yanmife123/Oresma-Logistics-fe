@@ -26,6 +26,7 @@ export function RequestTable() {
   } = useQuery<AssignmentRequests>({
     queryFn: getAvalialeRequest,
     queryKey: ["AvaliableRides"],
+    refetchInterval: 60 * 1000,
   });
 
   const AcceptRequest = ({ id }: { id: string }) => {
