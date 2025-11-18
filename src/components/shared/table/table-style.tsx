@@ -46,7 +46,9 @@ export function BaseTable<T extends Record<string, any>>({
   const hasActions = (rowActions && rowActions.length > 0) || rowActions2;
 
   return (
-    <div className={cn("w-full rounded-lg border border-border", className)}>
+    <div
+      className={cn("md:max-w-[90vw] rounded-lg border-border  ", className)}
+    >
       <div className="md:hidden">
         <div className="space-y-3 p-4">
           {data.map((row, rowIndex) => (
