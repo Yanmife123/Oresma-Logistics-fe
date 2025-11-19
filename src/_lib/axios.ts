@@ -21,13 +21,20 @@ export const axiosInstance = axios.create({
   baseURL: BaseUrl,
   headers: { "Content-Type": "application/json" },
 });
-const token = Cookies.get("token");
+
 export const axiosInstance2 = axios.create({
   baseURL: BaseUrl,
   headers: {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${token}`,
   },
+});
+
+axiosInstance2.interceptors.request.use((config) => {
+  const token = Cookies.get("token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
 
 axiosInstance2.interceptors.response.use(
