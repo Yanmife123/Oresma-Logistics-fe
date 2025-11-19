@@ -16,6 +16,7 @@ import SkeletonCardList from "@/components/shared/skeleton/card-list-skeleton";
 import { Button } from "@/components/ui/button";
 import { RideRequest } from "@/_lib/type/request/rider-request";
 import { StatusBadge } from "@/components/shared/dashboard/status-card";
+import { showToast } from "@/components/shared/toast";
 
 export function RequestTable() {
   const {
@@ -26,13 +27,19 @@ export function RequestTable() {
   } = useQuery<AssignmentRequests>({
     queryFn: getAvalialeRequest,
     queryKey: ["AvaliableRides"],
-    refetchInterval: 60 * 1000,
+    refetchInterval: 5000, // 5 Seconds
   });
 
   const AcceptRequest = ({ id }: { id: string }) => {
     const mutation = useMutation({
       mutationFn: AcceptAssignmentRequest,
       mutationKey: ["AcceptAssignment"],
+      onSuccess() {
+        showToast.success("Request Accepted");
+      },
+      onError() {
+        showToast.success("Failed to Accept Request");
+      },
     });
 
     const handlerSubmit = async () => {
@@ -40,8 +47,15 @@ export function RequestTable() {
     };
 
     return (
-      <Button onClick={handlerSubmit} className="cursor-pointer">
-        Accept
+      <Button
+        onClick={(e) => {
+          e.stopPropagation();
+          handlerSubmit();
+        }}
+        className="cursor-pointer"
+        disabled={mutation.isPending}
+      >
+        {mutation.isPending ? "Accepting..." : "Accept"}
       </Button>
     );
   };

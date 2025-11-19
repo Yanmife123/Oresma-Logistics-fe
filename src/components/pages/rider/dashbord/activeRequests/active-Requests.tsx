@@ -40,7 +40,8 @@ export function ActiveRequestsTable() {
   const StartTrip = ({ row }: { row: RideRequest }) => {
     return (
       <Button
-        onClick={() => {
+        onClick={(e) => {
+          e.stopPropagation();
           navigate.push(`/rider/dashboard/activeRequests/${row._id}/route`);
         }}
       >
