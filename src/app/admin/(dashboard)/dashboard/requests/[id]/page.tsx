@@ -1,5 +1,5 @@
 import { AdminReqestsDetail } from "@/components/pages/admin/dashboard/requests/id/RequestDetail";
-import { PageHeader2 } from "@/components/shared/headers/page-headers";
+import { Breadcrumb } from "@/components/shared/dashboard/breadcrumb";
 
 export default async function RequestsDetail({
   params,
@@ -8,7 +8,14 @@ export default async function RequestsDetail({
 }) {
   const { id } = await params;
   return (
-    <div>
+    <div className="">
+      <Breadcrumb
+        items={[
+          { label: "Dashboard", href: "/admin/dashboard" },
+          { label: "All Request", href: "/admin/dashboard/requests" },
+          { label: id },
+        ]}
+      />
       <div className="mt-4">
         {/* <Bread */}
         <AdminReqestsDetail id={id} />

@@ -1,10 +1,17 @@
 import { Booking } from "@/components/pages/dashboard/rider/booking";
 import { AvailableRide } from "@/components/pages/dashboard/rider/available-ride";
 import { Suspense } from "react";
+import { Breadcrumb } from "@/components/shared/dashboard/breadcrumb";
 
 export default function BookServicePage() {
   return (
     <div className="container mx-auto space-y-6 ">
+      <Breadcrumb
+        items={[
+          { label: "Dashboard", href: "/dashboard" },
+          { label: "Create Rider Requests" },
+        ]}
+      />
       {/* <PageHeader
         title="Book Services"
         description="Where would you like to go to?"

@@ -206,6 +206,7 @@ export default function BookingTruck() {
                 variant="ghost"
                 className="bg-secondaryT w-full hover:bg-secondaryT/90 text-white hover:text-white"
                 onClick={handleOrder}
+                disabled={mutation.isPending}
               >
                 Confirm order
               </Button>

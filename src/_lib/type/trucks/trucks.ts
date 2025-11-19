@@ -15,53 +15,53 @@ export interface VehicleFormData {
   transmissionType: string;
   condition: string;
   maintenance?: {
-    mileage?: string;
+    mileage?: string | null;
   };
   registrationNumber?: string;
   // Truck specific
 
   dimensions?: {
-    length: string;
-    width: string;
-    height: string;
-    cargoArea: string;
+    length?: string | null;
+    width?: string | null;
+    height?: string | null;
+    cargoArea?: string | null;
   };
   capacity?: {
-    maxWeight: string;
-    maxVolume: string;
-    payload: string;
+    maxWeight?: string | null;
+    maxVolume?: string | null;
+    payload?: string | null;
   };
   truckFeatures?: {
-    hasLiftGate?: boolean;
-    hasRefrigeration?: boolean;
-    hasGPS?: boolean;
-    hasRamp?: boolean;
-    hasCrane?: boolean;
-    hasToolbox?: boolean;
-    airConditioning?: boolean;
-    powerSteering?: boolean;
+    hasLiftGate?: boolean | null;
+    hasRefrigeration?: boolean | null;
+    hasGPS?: boolean | null;
+    hasRamp?: boolean | null;
+    hasCrane?: boolean | null;
+    hasToolbox?: boolean | null;
+    airConditioning?: boolean | null;
+    powerSteering?: boolean | null;
   };
   // Car specific
-  carPassengers?: string;
+  carPassengers?: string | null;
   carFeatures?: {
-    hasAC?: boolean;
-    hasGPS?: boolean;
-    hasABS?: boolean;
-    hasPowerWindows?: boolean;
-    hasPowerSteering?: boolean;
-    hasAirbags?: boolean;
-    hasRearCamera?: boolean;
-    hasCruiseControl?: boolean;
+    hasAC?: boolean | null;
+    hasGPS?: boolean | null;
+    hasABS?: boolean | null;
+    hasPowerWindows?: boolean | null;
+    hasPowerSteering?: boolean | null;
+    hasAirbags?: boolean | null;
+    hasRearCamera?: boolean | null;
+    hasCruiseControl?: boolean | null;
   };
   // Bike specific
-  bikeEngineCC?: string;
+  bikeEngineCC?: string | null;
   bikeFeatures?: {
-    hasDiscBrakes?: boolean;
-    hasABS?: boolean;
-    hasGPS?: boolean;
-    hasPowerSteering?: boolean;
-    hasElectricStart?: boolean;
-    hasHeatedGrips?: boolean;
+    hasDiscBrakes?: boolean | null;
+    hasABS?: boolean | null;
+    hasGPS?: boolean | null;
+    hasPowerSteering?: boolean | null;
+    hasElectricStart?: boolean | null;
+    hasHeatedGrips?: boolean | null;
   };
   // Common
   photos: File[];
