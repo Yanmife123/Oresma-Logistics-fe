@@ -132,6 +132,13 @@ export function TripProcess({ id }: { id: string }) {
     return <div className="text-red-500">{Error.message}</div>;
   }
 
+  const openGoogleMaps = (origin: string, destination: string) => {
+    const url = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(
+      origin
+    )}&destination=${encodeURIComponent(destination)}`;
+    window.open(url, "_blank");
+  };
+
   if (!isPending && !isError) {
     return (
       <div>
@@ -183,7 +190,22 @@ export function TripProcess({ id }: { id: string }) {
                   </p>
                 </div>
               </div>
-              <StatusBadge status={data.rideRequest.status} />
+              <div className="flex items-center">
+                {" "}
+                <StatusBadge status={data.rideRequest.status} />
+              </div>
+              <Button
+                onClick={() =>
+                  openGoogleMaps(
+                    data.rideRequest.pickup.address,
+                    data.rideRequest.dropoff.address
+                  )
+                }
+                variant={"link"}
+                className=" cursor-pointer text-[#2563EB]"
+              >
+                Go to Google maps
+              </Button>
             </div>
           </div>
 

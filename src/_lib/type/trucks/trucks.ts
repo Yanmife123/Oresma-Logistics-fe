@@ -31,7 +31,7 @@ export interface VehicleFormData {
     maxVolume?: string | null;
     payload?: string | null;
   };
-  truckFeatures?: {
+  features?: {
     hasLiftGate?: boolean | null;
     hasRefrigeration?: boolean | null;
     hasGPS?: boolean | null;

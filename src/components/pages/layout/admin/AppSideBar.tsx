@@ -21,6 +21,7 @@ import {
   BarChart3,
   Wallet2Icon,
   // Icon,
+  Banknote,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
@@ -37,6 +38,11 @@ const menuItems = [
   },
   // { icon: User, label: "Profile", href: "/admin/profile" },
   { icon: Wallet2Icon, label: "Wallet", href: "/admin/dashboard/wallet" },
+  {
+    icon: Banknote,
+    label: "Withdrawal Requests",
+    href: "/admin/dashboard/withdrawal",
+  },
   { icon: Bike, label: "Requests", href: "/admin/dashboard/requests" },
   { icon: Users, label: "Users", href: "/admin/dashboard/users" },
   // { icon: Bookmark, label: "Saved", href: "/admin/saved" },

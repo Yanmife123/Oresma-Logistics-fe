@@ -14,72 +14,23 @@ import {
 import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
+import { findRiderTrucks } from "@/_lib/api/dashboard/rider/findRiderTrucks";
+import { ResponseTrucks } from "@/_lib/type/trucks/trucks";
+import SkeletonCardList from "@/components/shared/skeleton/card-list-skeleton";
 export function VehicleDashboardTable() {
-  const vehicleTableData = [
-    {
-      name: "Car", // Mapped from 'Vehicle Make' column
-      id: "#012345", // Mapped from 'Vehicle ID' column
-      type: "Sedan", // Mapped from 'Type' column
-      owner: "Oresma",
-      is_verified: true, // Based on the green checkmark icon
-    },
-    {
-      name: "Lorry",
-      id: "#012345",
-      type: "Sedan",
-      owner: "Oresma",
-      is_verified: true, // Based on the green checkmark icon
-    },
-    {
-      name: "Car",
-      id: "#012345",
-      type: "Sedan",
-      owner: "Oresma",
-      is_verified: true, // Based on the green checkmark icon
-    },
-    {
-      name: "Truck",
-      id: "#012345",
-      type: "Sedan",
-      owner: "Oresma",
-      is_verified: false, // Based on the red 'X' icon
-    },
-    {
-      name: "Car",
-      id: "#012345",
-      type: "Sedan",
-      owner: "Oresma",
-      is_verified: true, // Based on the green checkmark icon
-    },
-    {
-      name: "Lorry",
-      id: "#012345",
-      type: "Sedan",
-      owner: "Oresma",
-      is_verified: true, // Based on the green checkmark icon
-    },
-    {
-      name: "Car",
-      id: "#012345",
-      type: "Sedan",
-      owner: "Oresma",
-      is_verified: true, // Based on the green checkmark icon
-    },
-    {
-      name: "Truck",
-      id: "#012345",
-      type: "Sedan",
-      owner: "Oresma",
-      is_verified: false, // Based on the red 'X' icon
-    },
-    {
-      name: "Car",
-      id: "#012345",
-      type: "Sedan",
-      owner: "Oresma",
-      is_verified: true, // Based on the green checkmark icon
-    },
-  ];
+  const {
+    data: lorriesData,
+    isPending,
+    error: Error,
+    isError,
+  } = useQuery<ResponseTrucks>({
+    queryKey: ["AllTrucks"],
+    queryFn: findRiderTrucks,
+  });
+  if (isPending) {
+    return <SkeletonCardList />;
+  }
   const RowActions = () => {
     return (
       <DropdownMenu>
@@ -94,6 +45,7 @@ export function VehicleDashboardTable() {
       </DropdownMenu>
     );
   };
+
   return (
     <div className="space-y-6">
       <div className="space-y-3">
@@ -132,38 +84,51 @@ export function VehicleDashboardTable() {
           />
         </Suspense>
       </div>
-      <BaseTable
-        columns={[
-          {
-            key: "name",
-            label: "Vehicle Name",
-          },
-          {
-            key: "id",
-            label: "Vehicle ID",
-          },
-          {
-            key: "type",
-            label: "Type",
-          },
-          {
-            key: "owner",
-            label: "Owner",
-          },
-          {
-            key: "is_verified",
-            label: "Verified",
-            render: (value) =>
-              value ? (
-                <CheckCircleIcon className="h-5 w-5 text-green-500" />
-              ) : (
-                <XCircle className="h-5 w-5 text-red-500" />
-              ),
-          },
-        ]}
-        data={vehicleTableData}
-        rowActions2={RowActions}
-      />
+
+      {!isPending && !isError ? (
+        lorriesData?.count === 0 ? (
+          <div>No Trucks</div>
+        ) : (
+          <BaseTable
+            columns={[
+              {
+                key: "vehicleModel",
+                label: "Vehicle Model",
+              },
+              {
+                key: "make",
+                label: "Vehicle Make",
+              },
+              {
+                key: "_id",
+                label: "Vehicle ID",
+              },
+              {
+                key: "truckType",
+                label: "Type",
+              },
+              {
+                key: "riderId.userId",
+                label: "Owner",
+              },
+              {
+                key: "isVerified",
+                label: "Verified",
+                render: (value) =>
+                  value ? (
+                    <CheckCircleIcon className="h-5 w-5 text-green-500" />
+                  ) : (
+                    <XCircle className="h-5 w-5 text-red-500" />
+                  ),
+              },
+            ]}
+            data={lorriesData.trucks}
+            rowActions2={RowActions}
+          />
+        )
+      ) : (
+        <div className="text-red-400">{Error?.message}</div>
+      )}
     </div>
   );
 }

@@ -19,7 +19,7 @@ export default function ProfileComponent() {
   const initials = `${firstName[0] ?? ""}${lastName[0] ?? ""}`;
 
   return (
-    <div className="lg:p-8 max-w-4xl">
+    <div className=" max-w-4xl">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-foreground">Profile</h1>
         <p className="text-muted-foreground">

@@ -21,3 +21,48 @@ export interface ProfileUser {
 
   user: User;
 }
+
+export interface RiderProfileResponse {
+  success: boolean;
+  message: string;
+  rider: {
+    vendorProfile: {
+      operatingHours: string[]; // Array of operating hours (empty array in example)
+    };
+    vehicleInfo: {
+      vehicleType: string;
+    };
+    bankDetails: {
+      accountNumber: string;
+      accountName: string;
+      bankName: string;
+      bankCode: string;
+    };
+    currentLocation: {
+      type: "Point";
+      coordinates: [number, number]; // Latitude and Longitude
+    };
+    _id: string;
+    userId: {
+      _id: string;
+      name: string;
+      email: string;
+      phone: string;
+      role: string;
+      isEmailVerified: boolean;
+      createdAt: string; // ISO date string
+      updatedAt: string; // ISO date string
+    };
+    isVendor: boolean;
+    isVerified: boolean;
+    verificationStatus: string;
+    rating: number;
+    totalDeliveries: number;
+    totalEarnings: number;
+    isAvailable: boolean;
+    accountStatus: string;
+    verificationDocuments: string[]; // Empty array in example
+    createdAt: string; // ISO date string
+    updatedAt: string; // ISO date string
+  };
+}
