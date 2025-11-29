@@ -1,5 +1,6 @@
 import React from "react";
 import { cn } from "@/_lib/utils";
+import { Badge } from "@/components/ui/badge";
 
 type Status =
   | "pending"
@@ -36,3 +37,34 @@ export function StatusBadge({ status }: StatusBadgeProps) {
     </span>
   );
 }
+export interface BooleanStatusBadgeProps {
+  status: boolean;
+  trueLabel?: string;
+  falseLabel?: string;
+}
+
+export const BooleanStatusBadge = ({
+  status,
+  trueLabel = "Active",
+  falseLabel = "Inactive",
+}: BooleanStatusBadgeProps) => {
+  return (
+    <Badge variant={status ? "default" : "secondary"}>
+      {status ? trueLabel : falseLabel}
+    </Badge>
+  );
+};
+
+export const StatusBadge2 = ({ status }: { status: string }) => {
+  const getVariant = (status: string) => {
+    if (status.toLowerCase().includes("active"))
+      return "text-green-600 bg-green-100";
+    if (status.toLowerCase().includes("pending"))
+      return "text-yellow-600 bg-yellow-100";
+    if (status.toLowerCase().includes("inactive"))
+      return "text-red-600 bg-red-100";
+    return "outline";
+  };
+
+  return <Badge className={getVariant(status)}>{status}</Badge>;
+};

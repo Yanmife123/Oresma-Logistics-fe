@@ -190,8 +190,8 @@ export function TruckForm({
                 type="checkbox"
                 name={`truck.${key}`}
                 checked={
-                  formData.truckFeatures?.[
-                    key as keyof typeof formData.truckFeatures
+                  formData.features?.[
+                    key as keyof typeof formData.features
                   ] as boolean
                 }
                 onChange={handleChange}

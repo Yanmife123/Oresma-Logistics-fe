@@ -45,7 +45,7 @@ export function ActiveRequestsTable() {
           navigate.push(`/rider/dashboard/activeRequests/${row._id}/route`);
         }}
       >
-        Start Trip
+        {row.status === "completed" ? "View Trip" : "Start Trip"}
       </Button>
     );
   };

@@ -47,7 +47,7 @@ export function VehicleForm() {
       maxVolume: null,
       payload: null,
     },
-    truckFeatures: {
+    features: {
       hasLiftGate: false,
       hasRefrigeration: false,
       hasGPS: false,
@@ -95,7 +95,7 @@ export function VehicleForm() {
       setFormData((prev) => {
         const featureKey =
           featureType === "truck"
-            ? "truckFeatures"
+            ? "features"
             : featureType === "car"
             ? "carFeatures"
             : "bikeFeatures";
@@ -192,45 +192,45 @@ export function VehicleForm() {
         condition: "excellent",
         transmissionType: "",
         truckType: "",
-        // dimensions: {
-        //   length: "",
-        //   width: "",
-        //   height: "",
-        //   cargoArea: "",
-        // },
-        // capacity: {
-        //   maxWeight: "",
-        //   maxVolume: "",
-        //   payload: "",
-        // },
-        // truckFeatures: {
-        //   hasLiftGate: false,
-        //   hasRefrigeration: false,
-        //   hasGPS: false,
-        //   hasRamp: false,
-        //   hasCrane: false,
-        //   hasToolbox: false,
-        //   airConditioning: false,
-        //   powerSteering: false,
-        // },
-        // carFeatures: {
-        //   hasAC: false,
-        //   hasGPS: false,
-        //   hasABS: false,
-        //   hasPowerWindows: false,
-        //   hasPowerSteering: false,
-        //   hasAirbags: false,
-        //   hasRearCamera: false,
-        //   hasCruiseControl: false,
-        // },
-        // bikeFeatures: {
-        //   hasDiscBrakes: false,
-        //   hasABS: false,
-        //   hasGPS: false,
-        //   hasPowerSteering: false,
-        //   hasElectricStart: false,
-        //   hasHeatedGrips: false,
-        // },
+        dimensions: {
+          length: null,
+          width: null,
+          height: null,
+          cargoArea: null,
+        },
+        capacity: {
+          maxWeight: null,
+          maxVolume: null,
+          payload: null,
+        },
+        features: {
+          hasLiftGate: false,
+          hasRefrigeration: false,
+          hasGPS: false,
+          hasRamp: false,
+          hasCrane: false,
+          hasToolbox: false,
+          airConditioning: false,
+          powerSteering: false,
+        },
+        carFeatures: {
+          hasAC: false,
+          hasGPS: false,
+          hasABS: false,
+          hasPowerWindows: false,
+          hasPowerSteering: false,
+          hasAirbags: false,
+          hasRearCamera: false,
+          hasCruiseControl: false,
+        },
+        bikeFeatures: {
+          hasDiscBrakes: false,
+          hasABS: false,
+          hasGPS: false,
+          hasPowerSteering: false,
+          hasElectricStart: false,
+          hasHeatedGrips: false,
+        },
       });
       setImagePreviews([]);
     }, 2000);

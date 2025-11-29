@@ -41,7 +41,20 @@ export default function MyRequestTable() {
             { key: "_id", label: "Vehicle ID" },
             { key: "pickup.address", label: "Pick up location" },
             { key: "dropoff.address", label: "Final destination" },
-            { key: "pricing.total", label: "Total fee" },
+            {
+              key: "pricing.total",
+              label: "Total fee",
+              render(value, row) {
+                return (
+                  <div>
+                    {" "}
+                    {`${row.pricing.currency === "NGN" ? "₦" : "$"} ${
+                      row.pricing.total
+                    }`}
+                  </div>
+                );
+              },
+            },
             { key: "referenceCode", label: "Reference Code" },
             {
               key: "status",
