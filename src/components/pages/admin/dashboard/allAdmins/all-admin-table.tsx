@@ -56,7 +56,7 @@ export function AllAdminTable() {
           title="Admins"
           actions={
             <>
-              <Button>Create Admin</Button>
+              <Button onClick={() => setIsModalOpen(true)}>Create Admin</Button>
             </>
           }
         />
