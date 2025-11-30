@@ -18,7 +18,7 @@ import { PasswordInput } from "@/components/utility/form/password-input";
 import { CustomerInput } from "@/components/utility/form/customInput";
 import { useMutation } from "@tanstack/react-query";
 import { SignUp } from "@/_lib/type/auth";
-import { CreateRider } from "@/_lib/api/admin/rider/create-rider";
+import { CreateAdmin } from "@/_lib/api/admin/admin/create-admin";
 import { showToast } from "@/components/shared/toast";
 
 interface RiderSignupModalProps {
@@ -59,9 +59,9 @@ export default function AdminSignupModal({
   });
 
   const mutation = useMutation({
-    mutationFn: CreateRider,
+    mutationFn: CreateAdmin,
     onSuccess: (data) => {
-      showToast.success("Rider Registered Successful", data.messae);
+      showToast.success("Admin Registered Successful", data.message);
       onClose();
     },
     onError: (error) => {
@@ -84,9 +84,9 @@ export default function AdminSignupModal({
         <Card className="w-full max-w-md border-0 shadow-2xl py-0 pb-4">
           <CardHeader className="bg-slate-900 text-white rounded-t-lg flex flex-row items-start justify-between py-4">
             <div className="flex-1">
-              <CardTitle className="text-2xl">Create Rider Account</CardTitle>
+              <CardTitle className="text-2xl">Create Admin Account</CardTitle>
               <CardDescription className="text-slate-300">
-                Register your rider profile with Oresma Logistics
+                Register your admin profile with Oresma Logistics
               </CardDescription>
             </div>
             <button

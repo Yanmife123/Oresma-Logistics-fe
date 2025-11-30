@@ -1,8 +1,9 @@
 "use client";
 import { PageHeader2 } from "@/components/shared/headers/page-headers";
 import { BaseTable } from "@/components/shared/table/table-style";
+import { useState } from "react";
 import { SearchFilter } from "@/components/shared/dashboard/search-fliter";
-import { CheckCircleIcon, XCircle, MoreVertical, User } from "lucide-react";
+import { MoreVertical } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,7 +16,9 @@ import { UsersResponse } from "@/_lib/type/auth/users";
 import { getallAdmin } from "@/_lib/api/admin/users/user";
 import { useQuery } from "@tanstack/react-query";
 import SkeletonCardList from "@/components/shared/skeleton/card-list-skeleton";
+import AdminSignupModal from "./createAdmin";
 export function AllAdminTable() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const {
     data: Admins,
     isPending,
@@ -89,6 +92,10 @@ export function AllAdminTable() {
           rowActions2={RowActions}
         />
       )}
+      <AdminSignupModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 }
