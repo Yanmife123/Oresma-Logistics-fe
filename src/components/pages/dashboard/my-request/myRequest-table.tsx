@@ -5,7 +5,6 @@ import SkeletonCardList from "@/components/shared/skeleton/card-list-skeleton";
 import { AllUserRequests } from "@/_lib/type/request/user-request";
 import { BaseTable } from "@/components/shared/table/table-style";
 import { StatusBadge } from "@/components/shared/dashboard/status-card";
-import { useRouter } from "next/navigation";
 
 export default function MyRequestTable() {
   const {
@@ -17,7 +16,6 @@ export default function MyRequestTable() {
     queryFn: getMyRequest,
     queryKey: ["UserRequests"],
   });
-  const navigate = useRouter();
   if (isPending) {
     return <SkeletonCardList />;
   }
@@ -59,7 +57,7 @@ export default function MyRequestTable() {
             {
               key: "status",
               label: "Status",
-              render(value, row) {
+              render(value) {
                 return <StatusBadge status={value} />;
               },
             },

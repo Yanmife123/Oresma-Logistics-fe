@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+// import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Mail, Phone } from "lucide-react";
@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 import { User } from "@/_lib/type/cookies";
 
 export default function ProfileComponent() {
-  const [isEditing] = useState(false);
+  // const [isEditing] = useState(false);
 
   const rawUser = Cookies.get("user");
   const userData: User | null = rawUser ? JSON.parse(rawUser) : null;

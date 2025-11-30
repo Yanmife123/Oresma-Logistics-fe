@@ -6,9 +6,7 @@ import {
 import { useRouter } from "next/navigation";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import {
-  getAssignmentRide,
   AcceptAssignmentRequest,
-  DeclineAssignmentRequest,
   getAvalialeRequest,
 } from "@/_lib/api/rider/assignment";
 import { AssignmentRequests } from "@/_lib/type/request/rider-assignment";
@@ -59,22 +57,6 @@ export function RequestTable() {
       </Button>
     );
   };
-  // const DeclineRequest = ({ id }: { id: string }) => {
-  //   const mutation = useMutation({
-  //     mutationFn: DeclineAssignmentRequest,
-  //     mutationKey: ["DeclineAssignment"],
-  //   });
-
-  //   const handlerSubmit = async () => {
-  //     await mutation.mutateAsync(id);
-  //   };
-
-  //   return (
-  //     <Button variant={"outline"} onClick={handlerSubmit}>
-  //       Accept
-  //     </Button>
-  //   );
-  // };
 
   const RowActions = ({ row }: { row: RideRequest }) => {
     return (

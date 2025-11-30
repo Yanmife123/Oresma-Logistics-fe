@@ -25,7 +25,6 @@ export function BankSelector({ onSelect }: BankSelectorProps) {
     data: banksData,
     isPending,
     isError,
-    error: Error,
   } = useQuery<AllAvailableBanks>({
     queryFn: getAvailableBanks,
     queryKey: ["AvailableBanks"],

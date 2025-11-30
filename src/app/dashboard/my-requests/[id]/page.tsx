@@ -1,4 +1,4 @@
-import { AdminReqestsDetail } from "@/components/pages/admin/dashboard/requests/id/RequestDetail";
+// import { AdminReqestsDetail } from "@/components/pages/admin/dashboard/requests/id/RequestDetail";
 
 export default async function RequestsDetail({
   params,

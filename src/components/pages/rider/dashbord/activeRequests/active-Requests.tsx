@@ -1,5 +1,5 @@
 "use client";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getAssignmentRide } from "@/_lib/api/rider/assignment";
 import { BaseTable } from "@/components/shared/table/table-style";
 import SkeletonCardList from "@/components/shared/skeleton/card-list-skeleton";
@@ -66,7 +66,7 @@ export function ActiveRequestsTable() {
             {
               key: "status",
               label: "Status",
-              render(value, row) {
+              render(value) {
                 return <StatusBadge status={value} />;
               },
             },

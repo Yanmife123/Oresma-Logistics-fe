@@ -1,4 +1,3 @@
-import { RouteMap } from "@/components/shared/map/route-map";
 import { TripProcess } from "@/components/pages/rider/dashbord/activeRequests/route/TripProcess";
 import { PageHeader2 } from "@/components/shared/headers/page-headers";
 import { Breadcrumb } from "@/components/shared/dashboard/breadcrumb";
