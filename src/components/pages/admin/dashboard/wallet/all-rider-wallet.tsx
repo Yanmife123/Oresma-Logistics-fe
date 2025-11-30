@@ -92,6 +92,8 @@ export default function AllRiderWalletPage() {
             },
           ]}
           data={AllWallets.wallets ?? []}
+          count={AllWallets.count ? AllWallets.count : 0}
+          showCountBadge={true}
           rowActions2={(row) => {
             return (
               <>

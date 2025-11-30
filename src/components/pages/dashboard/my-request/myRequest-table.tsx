@@ -64,6 +64,8 @@ export default function MyRequestTable() {
             { key: "createdAt", label: "Date Created" },
           ]}
           data={AllUserRequest.rideRequests}
+          count={AllUserRequest.count}
+          showCountBadge={true}
           //   onRowClick={(row) =>
           //     navigate.push(`/dashboard/my-requests/${row._id}`)
           //   }

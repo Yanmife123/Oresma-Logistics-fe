@@ -73,6 +73,8 @@ export function ActiveRequestsTable() {
             { key: "createdAt", label: "Date Created" },
           ]}
           data={AllUserRequest.rideRequests}
+          count={AllUserRequest.count}
+          showCountBadge={true}
           rowActions2={(row) => {
             return (
               <>

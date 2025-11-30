@@ -97,6 +97,8 @@ export function AllUsersTable() {
             },
           ]}
           data={Customers.users}
+          showCountBadge={true}
+          count={Customers.count}
           rowActions2={RowActions}
         />
       )}

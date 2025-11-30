@@ -4,6 +4,8 @@ import type React from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/_lib/utils";
 import ListPagination from "../pagination/list-pagination-style1";
+import { CreateAdmin } from "@/_lib/api/admin/admin/create-admin";
+import { Card } from "@/components/ui/card";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getNestedValue(obj: any, path: string) {
   return path.split(".").reduce((acc, part) => acc?.[part], obj);
@@ -32,6 +34,9 @@ interface DataTableProps<T> {
   onRowClick?: (row: T) => void;
   className?: string;
   striped?: boolean;
+  count?: number;
+  itemsPerPage?: number;
+  showCountBadge?: boolean;
 }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function BaseTable<T extends Record<string, any>>({
@@ -41,14 +46,27 @@ export function BaseTable<T extends Record<string, any>>({
   rowActions2,
   onRowClick,
   className,
+  count,
+  itemsPerPage = 10,
   striped = true,
+  showCountBadge = false,
 }: DataTableProps<T>) {
   const hasActions = (rowActions && rowActions.length > 0) || rowActions2;
-
+  const totalRecords = count || data.length;
   return (
-    <div
-      className={cn("md:max-w-[90vw] rounded-lg border-border  ", className)}
+    <Card
+      className={cn(
+        "md:max-w-[90vw] rounded-lg border-border gap-3",
+        className
+      )}
     >
+      {showCountBadge && (
+        <div className="mb-1 flex items-center gap-3 px-4 pt-4">
+          <div className="flex px-4 py-2 items-center justify-center rounded-full border-2 border-border bg-muted text-sm font-semibold text-foreground">
+            {data.length} of {totalRecords} Records
+          </div>
+        </div>
+      )}
       <div className="md:hidden">
         <div className="space-y-3 p-4">
           {data.map((row, rowIndex) => (
@@ -188,11 +206,11 @@ export function BaseTable<T extends Record<string, any>>({
 
       <div className="mt-3 p-2">
         <ListPagination
-          totalItems={data.length}
-          itemsPerPage={10}
+          totalItems={count || data.length}
+          itemsPerPage={itemsPerPage}
           currentPage={1}
         />
       </div>
-    </div>
+    </Card>
   );
 }

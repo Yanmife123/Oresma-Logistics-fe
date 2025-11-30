@@ -38,6 +38,7 @@ export function RiderDashbboardLayout({
         className={cn(
           "flex-1 transition-all duration-300",
           "lg:ml-20",
+          "md:overflow-x-hidden",
           !isSidebarCollapsed && "lg:ml-64"
         )}
       >

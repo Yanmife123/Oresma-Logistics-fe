@@ -19,3 +19,8 @@ export async function getWalletByUserId(userId: string) {
   const response = await axiosInstance2.get(`/wallets/user/${userId}`);
   return response.data;
 }
+
+export async function getAdminWalletSummary() {
+  const response = await axiosInstance2.get(`/wallets/summary`);
+  return response.data;
+}
