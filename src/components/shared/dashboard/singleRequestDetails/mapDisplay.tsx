@@ -1,9 +1,9 @@
 "use client";
-import { Card, CardHeader } from "@/components/ui/card";
+// import { Card, CardHeader } from "@/components/ui/card";
 import { useEffect, useState } from "react";
-import { RouteInfo } from "../../map/route-info";
+// import { RouteInfo } from "../../map/route-info";
 import { RouteMap } from "../../map/route-map";
-import { Clock } from "lucide-react";
+// import { Clock } from "lucide-react";
 
 export default function MapRoute({
   origin,

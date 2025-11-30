@@ -13,7 +13,7 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { CreateWalletsPin } from "@/_lib/api/wallet/wallet-action";
 import { showToast } from "@/components/shared/toast";
@@ -24,7 +24,7 @@ export function AddWalletPin() {
   const [confirmPin, setConfirmPin] = useState<string | null>(null);
   const [clickSetPin, setClickSetPin] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
+  // const router = useRouter();
   const queryClient = useQueryClient();
 
   const mutation = useMutation({

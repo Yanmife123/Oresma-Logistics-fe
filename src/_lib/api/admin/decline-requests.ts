@@ -1,7 +1,5 @@
 import { axiosInstance2 } from "@/_lib/axios";
-import Cookies from "js-cookie";
-
-const token = Cookies.get("token");
+// import Cookies from "js-cookie";
 
 export async function AdminDelcineRequest(id: string) {
   const response = await axiosInstance2.patch(`/ride-requests/${id}/cancel`, {

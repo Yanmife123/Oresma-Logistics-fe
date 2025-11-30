@@ -1,7 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import { ApiBaseUrl } from "@/_lib/store/apiUrl";
 import { cookies } from "next/headers";
-import Cookies from "js-cookie";
 
 type FormData = {
   email: string;

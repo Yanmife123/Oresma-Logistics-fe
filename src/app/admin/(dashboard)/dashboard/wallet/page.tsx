@@ -1,7 +1,7 @@
 import { WalletCard } from "@/components/pages/admin/dashboard/wallet/currentBalance";
-import { ExpensePieChart } from "@/components/pages/admin/dashboard/wallet/expense-chart";
+// import { ExpensePieChart } from "@/components/pages/admin/dashboard/wallet/expense-chart";
 // import { WalletBankCards } from "@/components/pages/admin/dashboard/wallet/savedCard";
-import { WalletHistory } from "@/components/pages/admin/dashboard/wallet/wallet-history";
+// import { WalletHistory } from "@/components/pages/admin/dashboard/wallet/wallet-history";
 import AllRiderWalletPage from "@/components/pages/admin/dashboard/wallet/all-rider-wallet";
 import { Breadcrumb } from "@/components/shared/dashboard/breadcrumb";
 

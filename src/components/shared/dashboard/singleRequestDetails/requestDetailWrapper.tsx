@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { MapPin, User, Phone, Mail, TrendingUp, Clock } from "lucide-react";
+// import { Badge } from "@/components/ui/badge";
+import { User, Phone, Mail } from "lucide-react";
 import { RideRequest } from "@/_lib/type/request/rider-request";
 import MapRoute from "./mapDisplay";
 import { StatusBadge } from "../status-card";
@@ -8,26 +8,26 @@ import { StatusBadge } from "../status-card";
 
 // Mock data - replace with actual API call
 
-const getStatusColor = (
-  status: string
-): "default" | "secondary" | "destructive" | "outline" => {
-  switch (status) {
-    case "pending":
-      return "default";
-    case "assigned":
-      return "secondary";
-    case "in-progress":
-      return "secondary";
-    case "completed":
-      return "secondary";
-    case "cancelled":
-      return "destructive";
-    case "payment_failed":
-      return "destructive";
-    default:
-      return "outline";
-  }
-};
+// const getStatusColor = (
+//   status: string
+// ): "default" | "secondary" | "destructive" | "outline" => {
+//   switch (status) {
+//     case "pending":
+//       return "default";
+//     case "assigned":
+//       return "secondary";
+//     case "in-progress":
+//       return "secondary";
+//     case "completed":
+//       return "secondary";
+//     case "cancelled":
+//       return "destructive";
+//     case "payment_failed":
+//       return "destructive";
+//     default:
+//       return "outline";
+//   }
+// };
 
 export default function RequestDetailWrapper({
   request,

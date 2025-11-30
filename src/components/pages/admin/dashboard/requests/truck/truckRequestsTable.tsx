@@ -4,7 +4,7 @@ import {
   // type RowAction,
 } from "@/components/shared/table/table-style";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 // import { Processnvoice } from "../processing";
 import CreateInoiveModal from "../invoiceCreateModal";
 import { adminGetRideRequests } from "@/_lib/api/admin/get-ride-request";
@@ -178,7 +178,7 @@ export function RequestsTable() {
             {
               key: "status",
               label: "Status",
-              render(value, row) {
+              render(value) {
                 return <StatusBadge status={value} />;
               },
             },

@@ -1,6 +1,5 @@
 "use client";
-import Image from "next/image";
-import { Ruler, SquareMenuIcon } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 
 import { SingleRideRequestResponse } from "@/_lib/type/request/rider-request";

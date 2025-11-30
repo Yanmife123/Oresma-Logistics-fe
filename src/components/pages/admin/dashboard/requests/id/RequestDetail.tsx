@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+
 import { useState } from "react";
 // import { Ruler, SquareMenuIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -92,7 +92,7 @@ export function AdminReqestsDetail({ id }: { id: string }) {
           data.rideRequest.status === "payment_failed") && (
           <div className="grid grid-cols-1 gap-2">
             <Button
-              onClick={(e) => {
+              onClick={() => {
                 setOpenModal(true);
               }}
             >

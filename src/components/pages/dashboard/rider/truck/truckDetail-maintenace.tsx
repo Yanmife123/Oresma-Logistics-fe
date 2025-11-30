@@ -24,7 +24,6 @@ export function TruckDetailMaintenance({ truck }: TruckDetailMaintenanceProps) {
                 Service History
               </h3>
               <div className="space-y-2">
-                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                 {truck.maintenance.serviceHistory.map(
                   (service: Record<string, unknown>, idx: number) => (
                     <div

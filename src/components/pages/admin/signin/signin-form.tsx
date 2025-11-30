@@ -47,7 +47,7 @@ export function AdminLoginForm() {
         showToast.success(data.message || "Login successful");
         setTimeout(() => {
           navigate.push("/admin/dashboard");
-        }, 2000);
+        }, 500);
       } else {
         showToast.error(data.message || "Login failed");
       }

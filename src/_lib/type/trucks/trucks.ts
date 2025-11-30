@@ -1,4 +1,4 @@
-type TruckImage = {
+export type TruckImage = {
   url: string;
   type: string;
 };

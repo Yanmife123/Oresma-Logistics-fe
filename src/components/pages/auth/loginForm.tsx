@@ -57,7 +57,7 @@ export function LoginForm() {
         if (result.isRider) {
           navigate.push("/rider/dashboard");
         } else navigate.push("/dashboard/rider");
-      }, 2000);
+      }, 500);
     } catch (error) {
       if (error instanceof Error) {
         showToast.error("Login Failed", error.message && "Network Error");
