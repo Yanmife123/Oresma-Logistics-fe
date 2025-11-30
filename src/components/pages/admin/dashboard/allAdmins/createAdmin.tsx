@@ -136,14 +136,14 @@ export default function AdminSignupModal({
                     inputname="password"
                     register={register}
                     label="Passowrd"
-                    defaultValue="user2020"
+                    defaultValue="newPassword"
                     error={
                       errors.password ? errors.password.message : undefined
                     }
                   />
                 </div>
                 <p className="text-xs text-slate-500">
-                  Default password starts with &quot;user2020&quot;
+                  Default password starts with &quot;newPassword&quot;
                 </p>
               </div>
 
