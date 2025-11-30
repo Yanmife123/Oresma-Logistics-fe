@@ -1,23 +1,22 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import { getWithdrawalRequests } from "@/_lib/api/transaction/get-transaction";
+import { getAllTransactions } from "@/_lib/api/transaction/get-transaction";
 
 import { BaseTable } from "@/components/shared/table/table-style";
-import { Input } from "@/components/ui/input";
 import { Suspense } from "react";
 import { SearchFilter } from "@/components/shared/dashboard/search-fliter";
 import SkeletonCardList from "@/components/shared/skeleton/card-list-skeleton";
 import { TransactionsResponse } from "@/_lib/type/transaction/transaction";
 
-export function AdminWithdrawalRequests() {
+export function AdminTransactionsTable() {
   const {
     data: withdrawalData,
     isPending,
     error: Error,
     isError,
   } = useQuery<TransactionsResponse>({
-    queryKey: ["WithdrawalRequests"],
-    queryFn: getWithdrawalRequests,
+    queryKey: ["Transactions"],
+    queryFn: getAllTransactions,
   });
   if (isPending) {
     return <SkeletonCardList />;
@@ -29,8 +28,8 @@ export function AdminWithdrawalRequests() {
     <div className="space-y-6">
       <Suspense>
         <SearchFilter
-          paramName="transactionSearch"
-          placeholder="Search by Transaction ID, User ID, Reference..."
+          paramName="Transaction Id"
+          placeholder="Search by Transaction ID, User ID "
           className="bg-[#FAFBFD] rounded-md shadow-[0px_4px_4px_0px_#00000040] px-4 py-2"
         />
       </Suspense>
@@ -64,9 +63,9 @@ export function AdminWithdrawalRequests() {
           },
           { label: "Created At", key: "createdAt" },
         ]}
-        data={withdrawalData.transactions}
         count={withdrawalData.count}
         showCountBadge={true}
+        data={withdrawalData.transactions}
       />
     </div>
   );

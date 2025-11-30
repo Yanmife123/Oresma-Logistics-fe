@@ -17,6 +17,7 @@ import {
   // List,
   // Wrench,
   // HelpCircle,
+  Activity,
   LogOut,
   BarChart3,
   Wallet2Icon,
@@ -37,7 +38,12 @@ const menuItems = [
     href: "/admin/dashboard/overview",
   },
   // { icon: User, label: "Profile", href: "/admin/profile" },
-  { icon: Wallet2Icon, label: "Wallet", href: "/admin/dashboard/wallet" },
+  { icon: Wallet2Icon, label: "Finance", href: "/admin/dashboard/wallet" },
+  {
+    icon: Activity,
+    label: "Transactions",
+    href: "/admin/dashboard/transactions",
+  },
   {
     icon: Banknote,
     label: "Withdrawal Requests",

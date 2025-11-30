@@ -89,6 +89,8 @@ export function AllAdminTable() {
             },
           ]}
           data={Admins.users}
+          count={Admins.count}
+          showCountBadge={true}
           rowActions2={RowActions}
         />
       )}

@@ -123,6 +123,8 @@ export function VehicleDashboardTable() {
               },
             ]}
             data={lorriesData.trucks}
+            showCountBadge={true}
+            count={lorriesData.count}
             rowActions2={RowActions}
           />
         )

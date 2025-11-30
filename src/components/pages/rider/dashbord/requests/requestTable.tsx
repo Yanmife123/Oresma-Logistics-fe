@@ -111,12 +111,15 @@ export function RequestTable() {
           {
             key: "status",
             label: "Status",
-            render(value, row) {
+            render(value) {
               return <StatusBadge status={value} />;
             },
           },
+          { key: "createdAt", label: "Date Created" },
         ]}
         data={AssignmentRequest?.rideRequests}
+        count={AssignmentRequest?.count}
+        showCountBadge={true}
         // rowActions={RowActions}
         rowActions2={(row) => <RowActions row={row} />}
         onRowClick={(row) =>

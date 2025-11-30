@@ -184,6 +184,8 @@ export function RequestsTable() {
             },
           ]}
           data={Requests.rideRequests!}
+          count={Requests.count}
+          showCountBadge={true}
           rowActions2={(row) => <RowActions row={row} />}
           onRowClick={(row) =>
             navigate.push(`/admin/dashboard/requests/${row._id}`)

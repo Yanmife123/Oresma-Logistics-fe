@@ -1,7 +1,7 @@
 export type Wallets = {
   success: false;
   message: string;
-  count: number | string;
+  count: number;
   wallets: Wallet[];
 };
 
@@ -41,4 +41,28 @@ export interface BankDetails {
   accountNumber: string;
   bankCode: string;
   bankName: string;
+}
+
+export interface AdminWalletSummaryResponse {
+  success: boolean;
+  message: string;
+  data: {
+    overview: {
+      totalWallets: number;
+      totalBalance: number;
+      averageBalance: number;
+      totalTransactions: number;
+    };
+    statusBreakdown: {
+      active: number;
+      suspended: number;
+      frozen: number;
+      closed: number;
+    };
+    currencyBreakdown: {
+      currency: string;
+      totalBalance: number;
+      walletCount: number;
+    }[];
+  };
 }

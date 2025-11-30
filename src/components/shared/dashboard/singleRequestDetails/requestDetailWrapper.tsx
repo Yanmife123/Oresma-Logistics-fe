@@ -37,7 +37,7 @@ export default function RequestDetailWrapper({
   children?: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-background p-6">
+    <div className="min-h-screen bg-background md:p-6">
       <div className="max-w-5xl mx-auto space-y-6">
         {/* Header */}
         <div className="space-y-2">

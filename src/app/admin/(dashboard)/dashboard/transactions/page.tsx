@@ -1,17 +1,17 @@
-import { AdminWithdrawalRequests } from "@/components/pages/admin/dashboard/withdrawal/all-withdrawal-requests";
+import { AdminTransactionsTable } from "@/components/pages/admin/dashboard/transactions/transaction-Table";
 import { Breadcrumb } from "@/components/shared/dashboard/breadcrumb";
 import { PageHeader2 } from "@/components/shared/headers/page-headers";
-export default function AdminWithdrawHistory() {
+export default function TransactionPage() {
   return (
     <div className="space-y-6">
       <Breadcrumb
         items={[
           { label: "Dashboard", href: "/admin/dashboard" },
-          { label: "All Withdrawal Requests" },
+          { label: "Transactions" },
         ]}
       />
-      <PageHeader2 title="Withdrawals" />
-      <AdminWithdrawalRequests />
+      <PageHeader2 title="Transactions" />
+      <AdminTransactionsTable />
     </div>
   );
 }

@@ -109,6 +109,8 @@ export function AllRidersTable() {
             },
           ]}
           data={Riders.users}
+          showCountBadge={true}
+          count={Riders.count}
           rowActions2={RowActions}
         />
       )}
