@@ -60,7 +60,7 @@ export function LoginForm() {
       }, 500);
     } catch (error) {
       if (error instanceof Error) {
-        showToast.error("Login Failed", error.message && "Network Error");
+        showToast.error("Login Failed", error.message ?? "Network Error");
       }
     } finally {
       setIsLoading(false);

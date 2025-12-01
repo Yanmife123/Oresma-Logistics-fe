@@ -6,6 +6,6 @@ export async function getAllTransactions() {
 }
 
 export async function getWithdrawalRequests() {
-  const response = await axiosInstance2.get(`/transactions?type=withdrawal`);
+  const response = await axiosInstance2.get(`/transactions?type=payout`);
   return response.data;
 }

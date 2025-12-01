@@ -38,10 +38,15 @@ export function AdminTransactionsTable() {
           { label: "Transaction Id", key: "_id" },
           { label: "Transaction Title", key: "title" },
           { label: " Type", key: "type" },
-          { label: " Reference", key: "reference" },
           { label: " User ID", key: "userId" },
-          { label: "Amount", key: "amount" },
-          { label: "Currency", key: "currency" },
+          {
+            label: "Amount",
+            key: "amount",
+            render(value, row) {
+              return `${row.currency === "NGN" ? "₦" : "$"} ${value}`;
+            },
+          },
+
           {
             label: "Status",
             key: "status",

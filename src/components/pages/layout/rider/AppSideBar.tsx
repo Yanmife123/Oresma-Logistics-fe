@@ -34,7 +34,7 @@ const menuItems = [
     label: "Active Requests",
     href: "/rider/dashboard/activeRequests",
   },
-  { icon: Car, label: "Vehicle", href: "/rider/dashboard/vehicle" },
+  // { icon: Car, label: "Vehicle", href: "/rider/dashboard/vehicle" },
   { icon: Wallet2, label: "Wallet", href: "/rider/dashboard/wallet" },
   // { icon: Bookmark, label: "Saved", href: "/rider/saved" },
   // { icon: Navigation, label: "Active Ride", href: "/admin/active-ride" },
