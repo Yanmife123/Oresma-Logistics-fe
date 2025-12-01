@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { RouteInfo } from "@/components/shared/map/route-info";
 import { LorryRecommendation } from "./lorryReconmended";
+import { availableMemory } from "process";
 
 const vehicles = [
   {
@@ -18,6 +19,7 @@ const vehicles = [
     image:
       "https://res.cloudinary.com/duyhha3mz/image/upload/v1760319030/car_zqtkkv.png",
     price: "₦2,500",
+    available: false,
   },
   {
     id: "dispatch",
@@ -25,6 +27,7 @@ const vehicles = [
     image:
       "https://res.cloudinary.com/duyhha3mz/image/upload/v1760319026/dispatch_tcox7e.jpg",
     price: "₦1,800",
+    available: false,
   },
   {
     id: "keke",
@@ -32,6 +35,7 @@ const vehicles = [
     image:
       "https://res.cloudinary.com/duyhha3mz/image/upload/v1760319037/keke_mngdxu.png",
     price: "₦800",
+    available: false,
   },
   {
     id: "lorry",
@@ -39,6 +43,7 @@ const vehicles = [
     image:
       "https://res.cloudinary.com/duyhha3mz/image/upload/v1760319027/lorry_djnre2.png",
     price: "₦5,000",
+    available: true,
   },
 ];
 

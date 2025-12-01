@@ -9,6 +9,7 @@ interface Vehicle {
   name: string;
   image: string;
   price?: string;
+  available?: boolean;
 }
 
 interface VehicleSelectorProps {
@@ -43,11 +44,16 @@ export function VehicleSelector({
                 onClick={() => onSelectVehicle(vehicle.id)}
                 className={`w-full ${
                   selectedVehicle == vehicle.id
-                    ? "bg-secondaryT"
-                    : "bg-[#FBB298]"
-                } hover:bg-secondaryT `}
+                    ? "bg-secondaryT/80"
+                    : "bg-secondaryT"
+                } hover:bg-secondaryT/80 `}
+                disabled={!vehicle.available}
               >
-                Choose ride
+                {vehicle.available
+                  ? selectedVehicle
+                    ? "Selected"
+                    : "Choose ride"
+                  : "Coming soon"}
               </Button>
             </div>
           </CardContent>

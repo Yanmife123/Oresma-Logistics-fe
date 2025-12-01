@@ -25,10 +25,10 @@ import { userSignIn } from "@/_lib/api/auth/signUp";
 import { showToast } from "@/components/shared/toast";
 import Image from "next/image";
 
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export function RegisterForm() {
-  // const navigate = useRouter();
+  const navigate = useRouter();
   type FormData = z.infer<typeof formScheme>;
   const formScheme = z
     .object({
@@ -64,11 +64,10 @@ export function RegisterForm() {
     mutationFn: userSignIn,
     onSuccess: (data) => {
       showToast.success("SignUp Successful", data.message);
-      // navigate.push("/auth/login");
+      navigate.push("/auth/login");
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    onError: (error: any) => {
-      showToast.error("Signup Failed", error.response.data.message);
+    onError: (error) => {
+      showToast.error("Signup Failed", error.message);
     },
   });
 
@@ -85,10 +84,10 @@ export function RegisterForm() {
           </div>
           <span className="text-2xl font-bold text-secondaryT">Oresma</span>
         </div>
-        <CardTitle className="text-3xl font-bold text-secondaryT ">
+        <CardTitle className="text-3xl font-bold text-secondaryT text-center ">
           Create account
         </CardTitle>
-        <CardDescription className="text-base text-muted-foreground">
+        <CardDescription className="text-base text-muted-foreground text-center">
           Join Oresma Logistics and start shipping smarter
         </CardDescription>
       </CardHeader>

@@ -76,10 +76,10 @@ export function LoginForm() {
           </div>
           <span className="text-2xl font-bold text-foreground">Oresma</span>
         </div>
-        <CardTitle className="text-3xl font-bold text-secondaryT">
+        <CardTitle className="text-3xl font-bold text-secondaryT text-center">
           Sign in
         </CardTitle>
-        <CardDescription className="text-base text-muted-foreground">
+        <CardDescription className="text-base text-muted-foreground text-center">
           Enter your credentials to access your account
         </CardDescription>
       </CardHeader>
