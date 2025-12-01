@@ -3,16 +3,31 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { SingleRideRequestResponse } from "@/_lib/type/request/rider-request";
-import {
-  DeclineAssignmentRequest,
-  SingleRiderRequest,
-} from "@/_lib/api/rider/assignment";
+import { SingleRiderRequest } from "@/_lib/api/rider/assignment";
 import SkeletonCardList from "@/components/shared/skeleton/card-list-skeleton";
-import { StartAssignmentRequest } from "@/_lib/api/rider/assignment";
+import { RouteProcess } from "./adminProcessingModal";
+
+import MapRoute from "@/components/shared/dashboard/singleRequestDetails/mapDisplay";
+
+import { StatusBadge } from "@/components/shared/dashboard/status-card";
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+
+import { useState } from "react";
+
 import Cookies from "js-cookie";
 import { User } from "@/_lib/type/cookies";
+import { EndProcess } from "./decline-this-activeRequest";
+import { StartProcess } from "./start-trip";
 export interface Stop {
   id: number;
   label: string;
@@ -24,14 +39,10 @@ export interface Stop {
   onAction?: () => void;
   process: "pending" | "success";
 }
-import { RouteProcess } from "./adminProcessingModal";
-import { useState } from "react";
-import MapRoute from "@/components/shared/dashboard/singleRequestDetails/mapDisplay";
-import { showToast } from "@/components/shared/toast";
-import { StatusBadge } from "@/components/shared/dashboard/status-card";
 
 export function TripProcess({ id }: { id: string }) {
   const [openModal, setOpenModal] = useState(false);
+  const [isDialog, setDialog] = useState(false);
   const rawUser = Cookies.get("user");
   const userData: User | null = rawUser ? JSON.parse(rawUser) : null;
 
@@ -46,81 +57,129 @@ export function TripProcess({ id }: { id: string }) {
     refetchInterval: 5000,
   });
   const navigate = useRouter();
-  const StartProcess = () => {
-    const muataion = useMutation({
-      mutationFn: StartAssignmentRequest,
-      mutationKey: ["startAssignment"],
-      onSuccess: (data) => {
-        showToast.success("Trip has Started", data.message);
-      },
-      onError: (error) => {
-        showToast.error("Failed to start trip", error.message);
-      },
-    });
+  // const StartProcess = () => {
+  //   const muataion = useMutation({
+  //     mutationFn: StartAssignmentRequest,
+  //     mutationKey: ["startAssignment"],
+  //     onSuccess: (data) => {
+  //       showToast.success("Trip has Started", data.message);
+  //     },
+  //     onError: (error) => {
+  //       showToast.error("Failed to start trip", error.message);
+  //     },
+  //   });
 
-    const handleClick = async () => {
-      await muataion.mutateAsync(id);
-    };
+  //   const handleClick = async () => {
+  //     await muataion.mutateAsync(id);
+  //   };
 
-    return (
-      <div className="space-y-6">
-        <div className="flex justify-center cursor-pointer">
-          <Button
-            onClick={handleClick}
-            disabled={muataion.isPending}
-            className="cursor-pointer"
-          >
-            {muataion.isPending ? "Starting Trip...." : "Start Trip"}
-          </Button>
-        </div>
-      </div>
-    );
-  };
-  const EndProcess = () => {
-    const muataion = useMutation({
-      mutationFn: DeclineAssignmentRequest,
-      mutationKey: ["startAssignment"],
-      onSuccess: (data) => {
-        showToast.success("Trip has been Declined", data.message);
-        navigate.push("/rider/dashboard/activeRequest");
-      },
-      onError: (error) => {
-        showToast.error("Failed to Decline Reuqest", error.message);
-      },
-    });
+  //   return (
+  //     <div className="space-y-6">
+  //       <div className="flex justify-center cursor-pointer">
+  //         <Button
+  //           onClick={handleClick}
+  //           disabled={muataion.isPending}
+  //           className="cursor-pointer"
+  //         >
+  //           {muataion.isPending ? "Starting Trip...." : "Start Trip"}
+  //         </Button>
+  //       </div>
+  //     </div>
+  //   );
+  // };
+  // const EndProcess = () => {
+  //   const muataion = useMutation({
+  //     mutationFn: DeclineAssignmentRequest,
+  //     mutationKey: ["startAssignment"],
+  //     onSuccess: (data) => {
+  //       showToast.success("Trip has been Declined", data.message);
+  //       navigate.push("/rider/dashboard/activeRequest");
+  //     },
+  //     onError: (error) => {
+  //       showToast.error("Failed to Decline Reuqest", error.message);
+  //     },
+  //   });
 
-    const handleClick = async () => {
-      await muataion.mutateAsync(id);
-    };
+  //   const handleClick = async () => {
+  //     await muataion.mutateAsync(id);
+  //   };
 
-    return (
-      <div className="space-y-6">
-        <div className="flex justify-center cursor-pointer">
-          <Button
-            onClick={handleClick}
-            disabled={muataion.isPending}
-            className="cursor-pointer"
-          >
-            {muataion.isPending ? "Declining Trip...." : "Decline Trip"}
-          </Button>
-        </div>
-      </div>
-    );
-  };
+  //   return (
+  //     <div className="space-y-6">
+  //       <div className="flex justify-center cursor-pointer">
+  //         <Button
+  //           onClick={handleClick}
+  //           disabled={muataion.isPending}
+  //           className="cursor-pointer"
+  //         >
+  //           {muataion.isPending ? "Declining Trip...." : "Decline Trip"}
+  //         </Button>
+  //       </div>
+  //     </div>
+  //   );
+  // };
   const FinshProcess = () => {
     return (
-      <div className="space-y-6">
-        <div className="flex justify-center cursor-pointer">
+      // <div className="space-y-6">
+      //   <div className="flex justify-center cursor-pointer">
+      //     <Button
+      //       onClick={() => {
+      //         setOpenModal(true);
+      //       }}
+      //       className="cursor-pointer"
+      //     >
+      //       Finish Trip
+      //     </Button>
+      //   </div>
+      // </div>
+      <AlertDialog open={isDialog} onOpenChange={setDialog}>
+        <AlertDialogTrigger asChild>
           <Button
-            onClick={() => {
-              setOpenModal(true);
-            }}
             className="cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
           >
             Finish Trip
           </Button>
-        </div>
-      </div>
+        </AlertDialogTrigger>
+        <AlertDialogContent
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          <AlertDialogHeader className="text-primaryT  rounded-t-lg flex flex-col items-start justify-between py-4">
+            <div className="flex-1">
+              <AlertDialogTitle className="text-2xl">
+                Finish this Trip
+              </AlertDialogTitle>
+              <AlertDialogDescription className="text-primaryT/80">
+                Are you sure you want to Finish this trip
+              </AlertDialogDescription>
+            </div>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setDialog(false);
+              }}
+              className="cursor-pointer"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                setDialog(false);
+                setOpenModal(true);
+              }}
+              className="cursor-pointer"
+            >
+              Finish Trip
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     );
   };
 
@@ -211,8 +270,8 @@ export function TripProcess({ id }: { id: string }) {
 
           <div className="flex gap-5">
             {/* Location Headers */}
-            {data.rideRequest.status === "assigned" && <StartProcess />}
-            {data.rideRequest.status !== "completed" && <EndProcess />}
+            {data.rideRequest.status === "assigned" && <StartProcess id={id} />}
+            {data.rideRequest.status !== "completed" && <EndProcess id={id} />}
             {/* Timeline Section */}
             {data.rideRequest.status === "in-progress" && <FinshProcess />}
             {data.rideRequest.status === "completed" && (

@@ -18,7 +18,6 @@ export interface User {
 export interface ProfileUser {
   success: boolean;
   message: string;
-
   user: User;
 }
 

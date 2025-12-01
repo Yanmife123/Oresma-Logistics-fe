@@ -86,10 +86,11 @@ export function AllUsersTable() {
         <BaseTable
           columns={[
             { key: "name", label: "Name" },
-            { key: "id", label: "User ID" },
             { key: "email", label: "Email" },
+
             { key: "phone", label: "Phone" },
             { key: "role", label: "Role" },
+
             {
               key: "createdAt",
               label: "Date Created",
