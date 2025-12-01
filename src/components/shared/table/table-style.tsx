@@ -4,7 +4,7 @@ import type React from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/_lib/utils";
 import ListPagination from "../pagination/list-pagination-style1";
-import { CreateAdmin } from "@/_lib/api/admin/admin/create-admin";
+
 import { Card } from "@/components/ui/card";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getNestedValue(obj: any, path: string) {

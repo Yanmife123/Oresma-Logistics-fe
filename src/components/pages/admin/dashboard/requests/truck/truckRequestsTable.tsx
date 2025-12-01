@@ -19,6 +19,7 @@ import SkeletonCardList from "@/components/shared/skeleton/card-list-skeleton";
 import { Button } from "@/components/ui/button";
 import { StatusBadge } from "@/components/shared/dashboard/status-card";
 import { showToast } from "@/components/shared/toast";
+import { DeclineRequest } from "../decline-requets";
 
 export function RequestsTable() {
   const navigate = useRouter();
@@ -39,11 +40,11 @@ export function RequestsTable() {
 
   const RowActions = ({ row }: { row: RideRequest }) => {
     return (
-      <div className="flex gap-1 sm:gap-2">
+      <div className="flex gap-2">
         {(row.status === "pending" || row.status === "payment_failed") && (
           <DeclineRequest id={row._id} />
         )}
-        {!row.invoiceSent ? (
+        {!row.invoiceSent && row.status !== "cancelled" ? (
           <CreateInvoice id={row._id} />
         ) : row.status === "payment_failed" || row.status === "pending" ? (
           <ResendInvoice id={row._id} />
@@ -52,33 +53,24 @@ export function RequestsTable() {
     );
   };
 
-  const DeclineRequest = ({ id }: { id: string }) => {
-    const mutation = useMutation({
-      mutationFn: AdminDelcineRequest,
-      mutationKey: ["AdminDeclineRequest"],
-      onSuccess: (data) => {
-        showToast.success("Request Declined", data.message);
-      },
-      onError(error) {
-        showToast.error("Failed to decline", error.message);
-      },
-    });
-    const hanldeClick = async () => {
-      await mutation.mutateAsync(id);
-    };
-    return (
-      <Button
-        variant={"outline"}
-        onClick={(e) => {
-          e.stopPropagation();
-          hanldeClick();
-        }}
-        disabled={mutation.isPending}
-      >
-        {mutation.isPending ? "Declining....." : " Decline"}
-      </Button>
-    );
-  };
+  // const DeclineRequest = ({ id }: { id: string }) => {
+
+  //   const hanldeClick = async () => {
+  //     await mutation.mutateAsync(id);
+  //   };
+  //   return (
+  //     <Button
+  //       variant={"outline"}
+  //       onClick={(e) => {
+  //         e.stopPropagation();
+  //         hanldeClick();
+  //       }}
+  //       disabled={mutation.isPending}
+  //     >
+  //       {mutation.isPending ? "Declining....." : " Decline"}
+  //     </Button>
+  //   );
+  // };
 
   const CreateInvoice = ({ id }: { id: string }) => {
     const [openModal, setOpenModal] = useState(false);

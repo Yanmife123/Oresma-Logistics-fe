@@ -1,13 +1,13 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import { getWithdrawalRequests } from "@/_lib/api/transaction/get-transaction";
-
 import { BaseTable } from "@/components/shared/table/table-style";
-import { Input } from "@/components/ui/input";
 import { Suspense } from "react";
 import { SearchFilter } from "@/components/shared/dashboard/search-fliter";
 import SkeletonCardList from "@/components/shared/skeleton/card-list-skeleton";
 import { TransactionsResponse } from "@/_lib/type/transaction/transaction";
+import { ApproveWithdraw, DeclineWithdraw } from "./decline-accept-withdraw";
+import { Transaction } from "@/_lib/type/transaction/transaction";
 
 export function AdminWithdrawalRequests() {
   const {
@@ -25,6 +25,19 @@ export function AdminWithdrawalRequests() {
   if (isError) {
     return <div>Error: {Error?.message}</div>;
   }
+
+  const RowActions = ({ row }: { row: Transaction }) => {
+    return (
+      <div className="flex gap-2">
+        {row.status === "pending" && (
+          <>
+            <DeclineWithdraw id={row.reference} />
+            <ApproveWithdraw id={row.reference} />
+          </>
+        )}
+      </div>
+    );
+  };
   return (
     <div className="space-y-6">
       <Suspense>
@@ -62,12 +75,26 @@ export function AdminWithdrawalRequests() {
               </span>
             ),
           },
-          { label: "Created At", key: "createdAt" },
+          {
+            label: "Created At",
+            key: "createdAt",
+            render(value) {
+              return new Date(value).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "2-digit",
+              });
+            },
+          },
         ]}
+        rowActions2={(row) => {
+          return <RowActions row={row} />;
+        }}
         data={withdrawalData.transactions}
         count={withdrawalData.count}
         showCountBadge={true}
       />
+      {/* <DeclineWithdraw is  /> */}
     </div>
   );
 }

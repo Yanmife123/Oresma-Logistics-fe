@@ -9,9 +9,15 @@ import SkeletonCard from "@/components/shared/skeleton/single-card-skeleton";
 import { showToast } from "@/components/shared/toast";
 import { SingleWallet } from "@/_lib/type/wallets/wallet";
 import { AddWalletPin } from "./add-wallet-pin";
+import WithdrawRequestsFormModal from "./withdraw-requests-form-modal";
+import { useSearchParams } from "next/navigation";
+import { useRouterParams } from "@/_lib/functions/params-router-function";
 
 export function RiderWalletCard() {
   const [isAddBankOpen, setIsAddBankOpen] = useState(false);
+  const searchParams = useSearchParams();
+  const withdrawParam = searchParams.get("withdraw");
+  const { updateParam } = useRouterParams();
   const {
     data: Wallet,
     isPending,
@@ -65,7 +71,12 @@ export function RiderWalletCard() {
         </div>
         <div className="mt-6">
           <div className="flex flex-row gap-5 items-center ">
-            <Button className="shadow-[0px_4px_4px_0px_#00000040] py-5 px-5 rounded-[10px] font-semibold cursor-pointer">
+            <Button
+              className="shadow-[0px_4px_4px_0px_#00000040] py-5 px-5 rounded-[10px] font-semibold cursor-pointer"
+              onClick={() => {
+                updateParam({ inputValue: "form", paramName: "withdraw" });
+              }}
+            >
               Withdrawal Money
             </Button>
             <Button
@@ -82,6 +93,7 @@ export function RiderWalletCard() {
         isOpen={isAddBankOpen}
         onClose={() => setIsAddBankOpen(false)}
       />
+      {withdrawParam === "form" && <WithdrawRequestsFormModal />}
       {!Wallet.wallet.isPinSet && <AddWalletPin />}
     </>
   );
