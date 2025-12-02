@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function AboutUs() {
   return (
     <main className="max-w-7xl mx-auto">
-      <div className="w-full px-0 py-2 flex justify-between items-center md:flex-row flex-col max-md:gap-7 ">
+      <div className="w-full px-0 py-2 flex justify-between items-center md:flex-row flex-col gap-7 ">
         <div className="w-[332px] h-[337px] relative">
           <Image
             src="https://res.cloudinary.com/duyhha3mz/image/upload/v1759716602/db527da01185893706d5f6280b0b2089fff8c5a7_shv1kd.jpg"

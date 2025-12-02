@@ -7,8 +7,8 @@ export default function CaseStudy() {
       <div className="flex flex-col gap-2 items-center">
         <SubHeader title="Case Studies" />
       </div>
-      <div className=" w-full flex justify-center mt-10">
-        <div className="w-full max-w-5xl bg-[#E6E8EB] h-auto md:py-8 md:px-5 py-6 px-3 flex sm:flex-row flex-col-reverse  sm:gap-4 gap-7 rounded-md">
+      <div className=" w-full flex justify-center mt-10 lg:h-[400px] md:h-[320px]">
+        <div className="w-full max-w-5xl bg-[#E6E8EB] h-auto md:py-8 md:px-5 py-6 px-3 flex sm:flex-row flex-col-reverse  sm:gap-5 gap-7 rounded-md relative">
           <div className="flex-1 flex items-center sm:justify-start justify-center">
             <div>
               <h2 className="font-semibold text-[1.75rem] text-primaryT sm:text-start text-center">
@@ -27,7 +27,7 @@ export default function CaseStudy() {
             </div>
           </div>
           <div className="flex-1">
-            <div className="flex justify-center">
+            <div className="flex justify-center sm:absolute bottom-0  h-auto w-auto">
               <div className="relative lg:h-[334px] lg:w-[359px] md:h-[280px] md:w-[305px] h-[250px] w-[275px]">
                 <Image
                   src={

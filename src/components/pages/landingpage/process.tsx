@@ -27,41 +27,44 @@ const processSteps = [
 
 export default function Process() {
   return (
-    <section className="w-full max-w-7xl mx-auto px-4 py-16">
+    <section className="w-full max-w-7xl mx-auto lg:px-4 py-16">
       <div className="flex flex-col gap-12 items-center">
         <SubHeader title="Our Process" />
 
         {/* Desktop: Horizontal Timeline */}
         <div className="hidden md:flex items-start justify-center w-full gap-8">
           {processSteps.map((step, index) => (
-            <div key={step.numberimg} className="flex items-start flex-1">
-              {/* Step Content */}
-              <div className="flex flex-col items-center text-center gap-4 flex-1">
-                <Image
-                  src={step.numberimg}
-                  alt={step.title}
-                  width={96}
-                  height={96}
-                />
+            <>
+              <div key={step.numberimg} className="flex items-start flex-2 ">
+                {/* Step Content */}
+                <div className="flex flex-col items-center text-center gap-4 flex-1">
+                  <div className="flex gap-2">
+                    <Image
+                      src={step.numberimg}
+                      alt={step.title}
+                      width={96}
+                      height={96}
+                    />
+                    {/* Connecting Line (not after last step) */}
+                  </div>
 
-                {/* Step Title */}
-                <h3 className="text-xl font-semibold text-[#F75720]">
-                  {step.title}
-                </h3>
+                  {/* Step Title */}
+                  <h3 className="text-xl font-semibold text-[#F75720]">
+                    {step.title}
+                  </h3>
 
-                {/* Description */}
-                <p className="text-sm text-muted-foreground leading-relaxed max-w-[270px]">
-                  {step.description}
-                </p>
+                  {/* Description */}
+                  <p className="text-sm text-muted-foreground leading-relaxed max-w-[270px]">
+                    {step.description}
+                  </p>
+                </div>
               </div>
-
-              {/* Connecting Line (not after last step) */}
               {index < processSteps.length - 1 && (
-                <div className="flex items-center pt-12 px-4">
-                  <div className="h-1.5 w-25 bg-[#35445C]" />
+                <div className="flex items-center pt-12 px-4 flex-1 ">
+                  <div className="h-1.5 w-full bg-[#35445C]" />
                 </div>
               )}
-            </div>
+            </>
           ))}
         </div>
 

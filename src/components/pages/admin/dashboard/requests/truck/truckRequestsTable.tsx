@@ -53,24 +53,7 @@ export function RequestsTable() {
     );
   };
 
-  // const DeclineRequest = ({ id }: { id: string }) => {
-
-  //   const hanldeClick = async () => {
-  //     await mutation.mutateAsync(id);
-  //   };
-  //   return (
-  //     <Button
-  //       variant={"outline"}
-  //       onClick={(e) => {
-  //         e.stopPropagation();
-  //         hanldeClick();
-  //       }}
-  //       disabled={mutation.isPending}
-  //     >
-  //       {mutation.isPending ? "Declining....." : " Decline"}
-  //     </Button>
-  //   );
-  // };
+ 
 
   const CreateInvoice = ({ id }: { id: string }) => {
     const [openModal, setOpenModal] = useState(false);
