@@ -27,7 +27,7 @@ export function Team() {
     <section className="w-full max-7xl mx-auto ">
       <div className="flex flex-col gap-2 items-center py-7">
         <SubHeader title="Our Experts" />
-        <p className="text-base font-normal">
+        <p className="text-base font-normal text-center max-w-[500px]">
           Meet our experienced team of logistics professionals dedicated to
           delivering excellence in automobile export and supply chain solutions
         </p>
@@ -41,7 +41,7 @@ export function Team() {
               fill
               className="object-cover animate-zoom-in rounded-tl-[96px] rounded-br-[96px]"
             />
-            <div className="absolute z-2 -bottom-2 -left-1 w-full h-auto  flex justify-center">
+            <div className="absolute z-2 -bottom-1 -left-1 w-full h-auto  flex justify-center">
               <div className="py-2 px-9 flex flex-col gap-1 bg-white rounded-md items-center">
                 <h2 className="font-semibold text-lg text-center">
                   {individual.name}

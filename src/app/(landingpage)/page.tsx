@@ -6,9 +6,9 @@ import { Team } from "@/components/pages/landingpage/teams";
 import CaseStudy from "@/components/pages/landingpage/case-study";
 export default function LandingPage() {
   return (
-    <main>
+    <main className="bg-[#F0F4FA]">
       <HeroSection />
-      <div className="lg:p-24 md:p-16 p-7 space-y-20">
+      <div className="lg:p-24 md:p-12 p-7 space-y-20">
         <AboutUs />
         {/* <Services /> */}
         <Team />

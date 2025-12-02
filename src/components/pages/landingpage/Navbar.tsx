@@ -44,7 +44,7 @@ export function Navbar() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -58,17 +58,17 @@ export function Navbar() {
           </div>
 
           {/* CTA Button - Desktop */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <Button
               className="w-full bg-[#F75720] hover:bg-[#F75720]/90 text-primary-foreground hover:scale-105 transition-transform duration-300 rounded-tl-3xl rounded-br-3xl"
               asChild
             >
-              <Link href={"/auth/login"}>GET A Started</Link>
+              <Link href={"/auth/login"}>GET Started</Link>
             </Button>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-foreground hover:text-primary transition-all duration-300 hover:rotate-90"
@@ -82,7 +82,7 @@ export function Navbar() {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="md:hidden bg-white border-t border-border animate-slide-down">
+        <div className="lg:hidden bg-white border-t border-border animate-slide-down">
           <div className="px-4 pt-2 pb-4 space-y-2">
             {navLinks.map((link, index) => (
               <a
