@@ -34,8 +34,8 @@ export function RequestsTable() {
   } = useQuery<RideRequestsResponse>({
     queryFn: adminGetRideRequests,
     queryKey: ["AdminRideRequest"],
-    refetchInterval: 5000, // 5 seconds
-    refetchOnReconnect: true,
+    // refetchInterval: 5000, // 5 seconds
+    // refetchOnReconnect: true,
   });
 
   const RowActions = ({ row }: { row: RideRequest }) => {
@@ -52,8 +52,6 @@ export function RequestsTable() {
       </div>
     );
   };
-
- 
 
   const CreateInvoice = ({ id }: { id: string }) => {
     const [openModal, setOpenModal] = useState(false);

@@ -31,6 +31,9 @@ export function DeclineRequest({ id }: Props) {
     mutationKey: ["AdminDeclineRequest"],
     onSuccess: (data) => {
       showToast.success("Request Declined", data.message);
+      queryClient.invalidateQueries({
+        queryKey: ["AdminRideRequest"],
+      });
     },
     onError(error) {
       showToast.error("Failed to decline", error.message);
