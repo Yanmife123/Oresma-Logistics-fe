@@ -11,12 +11,13 @@ const teams = [
   },
   {
     name: "Nnai Jane Chinenye",
+    name: "Mayowa Elebute",
     id: 2,
     title: "Assistant Manager",
     img: "https://res.cloudinary.com/duyhha3mz/image/upload/v1764872921/WhatsApp_Image_2025-12-02_at_14.48.31_b3ac87c1_bltfs4.jpg",
   },
   {
-    name: "Afisoye Oresma",
+    name: "Mayowa Elebute",
     id: 3,
     title: "Founder",
     img: "https://res.cloudinary.com/duyhha3mz/image/upload/v1759716602/db527da01185893706d5f6280b0b2089fff8c5a7_shv1kd.jpg",
