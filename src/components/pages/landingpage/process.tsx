@@ -4,7 +4,7 @@ import Image from "next/image";
 const processSteps = [
   {
     numberimg:
-      "https://res.cloudinary.com/duyhha3mz/image/upload/v1759731345/01_eokg99.png",
+      "https://res.cloudinary.com/duyhha3mz/image/upload/v1764885225/01_1_gtv2mg.png",
     title: "Step 1",
     description:
       "Customer submits inquiry with specific vehicle requirements and destination details for accurate quotation and timeline.",
@@ -34,8 +34,13 @@ export default function Process() {
         {/* Desktop: Horizontal Timeline */}
         <div className="hidden md:flex items-start justify-center w-full gap-8">
           {processSteps.map((step, index) => (
-            <>
-              <div key={step.numberimg} className="flex items-start flex-2 ">
+            <div
+              key={step.numberimg}
+              className={`flex  gap-8 ${
+                index < processSteps.length - 1 ? "flex-2" : "flex-1"
+              } `}
+            >
+              <div className="flex items-start flex-2 ">
                 {/* Step Content */}
                 <div className="flex flex-col items-center text-center gap-4 flex-1">
                   <div className="flex gap-2">
@@ -60,11 +65,11 @@ export default function Process() {
                 </div>
               </div>
               {index < processSteps.length - 1 && (
-                <div className="flex items-center pt-12 px-4 flex-1 ">
+                <div className="flex  pt-12 px-4 flex-1 ">
                   <div className="h-1.5 w-full bg-[#35445C]" />
                 </div>
               )}
-            </>
+            </div>
           ))}
         </div>
 

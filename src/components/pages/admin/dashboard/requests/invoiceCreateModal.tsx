@@ -17,12 +17,14 @@ import { useMutation } from "@tanstack/react-query";
 import { CreateInvoice } from "@/_lib/api/admin/create-invoice";
 import { showToast } from "@/components/shared/toast";
 import { LoadingSpinner } from "@/components/shared/loading/loadingSpinner";
+import { useQueryClient } from "@tanstack/react-query";
 
 import Image from "next/image";
 import Link from "next/link";
 
 export default function CreateInoiveModal({ open, onOpenChange, id }: Props) {
   type FormSchema = z.infer<typeof InvoiceCreateSchema>;
+  const queryClient = useQueryClient();
   const InvoiceCreateSchema = z.object({
     currency: z.string().min(1, "Currency is required"),
     estimatedFare: z.string().min(1, "Estimated Fare is required"),
@@ -47,6 +49,9 @@ export default function CreateInoiveModal({ open, onOpenChange, id }: Props) {
     mutationKey: ["CeateInvoice"],
     onSuccess: (data) => {
       console.log(data);
+      queryClient.invalidateQueries({
+        queryKey: ["AdminRideRequest"],
+      });
     },
     onError: (error) => {
       showToast.error("Failed to create Invoice", error.message);
