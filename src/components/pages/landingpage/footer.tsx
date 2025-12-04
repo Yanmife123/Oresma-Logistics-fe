@@ -7,7 +7,7 @@ const ContactData = [
     id: 1,
     bg: "bg-[#35445C]",
     icon: Phone,
-    title: "+234 813 107 1716",
+    title: "+234810 854 5892",
     description: "Give us a call",
   },
   {
@@ -21,7 +21,7 @@ const ContactData = [
     id: 3,
     bg: "bg-[#35445C]",
     icon: MapPin,
-    title: "A, Admiralty Way, Lekki",
+    title: "Plot 7 mace estate adesan road mowe lagos state",
     description: "Officel Location",
   },
 ];
