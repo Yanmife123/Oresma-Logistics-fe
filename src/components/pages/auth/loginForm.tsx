@@ -61,9 +61,8 @@ export function LoginForm() {
     } catch (error) {
       if (error instanceof Error) {
         showToast.error("Login Failed", error.message ?? "Network Error");
+        setIsLoading(false);
       }
-    } finally {
-      setIsLoading(false);
     }
   };
 

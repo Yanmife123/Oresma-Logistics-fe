@@ -4,16 +4,16 @@ import Image from "next/image";
 
 const teams = [
   {
-    name: "Afisoye Oresma",
+    name: "Ruthney Ngozi",
     id: 1,
-    title: "Founder",
-    img: "https://res.cloudinary.com/duyhha3mz/image/upload/v1759728843/c42075600c91225d1734751ce36192a23327f836_e4won1.jpg",
+    title: "Secretary",
+    img: "https://res.cloudinary.com/duyhha3mz/image/upload/v1764872921/WhatsApp_Image_2025-12-02_at_12.52.18_3ff44854_wfiwgq.jpg",
   },
   {
-    name: "Afisoye Oresma",
+    name: "Nnai Jane Chinenye",
     id: 2,
-    title: "Founder",
-    img: "https://res.cloudinary.com/duyhha3mz/image/upload/v1759728843/40cf4511298a2fa3042d7367bb951903fb29370d_bjo408.jpg",
+    title: "Assistant Manager",
+    img: "https://res.cloudinary.com/duyhha3mz/image/upload/v1764872921/WhatsApp_Image_2025-12-02_at_14.48.31_b3ac87c1_bltfs4.jpg",
   },
   {
     name: "Afisoye Oresma",
