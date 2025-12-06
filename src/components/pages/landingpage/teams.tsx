@@ -10,7 +10,7 @@ const teams = [
     img: "https://res.cloudinary.com/duyhha3mz/image/upload/v1764872921/WhatsApp_Image_2025-12-02_at_12.52.18_3ff44854_wfiwgq.jpg",
   },
   {
-    name: "Nnai Jane Chinenye",
+    name: "Nnaji Jane Chinenye",
     id: 2,
     title: "Assistant Manager",
     img: "https://res.cloudinary.com/duyhha3mz/image/upload/v1764945970/WhatsApp_Image_2025-12-05_at_14.21.28_3cf926db_falwjm.jpg",

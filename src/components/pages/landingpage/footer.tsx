@@ -1,5 +1,11 @@
 import { Phone, Mail, MapPin } from "lucide-react";
-import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaTwitter,
+  FaInstagram,
+  FaYoutube,
+  FaLinkedin,
+} from "react-icons/fa";
 import Link from "next/link";
 import FooterForm from "./footer-Form";
 const ContactData = [
@@ -21,7 +27,7 @@ const ContactData = [
     id: 3,
     bg: "bg-[#35445C]",
     icon: MapPin,
-    title: "Plot 7 mace estate adesan road mowe lagos state",
+    title: "21 adesan road mowe ogun state",
     description: "Officel Location",
   },
 ];
@@ -79,7 +85,7 @@ export default function Footer() {
               Zeta Supply Chain Management Co., Ltd. - Your trusted partner in
               Chinese automobile exports since 2006
             </p>
-            <div className="flex gap-4 md:gap-6">
+            <div className="flex gap-4 md:gap-6 flex-wrap">
               <Link
                 href={"/"}
                 className="bg-white py-0.5 px-1.5 rounded-full h-10 w-10 md:h-[50px] md:w-[50px] flex justify-center items-center hover:scale-110 transition-transform"
@@ -106,6 +112,14 @@ export default function Footer() {
                 className="bg-white py-0.5 px-1.5 rounded-full h-10 w-10 md:h-[50px] md:w-[50px] flex justify-center items-center hover:scale-110 transition-transform"
               >
                 <FaYoutube color="#f75720" className="w-5 h-5 md:w-6 md:h-6" />
+              </Link>
+              <Link
+                href={
+                  "https://www.linkedin.com/in/oresma-logistic-78324a393?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                }
+                className="bg-white py-0.5 px-1.5 rounded-full h-10 w-10 md:h-[50px] md:w-[50px] flex justify-center items-center hover:scale-110 transition-transform"
+              >
+                <FaLinkedin color="#f75720" className="w-5 h-5 md:w-6 md:h-6" />
               </Link>
             </div>
           </div>
